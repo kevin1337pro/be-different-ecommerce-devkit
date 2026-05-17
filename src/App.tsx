@@ -5,11 +5,14 @@ import {
   ChevronRight,
   CreditCard,
   Eye,
+  Facebook,
   Flame,
   Heart,
+  Instagram,
   LockKeyhole,
   Menu,
   Minus,
+  Music2,
   PackageCheck,
   Plus,
   Radio,
@@ -21,8 +24,10 @@ import {
   Star,
   Trash2,
   Truck,
+  Twitter,
   X,
   Zap,
+  Youtube,
 } from 'lucide-react';
 import {
   brandDropImage,
@@ -81,6 +86,13 @@ const heroSlides = [
     product: products[3],
     background: heroImage,
   },
+];
+const socialLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/', Icon: Instagram },
+  { label: 'TikTok', href: 'https://www.tiktok.com/', Icon: Music2 },
+  { label: 'YouTube', href: 'https://www.youtube.com/', Icon: Youtube },
+  { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Facebook },
+  { label: 'X', href: 'https://x.com/', Icon: Twitter },
 ];
 
 type CartItem = {
@@ -702,7 +714,23 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <strong>be-different</strong>
+        <div className="footer-brand-block">
+          <strong>be-different</strong>
+          <div className="social-links" aria-label="Social Media">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                className="social-link"
+                href={href}
+                key={label}
+                aria-label={`${label} oeffnen`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icon size={18} strokeWidth={2.2} />
+              </a>
+            ))}
+          </div>
+        </div>
         <nav aria-label="Footer Navigation">
           <a href="#shop">Shop</a>
           <a href="#drops">Drops</a>
