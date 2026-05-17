@@ -280,6 +280,9 @@ function App() {
           <a href="#brand" onClick={() => setMenuOpen(false)}>
             Brand
           </a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>
+            About
+          </a>
           <a href="#system" onClick={() => setMenuOpen(false)}>
             Stack
           </a>
@@ -475,6 +478,64 @@ function App() {
                 <p>{pillar.text}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="about-section" id="about">
+          <div className="about-manifest">
+            <span className="eyebrow">About us</span>
+            <h2>Keine Uniform. Ein Angriff auf Autopilot.</h2>
+            <p>
+              Be Different ist Streetwear fuer Menschen, die Widersprueche sehen und nicht so
+              tun wollen, als waere alles glatt. Die Marke greift Zeitgeist, Politik, Sprache,
+              Identitaet und Konsum als Spannungsfelder auf. Nicht als Parteiprogramm, sondern
+              als visuelle Reibung: zwischen Worten und Taten, zwischen Haltung und Bequemlichkeit.
+            </p>
+            <blockquote>
+              <strong>Sapere Aude.</strong>
+              <span>Habe Mut, dich deines eigenen Verstandes zu bedienen.</span>
+            </blockquote>
+          </div>
+
+          <div className="about-values">
+            <article>
+              <Sparkles size={22} />
+              <strong>Kreativitaet</strong>
+              <p>
+                Gegensaetze werden bewusst kombiniert, damit Motive stoppen, irritieren und im
+                besten Fall ein Schmunzeln ausloesen.
+              </p>
+            </article>
+            <article>
+              <Zap size={22} />
+              <strong>Rebellion</strong>
+              <p>
+                Be Different darf anstoessig sein. Die Designs stellen glatte Antworten infrage
+                und fordern kritisches Denken statt Reflex.
+              </p>
+            </article>
+            <article>
+              <Eye size={22} />
+              <strong>Individualitaet</strong>
+              <p>
+                Mode wird zur Flaeche fuer Menschen, die sich nicht in Schubladen stecken lassen
+                und ihr Anderssein sichtbar tragen.
+              </p>
+            </article>
+            <article>
+              <Heart size={22} />
+              <strong>Humor</strong>
+              <p>
+                Witz macht den Widerspruch zugaenglich. Humor verbindet, ohne die Kante aus der
+                Aussage zu nehmen.
+              </p>
+            </article>
+          </div>
+
+          <div className="about-bottom-line">
+            <span>Denken statt nicken.</span>
+            <span>Kontrast statt Konsens.</span>
+            <span>Anders sein als Anfang.</span>
           </div>
         </section>
 

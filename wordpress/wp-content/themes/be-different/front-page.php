@@ -179,6 +179,29 @@ $shadow_collection = [
         </div>
     </section>
 
+    <section class="bd-about-section" id="about">
+        <div class="bd-about-manifest">
+            <span class="bd-eyebrow"><?php esc_html_e('About us', 'be-different'); ?></span>
+            <h2><?php esc_html_e('Keine Uniform. Ein Angriff auf Autopilot.', 'be-different'); ?></h2>
+            <p><?php esc_html_e('Be Different ist Streetwear fuer Menschen, die Widersprueche sehen und nicht so tun wollen, als waere alles glatt. Die Marke greift Zeitgeist, Politik, Sprache, Identitaet und Konsum als Spannungsfelder auf. Nicht als Parteiprogramm, sondern als visuelle Reibung: zwischen Worten und Taten, zwischen Haltung und Bequemlichkeit.', 'be-different'); ?></p>
+            <blockquote>
+                <strong><?php esc_html_e('Sapere Aude.', 'be-different'); ?></strong>
+                <span><?php esc_html_e('Habe Mut, dich deines eigenen Verstandes zu bedienen.', 'be-different'); ?></span>
+            </blockquote>
+        </div>
+        <div class="bd-about-values">
+            <article><strong><?php esc_html_e('Kreativitaet', 'be-different'); ?></strong><p><?php esc_html_e('Gegensaetze werden bewusst kombiniert, damit Motive stoppen, irritieren und im besten Fall ein Schmunzeln ausloesen.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Rebellion', 'be-different'); ?></strong><p><?php esc_html_e('Be Different darf anstoessig sein. Die Designs stellen glatte Antworten infrage und fordern kritisches Denken statt Reflex.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Individualitaet', 'be-different'); ?></strong><p><?php esc_html_e('Mode wird zur Flaeche fuer Menschen, die sich nicht in Schubladen stecken lassen und ihr Anderssein sichtbar tragen.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Humor', 'be-different'); ?></strong><p><?php esc_html_e('Witz macht den Widerspruch zugaenglich. Humor verbindet, ohne die Kante aus der Aussage zu nehmen.', 'be-different'); ?></p></article>
+        </div>
+        <div class="bd-about-bottom-line">
+            <span><?php esc_html_e('Denken statt nicken.', 'be-different'); ?></span>
+            <span><?php esc_html_e('Kontrast statt Konsens.', 'be-different'); ?></span>
+            <span><?php esc_html_e('Anders sein als Anfang.', 'be-different'); ?></span>
+        </div>
+    </section>
+
     <section class="bd-section bd-stack">
         <div class="bd-section-heading">
             <span class="bd-eyebrow"><?php esc_html_e('WooCommerce Stack', 'be-different'); ?></span>
