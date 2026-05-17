@@ -40,6 +40,14 @@ import {
 
 const categories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops'] as const;
 const freeShippingThreshold = 75;
+const tickerItems = [
+  'Drop 01 ist offen',
+  'Be different - be better - be you',
+  `Free shipping ab ${formatPrice(freeShippingThreshold)}`,
+  'WooCommerce-ready',
+  'Print-on-Demand + Limited Runs',
+  'Neue Motive per Community Vote',
+];
 
 type CartItem = {
   key: string;
@@ -164,9 +172,11 @@ function App() {
   return (
     <>
       <div className="announcement">
-        <span>Drop 01 ist offen</span>
-        <span>Be different - be better - be you</span>
-        <span>Free shipping ab {formatPrice(freeShippingThreshold)}</span>
+        <div className="ticker-track" aria-label="Shop Nachrichten">
+          {[...tickerItems, ...tickerItems].map((item, index) => (
+            <span key={`${item}-${index}`}>{item}</span>
+          ))}
+        </div>
       </div>
 
       <header className="site-header">

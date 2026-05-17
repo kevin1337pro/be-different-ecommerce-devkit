@@ -12,9 +12,22 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div class="bd-announcement">
-    <span><?php esc_html_e('Drop 01 ist offen', 'be-different'); ?></span>
-    <span><?php esc_html_e('Be different - be better - be you', 'be-different'); ?></span>
-    <span><?php esc_html_e('Print-on-Demand + Limited Runs', 'be-different'); ?></span>
+    <div class="bd-ticker-track" aria-label="<?php esc_attr_e('Shop Nachrichten', 'be-different'); ?>">
+        <?php
+        $bd_ticker_items = [
+            __('Drop 01 ist offen', 'be-different'),
+            __('Be different - be better - be you', 'be-different'),
+            __('Free shipping ab 75 EUR', 'be-different'),
+            __('WooCommerce-ready', 'be-different'),
+            __('Print-on-Demand + Limited Runs', 'be-different'),
+            __('Neue Motive per Community Vote', 'be-different'),
+        ];
+
+        foreach (array_merge($bd_ticker_items, $bd_ticker_items) as $bd_ticker_item) :
+            ?>
+            <span><?php echo esc_html($bd_ticker_item); ?></span>
+        <?php endforeach; ?>
+    </div>
 </div>
 <header class="bd-header">
     <a class="bd-brand" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">

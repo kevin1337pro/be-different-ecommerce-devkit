@@ -74,17 +74,54 @@ a {
   position: sticky;
   top: 0;
   z-index: 21;
-  display: flex;
-  justify-content: center;
-  gap: 28px;
   min-height: 32px;
-  padding: 7px 16px;
+  padding: 0;
   background: var(--green);
   color: var(--black);
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
   overflow: hidden;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  min-height: 32px;
+  align-items: center;
+  gap: 34px;
+  padding-right: 34px;
+  white-space: nowrap;
+  animation: bd-ticker 28s linear infinite;
+  will-change: transform;
+}
+
+.announcement:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticker-track span::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--black);
+  content: "";
+}
+
+@keyframes bd-ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .brand {
@@ -1281,10 +1318,7 @@ h3 {
 
 @media (max-width: 920px) {
   .announcement {
-    justify-content: flex-start;
-    gap: 22px;
-    overflow-x: auto;
-    white-space: nowrap;
+    overflow: hidden;
   }
 
   .site-header {

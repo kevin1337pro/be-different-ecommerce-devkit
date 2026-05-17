@@ -37,17 +37,54 @@ img {
   position: sticky;
   top: 0;
   z-index: 50;
-  display: flex;
-  justify-content: center;
-  gap: 28px;
   min-height: 32px;
-  padding: 7px 16px;
+  padding: 0;
   background: var(--bd-yellow);
   color: var(--bd-black);
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
-  overflow-x: auto;
+  overflow: hidden;
+}
+
+.bd-ticker-track {
+  display: flex;
+  width: max-content;
+  min-height: 32px;
+  align-items: center;
+  gap: 34px;
+  padding-right: 34px;
+  white-space: nowrap;
+  animation: bd-ticker 28s linear infinite;
+  will-change: transform;
+}
+
+.bd-announcement:hover .bd-ticker-track {
+  animation-play-state: paused;
+}
+
+.bd-ticker-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bd-ticker-track span::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bd-black);
+  content: "";
+}
+
+@keyframes bd-ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .bd-header {
