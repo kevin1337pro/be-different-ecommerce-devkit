@@ -94,6 +94,23 @@ const socialLinks = [
   { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Facebook },
   { label: 'X', href: 'https://x.com/', Icon: Twitter },
 ];
+const sizeGuide = [
+  { size: 'S', chest: '48 cm', length: '70 cm' },
+  { size: 'M', chest: '51 cm', length: '72 cm' },
+  { size: 'L', chest: '54 cm', length: '74 cm' },
+  { size: 'XL', chest: '57 cm', length: '76 cm' },
+  { size: 'XXL', chest: '60 cm', length: '78 cm' },
+];
+const reviewSnippets = [
+  {
+    name: 'Mara',
+    text: 'Motiv wirkt live noch staerker. Genau dieser schwarze Street-Art-Look.',
+  },
+  {
+    name: 'Deniz',
+    text: 'Regular Fit sitzt clean, Druck fuehlt sich nicht billig an.',
+  },
+];
 
 type CartItem = {
   key: string;
@@ -179,6 +196,10 @@ function App() {
   const topProduct = products[0];
   const currentHeroSlide = heroSlides[activeHeroSlide];
   const collectionRows = [shadowCollection.slice(0, 4), shadowCollection.slice(4)];
+  const relatedProducts = useMemo(
+    () => products.filter((product) => product.id !== selectedProduct.id).slice(0, 2),
+    [selectedProduct.id],
+  );
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -536,6 +557,69 @@ function App() {
                 <dd>{selectedProduct.shippingNote}</dd>
               </div>
             </dl>
+            <div className="detail-assurance">
+              <div className="assurance-grid" aria-label="Kaufargumente">
+                <span>
+                  <ShieldCheck size={16} />
+                  Sichere Zahlung
+                </span>
+                <span>
+                  <PackageCheck size={16} />
+                  Produktion auf Bestellung
+                </span>
+                <span>
+                  <Truck size={16} />
+                  Versand vorbereitet
+                </span>
+                <span>
+                  <RotateCcw size={16} />
+                  Rueckgabe-Flow
+                </span>
+              </div>
+
+              <details className="size-guide" open>
+                <summary>Groessencheck</summary>
+                <div className="size-table" role="table" aria-label="Groessentabelle">
+                  {sizeGuide.map((row) => (
+                    <div role="row" key={row.size}>
+                      <strong role="cell">{row.size}</strong>
+                      <span role="cell">Brust {row.chest}</span>
+                      <span role="cell">Laenge {row.length}</span>
+                    </div>
+                  ))}
+                </div>
+              </details>
+
+              <div className="review-snippets" aria-label="Kundenstimmen">
+                {reviewSnippets.map((review) => (
+                  <article key={review.name}>
+                    <span>
+                      <Star size={14} fill="currentColor" />
+                      <Star size={14} fill="currentColor" />
+                      <Star size={14} fill="currentColor" />
+                      <Star size={14} fill="currentColor" />
+                      <Star size={14} fill="currentColor" />
+                    </span>
+                    <p>{review.text}</p>
+                    <strong>{review.name}</strong>
+                  </article>
+                ))}
+              </div>
+
+              <div className="related-products" aria-label="Dazu passende Produkte">
+                <strong>Dazu passt</strong>
+                {relatedProducts.map((product) => (
+                  <button key={product.id} onClick={() => handleSelectProduct(product)}>
+                    <img src={product.image} alt={product.name} loading="lazy" />
+                    <span>
+                      <em>{product.badge}</em>
+                      {product.name}
+                    </span>
+                    <b>{formatPrice(product.price)}</b>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
