@@ -12,6 +12,7 @@ Stand: 17.05.2026
 - React/Vite-Prototyp fuer schnelle Live-Preview:
   - Mobile-first Startseite
   - Drop-Hero mit Slider
+  - Shadow-Drop-Kollektion mit gegenlaeufigen Design-Slidern
   - Produktgrid
   - Produktdetailbereich
   - Warenkorb-Drawer
@@ -23,6 +24,7 @@ Stand: 17.05.2026
   - `wordpress/wp-content/themes/be-different`
   - WooCommerce Support
   - Frontpage-Funnel
+  - Shadow-Drop-Kollektion als WooCommerce-Shop-Einstieg
   - WooCommerce Wrapper
   - eigene Cart-/Checkout-Seitentemplates
   - Theme CSS/JS

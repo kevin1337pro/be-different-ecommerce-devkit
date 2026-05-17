@@ -20,6 +20,15 @@ export type Product = {
   dropStatus: string;
 };
 
+export type CollectionDesign = {
+  id: string;
+  title: string;
+  line: string;
+  badge: string;
+  image: string;
+  productId: Product['id'];
+};
+
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 
 export const heroImage = asset(
@@ -61,8 +70,7 @@ export const products: Product[] = [
     badge: 'Neu',
     image:
       asset('assets/products/produktreihe2-2-kev1337-t-shirt-mockup-professional-studio-shot-8bd113b1-dd13-437a-9082-4e.jpg'),
-    design:
-      asset('assets/designs/kev1337-tattoo-design-a-whale-head-black-ink-on-white-backgrou-eeb8c5ac-6422-4e4c-8075-31d.png'),
+    design: asset('assets/designs/01-whale-head-black-ink-on-white-background.png'),
     colors: ['White'],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 4.8,
@@ -217,10 +225,77 @@ export const legalLinks = [
 ];
 
 export const dropDesigns = [
-  asset('assets/designs/kangoroo-colorful-black.png'),
-  asset('assets/designs/white-shark-goldfisch.png'),
-  asset('assets/designs/fire-lion.png'),
-  asset('assets/designs/hawk-rotkelchen-black.png'),
-  asset('assets/designs/pinguin-tropenvogel.png'),
-  asset('assets/designs/life-la-catrina.png'),
+  asset('assets/designs/black-cat.png'),
+  asset('assets/designs/elefant-muecke.png'),
+  asset('assets/designs/01-whale-head-black-ink-on-white-background.png'),
+  asset('assets/designs/guy-with-hoody-and-heart.png'),
+  asset('assets/designs/young-girl-with-rope-transparent.png'),
+  asset('assets/designs/black-ink.png'),
+];
+
+export const shadowCollection: CollectionDesign[] = [
+  {
+    id: 'shadow-cat',
+    title: 'Cool Cat',
+    line: 'Sonnenbrille, Street-Art, sofortiger Stopper.',
+    badge: 'Eyecatcher',
+    image: asset('assets/designs/black-cat.png'),
+    productId: 'cat-rebel',
+  },
+  {
+    id: 'shadow-elephant',
+    title: 'Elefant / Muecke',
+    line: 'Gross gegen klein, leise gegen laut.',
+    badge: 'Kontrastmotiv',
+    image: asset('assets/designs/elefant-muecke.png'),
+    productId: 'open-brief',
+  },
+  {
+    id: 'shadow-whale',
+    title: 'Whale Ink',
+    line: 'Monochrom, schwer, premium auf Shirt.',
+    badge: 'Tattoo Energy',
+    image: asset('assets/designs/01-whale-head-black-ink-on-white-background.png'),
+    productId: 'whale-ink',
+  },
+  {
+    id: 'shadow-heart',
+    title: 'Hoodie Heart',
+    line: 'Hartes Bild, weicher Kern.',
+    badge: 'Limited',
+    image: asset('assets/designs/guy-with-hoody-and-heart.png'),
+    productId: 'open-brief',
+  },
+  {
+    id: 'shadow-flower',
+    title: 'Flower Kid',
+    line: 'Still, emotional, anders als erwartet.',
+    badge: 'Soft Rebel',
+    image: asset('assets/designs/young-girl-with-rope-transparent.png'),
+    productId: 'sheep-street',
+  },
+  {
+    id: 'shadow-frame',
+    title: 'Black Ink Frame',
+    line: 'Rohes Print-Element fuer Drop-Layouts.',
+    badge: 'Graphic Tool',
+    image: asset('assets/designs/black-ink.png'),
+    productId: 'open-brief',
+  },
+  {
+    id: 'shadow-guardian',
+    title: 'Guardian',
+    line: 'Figur, Haltung, klare Kante.',
+    badge: 'Statement',
+    image: asset('assets/designs/guardian-of-weed.png'),
+    productId: 'open-brief',
+  },
+  {
+    id: 'shadow-catdog',
+    title: 'Catdog Core',
+    line: 'Bestseller-Logik fuer den ersten Drop.',
+    badge: 'Bestseller',
+    image: asset('assets/designs/hip-hop-cat.png'),
+    productId: 'cat-rebel',
+  },
 ];

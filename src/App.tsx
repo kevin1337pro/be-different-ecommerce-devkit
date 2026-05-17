@@ -36,6 +36,7 @@ import {
   Product,
   products,
   proofPoints,
+  shadowCollection,
   shopStack,
 } from './data/products';
 
@@ -165,6 +166,7 @@ function App() {
   const progressToFreeShipping = Math.min((subtotal / freeShippingThreshold) * 100, 100);
   const topProduct = products[0];
   const currentHeroSlide = heroSlides[activeHeroSlide];
+  const collectionRows = [shadowCollection.slice(0, 4), shadowCollection.slice(4)];
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -212,6 +214,11 @@ function App() {
     document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function openCollectionDesign(productId: Product['id']) {
+    const product = products.find((item) => item.id === productId);
+    if (product) handleSelectProduct(product);
+  }
+
   return (
     <>
       <div className="announcement">
@@ -233,6 +240,9 @@ function App() {
           </a>
           <a href="#drops" onClick={() => setMenuOpen(false)}>
             Drops
+          </a>
+          <a href="#collection" onClick={() => setMenuOpen(false)}>
+            Collection
           </a>
           <a href="#brand" onClick={() => setMenuOpen(false)}>
             Brand
@@ -328,6 +338,55 @@ function App() {
               <span>{point.label}</span>
             </div>
           ))}
+        </section>
+
+        <section className="shadow-collection" id="collection">
+          <div className="shadow-copy">
+            <span className="eyebrow neon">Neue Kollektion</span>
+            <h2>Shadow Drop. Motive, die von allen Seiten kommen.</h2>
+            <p>
+              Die schwarzen Ink-Designs werden als eigene Capsule ausgespielt: gross als
+              Eyecatcher, schnell als Slider und direkt mit Produktentscheidung verbunden.
+            </p>
+            <div className="shadow-highlights" aria-label="Collection Highlights">
+              <span>8 Motive</span>
+              <span>Animal Art</span>
+              <span>Street Contrast</span>
+            </div>
+            <button className="secondary-button" onClick={() => openCollectionDesign('cat-rebel')}>
+              <Sparkles size={18} />
+              Eyecatcher ansehen
+            </button>
+          </div>
+          <div className="shadow-stage">
+            <button
+              className="shadow-spotlight"
+              onClick={() => openCollectionDesign(shadowCollection[0].productId)}
+            >
+              <span>{shadowCollection[0].badge}</span>
+              <img src={shadowCollection[0].image} alt={shadowCollection[0].title} loading="lazy" />
+              <strong>{shadowCollection[0].title}</strong>
+            </button>
+
+            {collectionRows.map((row, rowIndex) => (
+              <div className="shadow-slider" key={`collection-row-${rowIndex}`}>
+                <div className={rowIndex === 0 ? 'shadow-track from-left' : 'shadow-track from-right'}>
+                  {[...row, ...row].map((design, index) => (
+                    <button
+                      className="shadow-card"
+                      key={`${design.id}-${index}`}
+                      onClick={() => openCollectionDesign(design.productId)}
+                    >
+                      <img src={design.image} alt={design.title} loading="lazy" />
+                      <span>{design.badge}</span>
+                      <strong>{design.title}</strong>
+                      <em>{design.line}</em>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="section shop-section" id="shop">

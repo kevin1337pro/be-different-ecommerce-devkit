@@ -356,6 +356,196 @@ img {
   font-weight: 850;
 }
 
+.bd-shadow-collection {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+  gap: 34px;
+  align-items: center;
+  overflow: hidden;
+  padding: 86px max(18px, calc((100vw - 1180px) / 2));
+  background:
+    linear-gradient(90deg, rgba(255, 255, 0, 0.1), transparent 34%),
+    linear-gradient(180deg, #050505, #111111);
+  color: var(--bd-white);
+}
+
+.bd-shadow-copy {
+  display: grid;
+  gap: 18px;
+  max-width: 560px;
+}
+
+.bd-shadow-copy h2 {
+  max-width: 680px;
+  margin: 0;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  font-weight: 950;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.bd-shadow-copy p {
+  margin: 0;
+  color: #d8d8d8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.bd-shadow-copy .bd-button {
+  justify-self: start;
+}
+
+.bd-shadow-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bd-shadow-highlights span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--bd-white);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.bd-shadow-stage {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.bd-shadow-spotlight,
+.bd-shadow-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: #0b0b0b;
+  color: var(--bd-white);
+}
+
+.bd-shadow-spotlight {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: min(250px, 42vw);
+  min-height: 310px;
+  padding: 16px;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.bd-shadow-spotlight span,
+.bd-shadow-card span {
+  color: var(--bd-yellow);
+  font-size: 0.74rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.bd-shadow-spotlight img {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+}
+
+.bd-shadow-spotlight strong {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: 1.7rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.bd-shadow-slider {
+  overflow: hidden;
+  min-height: 255px;
+  border-block: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bd-shadow-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  padding: 18px 0;
+  will-change: transform;
+}
+
+.bd-shadow-track.from-left {
+  animation: bd-shadow-slide-left 30s linear infinite;
+}
+
+.bd-shadow-track.from-right {
+  animation: bd-shadow-slide-right 34s linear infinite;
+}
+
+.bd-shadow-slider:hover .bd-shadow-track {
+  animation-play-state: paused;
+}
+
+.bd-shadow-card {
+  display: grid;
+  grid-template-rows: 140px auto auto 1fr;
+  gap: 8px;
+  width: 190px;
+  min-height: 220px;
+  padding: 12px;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.bd-shadow-card:hover {
+  border-color: var(--bd-yellow);
+  transform: translateY(-4px);
+}
+
+.bd-shadow-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+}
+
+.bd-shadow-card strong {
+  font-size: 1rem;
+}
+
+.bd-shadow-card em {
+  color: #cfcfcf;
+  font-size: 0.82rem;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+@keyframes bd-shadow-slide-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes bd-shadow-slide-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .bd-section,
 .bd-woocommerce .bd-section {
   width: min(1180px, calc(100% - 32px));
@@ -534,7 +724,8 @@ img {
   .bd-stack-grid,
   .bd-pillars,
   .bd-brand-section,
-  .bd-newsletter {
+  .bd-newsletter,
+  .bd-shadow-collection {
     grid-template-columns: 1fr;
   }
 
@@ -545,6 +736,40 @@ img {
   .bd-section {
     width: min(100% - 28px, 1180px);
     padding: 56px 0;
+  }
+
+  .bd-shadow-collection {
+    padding: 64px 16px;
+  }
+
+  .bd-shadow-copy .bd-button {
+    width: 100%;
+  }
+
+  .bd-shadow-stage {
+    margin-inline: -16px;
+  }
+
+  .bd-shadow-spotlight {
+    position: relative;
+    inset: auto;
+    width: min(100% - 32px, 360px);
+    min-height: 280px;
+    margin: 0 auto 8px;
+    transform: none;
+  }
+
+  .bd-shadow-slider {
+    min-height: 236px;
+  }
+
+  .bd-shadow-card {
+    width: 174px;
+    grid-template-rows: 128px auto auto 1fr;
+  }
+
+  .bd-shadow-card img {
+    height: 128px;
   }
 
   .bd-footer {

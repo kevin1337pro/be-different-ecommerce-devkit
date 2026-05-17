@@ -9,6 +9,56 @@ $featured_products = bd_featured_products(4);
 $hero_image = bd_asset('images/hero/website-background-2-background-for-an-t-shirt-shop-c8302e20-e774-4efd-b4bf-c61028bdaebe.jpg');
 $hero_eyecatcher = bd_asset('images/hero/eyecatcher.jpeg');
 $drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
+$shadow_collection = [
+    [
+        'title' => 'Cool Cat',
+        'line' => 'Sonnenbrille, Street-Art, sofortiger Stopper.',
+        'badge' => 'Eyecatcher',
+        'image' => bd_asset('images/designs/black-cat.png'),
+    ],
+    [
+        'title' => 'Elefant / Muecke',
+        'line' => 'Gross gegen klein, leise gegen laut.',
+        'badge' => 'Kontrastmotiv',
+        'image' => bd_asset('images/designs/elefant-muecke.png'),
+    ],
+    [
+        'title' => 'Whale Ink',
+        'line' => 'Monochrom, schwer, premium auf Shirt.',
+        'badge' => 'Tattoo Energy',
+        'image' => bd_asset('images/designs/01-whale-head-black-ink-on-white-background.png'),
+    ],
+    [
+        'title' => 'Hoodie Heart',
+        'line' => 'Hartes Bild, weicher Kern.',
+        'badge' => 'Limited',
+        'image' => bd_asset('images/designs/guy-with-hoody-and-heart.png'),
+    ],
+    [
+        'title' => 'Flower Kid',
+        'line' => 'Still, emotional, anders als erwartet.',
+        'badge' => 'Soft Rebel',
+        'image' => bd_asset('images/designs/young-girl-with-rope-transparent.png'),
+    ],
+    [
+        'title' => 'Black Ink Frame',
+        'line' => 'Rohes Print-Element fuer Drop-Layouts.',
+        'badge' => 'Graphic Tool',
+        'image' => bd_asset('images/designs/black-ink.png'),
+    ],
+    [
+        'title' => 'Guardian',
+        'line' => 'Figur, Haltung, klare Kante.',
+        'badge' => 'Statement',
+        'image' => bd_asset('images/designs/guardian-of-weed.png'),
+    ],
+    [
+        'title' => 'Catdog Core',
+        'line' => 'Bestseller-Logik fuer den ersten Drop.',
+        'badge' => 'Bestseller',
+        'image' => bd_asset('images/designs/hip-hop-cat.png'),
+    ],
+];
 ?>
 
 <main id="main">
@@ -55,6 +105,44 @@ $drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
         <div><strong>3</strong><span><?php esc_html_e('Schritte bis zum Kauf', 'be-different'); ?></span></div>
         <div><strong>HPOS</strong><span><?php esc_html_e('Order-Performance', 'be-different'); ?></span></div>
         <div><strong>POD</strong><span><?php esc_html_e('Start ohne Lagerdruck', 'be-different'); ?></span></div>
+    </section>
+
+    <section class="bd-shadow-collection" id="collection">
+        <div class="bd-shadow-copy">
+            <span class="bd-eyebrow"><?php esc_html_e('Neue Kollektion', 'be-different'); ?></span>
+            <h2><?php esc_html_e('Shadow Drop. Motive, die von allen Seiten kommen.', 'be-different'); ?></h2>
+            <p><?php esc_html_e('Die schwarzen Ink-Designs werden als eigene Capsule ausgespielt: gross als Eyecatcher, schnell als Slider und direkt mit Produktentscheidung verbunden.', 'be-different'); ?></p>
+            <div class="bd-shadow-highlights" aria-label="<?php esc_attr_e('Collection Highlights', 'be-different'); ?>">
+                <span>8 Motive</span>
+                <span>Animal Art</span>
+                <span>Street Contrast</span>
+            </div>
+            <a class="bd-button bd-button-secondary" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>">
+                <?php esc_html_e('Eyecatcher shoppen', 'be-different'); ?>
+            </a>
+        </div>
+        <div class="bd-shadow-stage">
+            <a class="bd-shadow-spotlight" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>">
+                <span><?php echo esc_html($shadow_collection[0]['badge']); ?></span>
+                <img src="<?php echo esc_url($shadow_collection[0]['image']); ?>" alt="<?php echo esc_attr($shadow_collection[0]['title']); ?>" loading="lazy">
+                <strong><?php echo esc_html($shadow_collection[0]['title']); ?></strong>
+            </a>
+
+            <?php foreach (array_chunk($shadow_collection, 4) as $index => $row) : ?>
+                <div class="bd-shadow-slider">
+                    <div class="<?php echo esc_attr($index === 0 ? 'bd-shadow-track from-left' : 'bd-shadow-track from-right'); ?>">
+                        <?php foreach (array_merge($row, $row) as $design) : ?>
+                            <a class="bd-shadow-card" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>">
+                                <img src="<?php echo esc_url($design['image']); ?>" alt="<?php echo esc_attr($design['title']); ?>" loading="lazy">
+                                <span><?php echo esc_html($design['badge']); ?></span>
+                                <strong><?php echo esc_html($design['title']); ?></strong>
+                                <em><?php echo esc_html($design['line']); ?></em>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </section>
 
     <section class="bd-section" id="shop">
