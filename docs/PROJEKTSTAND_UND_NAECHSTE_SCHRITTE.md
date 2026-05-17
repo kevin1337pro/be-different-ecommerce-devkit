@@ -11,11 +11,12 @@ Stand: 17.05.2026
   - `assets/source-files`: AI/PSD-Quelldateien
 - React/Vite-Prototyp fuer schnelle Live-Preview:
   - Mobile-first Startseite
-  - Drop-Hero
+  - Drop-Hero mit Slider
   - Produktgrid
   - Produktdetailbereich
   - Warenkorb-Drawer
   - Checkout-Skeleton
+  - SEO-Basics fuer Live-Preview
   - FAQ
   - WooCommerce-Systemsektion
 - WordPress/WooCommerce Theme-Scaffold:
@@ -23,6 +24,7 @@ Stand: 17.05.2026
   - WooCommerce Support
   - Frontpage-Funnel
   - WooCommerce Wrapper
+  - eigene Cart-/Checkout-Seitentemplates
   - Theme CSS/JS
 - GitHub Pages Live-Preview ueber Branch `gh-pages`
 
@@ -63,6 +65,8 @@ Das ist eine visuelle und conversion-fokussierte Vorschau, aber kein echter WooC
     - Consent Mode
 11. POD/Fulfillment-Anbieter anbinden.
 12. Testkauf mit jeder Zahlungsart durchfuehren.
+
+Details zu SEO, Checkout und Stripe stehen in `docs/SEO_CHECKOUT_STRIPE_PLAN.md`.
 
 ## Technische Hinweise
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kevin1337pro.github.io/be-different-ecommerce-devkit/sitemap.xml

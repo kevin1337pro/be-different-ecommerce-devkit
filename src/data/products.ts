@@ -25,6 +25,7 @@ const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+
 export const heroImage = asset(
   'assets/hero/website-background-2-background-for-an-t-shirt-shop-c8302e20-e774-4efd-b4bf-c61028bdaebe.jpg',
 );
+export const heroEyecatcherImage = asset('assets/hero/eyecatcher.jpeg');
 
 export const brandDropImage = asset('assets/brand/new-be-different-sammlung.png');
 

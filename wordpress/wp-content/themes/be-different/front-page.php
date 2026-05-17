@@ -7,19 +7,28 @@ get_header();
 
 $featured_products = bd_featured_products(4);
 $hero_image = bd_asset('images/hero/website-background-2-background-for-an-t-shirt-shop-c8302e20-e774-4efd-b4bf-c61028bdaebe.jpg');
+$hero_eyecatcher = bd_asset('images/hero/eyecatcher.jpeg');
 $drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
 ?>
 
 <main id="main">
-    <section class="bd-hero" style="background-image: url('<?php echo esc_url($hero_image); ?>')">
+    <section class="bd-hero" style="background-image: url('<?php echo esc_url($hero_image); ?>')" data-bd-hero-root>
         <div class="bd-hero-copy">
             <span class="bd-eyebrow"><?php esc_html_e('Street-Art Fashion / WooCommerce Drop 01', 'be-different'); ?></span>
-            <h1>
-                <?php esc_html_e('Be different.', 'be-different'); ?>
-                <span><?php esc_html_e('Be better.', 'be-different'); ?></span>
-                <em><?php esc_html_e('Be you.', 'be-different'); ?></em>
-            </h1>
-            <p><?php esc_html_e('Kontrastreiche Statement-Shirts fuer Menschen, die nicht aussehen wollen wie der Feed von allen anderen.', 'be-different'); ?></p>
+            <div class="bd-hero-slider" data-bd-hero-slider>
+                <article class="bd-hero-slide is-active" data-bd-bg="<?php echo esc_url($hero_image); ?>">
+                    <h1><?php esc_html_e('Be different.', 'be-different'); ?><span><?php esc_html_e('Be better.', 'be-different'); ?></span><em><?php esc_html_e('Be you.', 'be-different'); ?></em></h1>
+                    <p><?php esc_html_e('Kontrastreiche Statement-Shirts fuer Menschen, die nicht aussehen wollen wie der Feed von allen anderen.', 'be-different'); ?></p>
+                </article>
+                <article class="bd-hero-slide" data-bd-bg="<?php echo esc_url($hero_eyecatcher); ?>">
+                    <h1><?php esc_html_e('Hund?', 'be-different'); ?><span><?php esc_html_e('Katze?', 'be-different'); ?></span><em><?php esc_html_e('Egal.', 'be-different'); ?></em></h1>
+                    <p><?php esc_html_e('Das Motiv, das sofort stoppt: Street-Art-Kontrast, Humor und ein klarer Grund zum Klicken.', 'be-different'); ?></p>
+                </article>
+                <article class="bd-hero-slide" data-bd-bg="<?php echo esc_url($hero_image); ?>">
+                    <h1><?php esc_html_e('Deine Idee.', 'be-different'); ?><span><?php esc_html_e('Unser Drop.', 'be-different'); ?></span><em><?php esc_html_e('Jetzt.', 'be-different'); ?></em></h1>
+                    <p><?php esc_html_e('Motive aus Community-Ideen, Abstimmungen und Gegensaetzen. Erst testen, dann als Limited Run ausbauen.', 'be-different'); ?></p>
+                </article>
+            </div>
             <div class="bd-actions">
                 <a class="bd-button bd-button-primary" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>">
                     <?php esc_html_e('Drop shoppen', 'be-different'); ?>
@@ -32,6 +41,11 @@ $drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
                 <span><?php esc_html_e('WooCommerce Checkout', 'be-different'); ?></span>
                 <span><?php esc_html_e('HPOS-ready', 'be-different'); ?></span>
                 <span><?php esc_html_e('POD + Stock vorbereitet', 'be-different'); ?></span>
+            </div>
+            <div class="bd-hero-controls" aria-label="<?php esc_attr_e('Hero Slider', 'be-different'); ?>">
+                <button type="button" class="is-active" data-bd-slide="0">01 Drop</button>
+                <button type="button" data-bd-slide="1">02 Bestseller</button>
+                <button type="button" data-bd-slide="2">03 Community</button>
             </div>
         </div>
     </section>

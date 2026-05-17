@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   BadgePercent,
   Check,
@@ -31,6 +31,7 @@ import {
   dropDesigns,
   faqItems,
   heroImage,
+  heroEyecatcherImage,
   legalLinks,
   Product,
   products,
@@ -47,6 +48,38 @@ const tickerItems = [
   'WooCommerce-ready',
   'Print-on-Demand + Limited Runs',
   'Neue Motive per Community Vote',
+];
+const heroSlides = [
+  {
+    kicker: 'Street-Art Fashion / WooCommerce Drop 01',
+    top: 'Be different.',
+    highlight: 'Be better.',
+    signature: 'Be you.',
+    copy:
+      'Kontrastreiche Statement-Shirts fuer Menschen, die nicht aussehen wollen wie der Feed von allen anderen.',
+    product: products[0],
+    background: heroImage,
+  },
+  {
+    kicker: 'Bestseller / Catdog Core',
+    top: 'Hund?',
+    highlight: 'Katze?',
+    signature: 'Egal.',
+    copy:
+      'Das Motiv, das sofort stoppt: Street-Art-Kontrast, Humor und ein klarer Grund zum Klicken.',
+    product: products[0],
+    background: heroEyecatcherImage,
+  },
+  {
+    kicker: 'Community Vote / Custom Drops',
+    top: 'Deine Idee.',
+    highlight: 'Unser Drop.',
+    signature: 'Jetzt.',
+    copy:
+      'Motive aus Community-Ideen, Abstimmungen und Gegensaetzen. Erst testen, dann als Limited Run ausbauen.',
+    product: products[3],
+    background: heroImage,
+  },
 ];
 
 type CartItem = {
@@ -118,6 +151,7 @@ function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
   const visibleProducts = useMemo(() => {
     if (activeCategory === 'Alle') return products;
@@ -130,6 +164,15 @@ function App() {
   const total = subtotal + shipping;
   const progressToFreeShipping = Math.min((subtotal / freeShippingThreshold) * 100, 100);
   const topProduct = products[0];
+  const currentHeroSlide = heroSlides[activeHeroSlide];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveHeroSlide((slide) => (slide + 1) % heroSlides.length);
+    }, 5200);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   function handleSelectProduct(product: Product) {
     setSelectedProduct(product);
@@ -225,25 +268,22 @@ function App() {
       </header>
 
       <main id="home">
-        <section className="hero" style={{ backgroundImage: `url(${heroImage})` }}>
+        <section className="hero" style={{ backgroundImage: `url(${currentHeroSlide.background})` }}>
           <div className="hero-content">
-            <span className="eyebrow neon">Street-Art Fashion / POD Drop 01</span>
+            <span className="eyebrow neon">{currentHeroSlide.kicker}</span>
             <h1>
-              Be different.
-              <span>Be better.</span>
-              <em>Be you.</em>
+              {currentHeroSlide.top}
+              <span>{currentHeroSlide.highlight}</span>
+              <em>{currentHeroSlide.signature}</em>
             </h1>
-            <p>
-              Kontrastreiche Statement-Shirts fuer Menschen, die nicht aussehen wollen wie der
-              Feed von allen anderen.
-            </p>
+            <p>{currentHeroSlide.copy}</p>
             <div className="hero-actions">
               <a className="primary-button" href="#shop">
                 Drop shoppen <ChevronRight size={19} />
               </a>
-              <button className="secondary-button" onClick={() => addProduct(topProduct)}>
+              <button className="secondary-button" onClick={() => addProduct(currentHeroSlide.product)}>
                 <Flame size={18} />
-                Bestseller sichern
+                {currentHeroSlide.product.name} sichern
               </button>
             </div>
             <div className="trust-strip" aria-label="Shop Vorteile">
@@ -257,13 +297,26 @@ function App() {
                 <RotateCcw size={17} /> Rueckgabe vorbereitet
               </span>
             </div>
+            <div className="hero-slider-controls" aria-label="Hero Slider">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.kicker}
+                  className={activeHeroSlide === index ? 'active' : ''}
+                  aria-label={`Slide ${index + 1} anzeigen`}
+                  onClick={() => setActiveHeroSlide(index)}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {slide.product.badge}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="hero-product">
-            <span>{topProduct.dropStatus}</span>
-            <img src={topProduct.image} alt={topProduct.name} />
-            <button onClick={() => addProduct(topProduct)}>
+            <span>{currentHeroSlide.product.dropStatus}</span>
+            <img src={currentHeroSlide.product.image} alt={currentHeroSlide.product.name} />
+            <button onClick={() => addProduct(currentHeroSlide.product)}>
               <ShoppingBag size={18} />
-              {formatPrice(topProduct.price)}
+              {formatPrice(currentHeroSlide.product.price)}
             </button>
           </div>
         </section>

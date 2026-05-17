@@ -31,6 +31,7 @@ wp-content/themes/be-different
 - Preise inklusive MwSt. anzeigen
 - Versandzonen fuer Deutschland/EU anlegen
 - Cart/Checkout Blocks verwenden
+- Eigene Seiten `/cart/` und `/checkout/` in WooCommerce > Einstellungen > Erweitert zuweisen
 - HPOS aktivieren bzw. pruefen
 - Nur HPOS-kompatible Plugins einsetzen
 
@@ -60,7 +61,7 @@ Produkttyp:
 ## Pflicht-Plugins
 
 - WooCommerce
-- Stripe oder WooPayments
+- WooCommerce Stripe Payment Gateway oder WooPayments
 - PayPal Payments
 - Germanized for WooCommerce oder German Market
 - SEO: Rank Math oder Yoast
@@ -73,6 +74,7 @@ Produkttyp:
 ## Conversion-Regeln
 
 - Mobile Checkout zuerst optimieren.
+- Checkout als eigene WooCommerce-Seite fuehren.
 - Hero immer mit Produkt, Preisanker und CTA.
 - Produktdetailseite mit Sticky Add-to-Cart auf Mobile.
 - Kostenloser Versand-Schwellenwert im Warenkorb zeigen.

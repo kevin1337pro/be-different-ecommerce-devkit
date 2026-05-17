@@ -18,6 +18,16 @@ Das Theme aktiviert:
 - Produktgalerie Zoom/Lightbox/Slider
 - Warenkorb-Fragments fuer Cart Count
 - WooCommerce Wrapper fuer Shop-/Produktseiten
+- eigene Templates fuer Cart und Checkout
+
+## Checkout und Stripe
+
+Die finalen WooCommerce-Seiten sollten so gesetzt werden:
+
+- Warenkorb: Seite mit WooCommerce Cart Block, Template `page-cart.php`
+- Checkout: Seite mit WooCommerce Checkout Block, Template `page-checkout.php`
+
+Stripe wird nicht im Theme selbst konfiguriert, sondern ueber WooCommerce > Einstellungen > Zahlungen. Details stehen in `docs/SEO_CHECKOUT_STRIPE_PLAN.md`.
 
 ## Assets
 

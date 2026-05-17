@@ -26,6 +26,15 @@ GitHub Pages Preview:
 https://kevin1337pro.github.io/be-different-ecommerce-devkit/
 ```
 
+Aktuelle Features:
+
+- Hero Slider
+- Announcement Ticker
+- SEO-Basics fuer die statische Preview
+- WooCommerce Theme-Scaffold
+- Cart-/Checkout-Seitentemplates
+- Stripe/WooCommerce Setup-Dokumentation
+
 ## Asset-Struktur
 
 - `public/assets`: nur Bilder, die vom Frontend direkt geladen werden
