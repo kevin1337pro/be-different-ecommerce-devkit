@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   BadgePercent,
   Check,
@@ -40,12 +40,14 @@ import {
   heroImage,
   heroEyecatcherImage,
   legalLinks,
+  legalSections,
   Product,
   products,
   proofPoints,
   shadowCollection,
   shopStack,
 } from './data/products';
+import earlyAccessImage from '../assets/image_pop_up_1.png';
 
 const categories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops'] as const;
 const shopCategories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops', 'Shadow Drop'] as const;
@@ -63,7 +65,7 @@ const tickerItems = [
   'Drop 01 ist offen',
   'Be different - be better - be you',
   `Free shipping ab ${formatPrice(freeShippingThreshold)}`,
-  'WooCommerce-ready',
+  'WooCommerce-Fokus',
   'Print-on-Demand + Limited Runs',
   'Neue Motive per Community Vote',
 ];
@@ -105,6 +107,24 @@ const socialLinks = [
   { label: 'YouTube', href: 'https://www.youtube.com/', Icon: Youtube },
   { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Facebook },
   { label: 'X', href: 'https://x.com/', Icon: Twitter },
+];
+const collaborationRoles = [
+  {
+    title: 'Designer',
+    text: 'Du denkst in Motiven, Layouts, Typo und visuellen Brüchen, die sofort hängen bleiben.',
+  },
+  {
+    title: 'Künstler',
+    text: 'Du hast eine eigene Handschrift und willst sie auf Shirts, Prints oder Objekte bringen.',
+  },
+  {
+    title: 'Unternehmer',
+    text: 'Du willst Drops, Community, Vertrieb oder Kooperationen mit aufbauen und skalieren.',
+  },
+  {
+    title: 'Verrückte Idee',
+    text: 'Du hast keinen Titel, aber einen Gedanken, der zu unbequem ist, um ihn liegen zu lassen.',
+  },
 ];
 const sizeGuide = [
   { size: 'S', chest: '48 cm', length: '70 cm' },
@@ -209,6 +229,13 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
+  const [earlyAccessOpen, setEarlyAccessOpen] = useState(false);
+  const [earlyAccessEmail, setEarlyAccessEmail] = useState('');
+  const [earlyAccessAgeConsent, setEarlyAccessAgeConsent] = useState(false);
+  const [earlyAccessMarketingConsent, setEarlyAccessMarketingConsent] = useState(false);
+  const [earlyAccessSubmitted, setEarlyAccessSubmitted] = useState(false);
+  const [collaborationRole, setCollaborationRole] = useState(collaborationRoles[0].title);
+  const [collaborationSubmitted, setCollaborationSubmitted] = useState(false);
 
   const visibleProducts = useMemo(() => {
     if (activeCategory === 'Alle') return products;
@@ -265,6 +292,33 @@ function App() {
 
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (route !== 'home' || window.sessionStorage.getItem('bd-early-access-closed') === 'true') {
+      return undefined;
+    }
+
+    const timer = window.setTimeout(() => setEarlyAccessOpen(true), 800);
+    return () => window.clearTimeout(timer);
+  }, [route]);
+
+  useEffect(() => {
+    if (!earlyAccessOpen) return undefined;
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeEarlyAccessPopup();
+      }
+    };
+
+    document.body.classList.add('modal-open');
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.body.classList.remove('modal-open');
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, [earlyAccessOpen]);
 
   useEffect(() => {
     const syncRoute = () => {
@@ -367,8 +421,125 @@ function App() {
     if (product) handleSelectProduct(product);
   }
 
+  function closeEarlyAccessPopup() {
+    window.sessionStorage.setItem('bd-early-access-closed', 'true');
+    setEarlyAccessOpen(false);
+  }
+
+  function handleEarlyAccessSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!earlyAccessEmail || !earlyAccessAgeConsent || !earlyAccessMarketingConsent) return;
+    setEarlyAccessSubmitted(true);
+  }
+
+  function handleCollaborationSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setCollaborationSubmitted(true);
+  }
+
   return (
     <>
+      {route === 'home' && earlyAccessOpen && (
+        <div className="early-access-backdrop" onClick={closeEarlyAccessPopup}>
+          <section
+            className="early-access-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="early-access-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="early-access-media">
+              <img src={earlyAccessImage} alt="be-different Limited Edition Early Access" />
+              <span>Limited Edition Early Access</span>
+            </div>
+            <div className="early-access-content">
+              <button
+                className="early-access-close"
+                aria-label="Early Access Popup schließen"
+                onClick={closeEarlyAccessPopup}
+              >
+                <X size={28} />
+              </button>
+
+              {earlyAccessSubmitted ? (
+                <div className="early-access-success">
+                  <span className="eyebrow neon">Du bist auf der Liste</span>
+                  <h2 id="early-access-title">Early Access ist reserviert.</h2>
+                  <p>
+                    Sobald der nächste Limited Drop live geht, bekommst du den Zugang vor allen
+                    anderen. Rabattcode und Verfügbarkeit werden später über das Newsletter-System
+                    verschickt.
+                  </p>
+                  <button className="primary-button" onClick={closeEarlyAccessPopup}>
+                    Weiter zur Seite
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <span className="eyebrow neon">Drop 01 / Vorabzugang</span>
+                  <h2 id="early-access-title">Early Access für Limited Shirts.</h2>
+                  <p>
+                    Trag dich ein und sichere dir Vorabzugang zu limitierten be-different Shirts,
+                    früheren Drop-Infos und günstigeren Early-Bird Preisen.
+                  </p>
+
+                  <form className="early-access-form" onSubmit={handleEarlyAccessSubmit}>
+                    <label>
+                      <span>E-Mail Adresse</span>
+                      <input
+                        type="email"
+                        value={earlyAccessEmail}
+                        onChange={(event) => setEarlyAccessEmail(event.target.value)}
+                        placeholder="statement@beispiel.de"
+                        aria-label="E-Mail Adresse für Early Access"
+                        required
+                      />
+                    </label>
+
+                    <label className="consent-line">
+                      <input
+                        type="checkbox"
+                        checked={earlyAccessAgeConsent}
+                        onChange={(event) => setEarlyAccessAgeConsent(event.target.checked)}
+                        required
+                      />
+                      <span>
+                        Ich bestätige, dass ich mindestens 16 Jahre alt bin und die Hinweise zum
+                        Newsletter gelesen habe.
+                      </span>
+                    </label>
+
+                    <label className="consent-line">
+                      <input
+                        type="checkbox"
+                        checked={earlyAccessMarketingConsent}
+                        onChange={(event) => setEarlyAccessMarketingConsent(event.target.checked)}
+                        required
+                      />
+                      <span>
+                        Ich willige ein, dass be-different meine E-Mail Adresse für Drop-Alerts,
+                        Early-Access-Angebote und Limited-Edition-News verarbeitet. Abmeldung ist
+                        jederzeit möglich.
+                      </span>
+                    </label>
+
+                    <button className="primary-button" type="submit">
+                      <Sparkles size={18} />
+                      Jetzt Early Access sichern
+                    </button>
+                  </form>
+
+                  <small>
+                    Double-Opt-in, Anbieter, Datenschutzhinweise und Abmeldelink werden im Live-Shop
+                    mit dem finalen Newsletter-Tool ergänzt.
+                  </small>
+                </>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
       <div className="announcement">
         <div className="ticker-track" aria-label="Shop Nachrichten">
           {[...tickerItems, ...tickerItems].map((item, index) => (
@@ -416,6 +587,9 @@ function App() {
           <a href="#campaign" onClick={(event) => { event.preventDefault(); navigateHome('campaign'); }}>
             Campaign
           </a>
+          <a href="#collab" onClick={(event) => { event.preventDefault(); navigateHome('collab'); }}>
+            Mitmachen
+          </a>
           <a href="#system" onClick={(event) => { event.preventDefault(); navigateHome('system'); }}>
             Stack
           </a>
@@ -438,7 +612,7 @@ function App() {
           </button>
           <button
             className="menu-button"
-            aria-label={menuOpen ? 'Menü schliessen' : 'Menü öffnen'}
+            aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
             onClick={() => setMenuOpen((open) => !open)}
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -457,8 +631,8 @@ function App() {
                   <span>the contradiction.</span>
                 </h1>
                 <p>
-                  Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Größen, Farben und
-                  Quick-Add in einem fokussierten Store-Layout.
+                  Keine Umwege, keine leeren Versprechen: Motive wählen, Größe checken,
+                  Statement sichern. Der Shop ist für schnelle Drop-Käufe gebaut.
                 </p>
                 <div className="shop-hero-actions">
                   <button className="primary-button" onClick={() => addProduct(topProduct)}>
@@ -471,8 +645,8 @@ function App() {
                 </div>
               </div>
               <aside aria-label="Shop Vorteile">
-                <strong>Launch-ready Storefront</strong>
-                <span>Filter, Sortierung, Quick Add und Cart Drawer sind vorbereitet.</span>
+                <strong>Statement-Shop ohne Umweg</strong>
+                <span>Filter, Sortierung, Quick Add und Cart Drawer führen ohne Ablenkung zum Kauf.</span>
                 <div>
                   <b>{products.length}</b>
                   <small>Startprodukte</small>
@@ -602,8 +776,8 @@ function App() {
               </article>
               <article>
                 <CreditCard size={22} />
-                <strong>Stripe-ready</strong>
-                <p>WooCommerce Checkout Blocks, Stripe, PayPal und Wallets vorbereitet.</p>
+                <strong>Schnelle Zahlung</strong>
+                <p>Checkout mit Stripe, PayPal und Wallets, sobald der Live-Shop angebunden ist.</p>
               </article>
               <article>
                 <Truck size={22} />
@@ -647,7 +821,7 @@ function App() {
                 <Truck size={17} /> POD ohne Lagerdruck
               </span>
               <span>
-                <RotateCcw size={17} /> Rückgabe vorbereitet
+                <RotateCcw size={17} /> Rückgabe klar erklärt
               </span>
             </div>
             <div className="hero-slider-controls" aria-label="Hero Slider">
@@ -688,8 +862,8 @@ function App() {
             <span className="eyebrow neon">Neue Kollektion</span>
             <h2>Shadow Drop. Motive, die von allen Seiten kommen.</h2>
             <p>
-              Die schwarzen Ink-Designs werden als eigene Capsule ausgespielt: gross als
-              Eyecatcher, schnell als Slider und direkt mit Produktentscheidung verbunden.
+              Die schwarzen Ink-Designs laufen als eigene Capsule: roh, kontrastreich und
+              schwer zu ignorieren. Jedes Motiv ist ein kleiner Bruch mit dem Erwartbaren.
             </p>
             <div className="shadow-highlights" aria-label="Collection Highlights">
               <span>8 Motive</span>
@@ -773,8 +947,8 @@ function App() {
             <span className="eyebrow neon">Marken-DNA</span>
             <h2>Gegensätze verkaufen besser, wenn sie sofort verstanden werden.</h2>
             <p>
-              Be Different verbindet Street-Art, Humor, Widerspruch und tragbare Motive. Die
-              Seite muss deshalb schnell sein, laut aussehen und trotzdem ohne Reibung verkaufen.
+              Be Different verbindet Street-Art, Humor und Widerspruch mit einem Shop, der
+              nicht labert. Erst Haltung zeigen, dann Größe wählen, dann kaufen.
             </p>
           </div>
           <div className="pillar-grid">
@@ -982,7 +1156,7 @@ function App() {
                 </span>
                 <span>
                   <Truck size={16} />
-                  Versand vorbereitet
+                  Versand transparent
                 </span>
                 <span>
                   <RotateCcw size={16} />
@@ -1036,13 +1210,94 @@ function App() {
           </div>
         </section>
 
+        <section className="collaboration-section" id="collab">
+          <div className="collaboration-copy">
+            <span className="eyebrow neon">Arbeite mit uns zusammen</span>
+            <h2>Kunst gehört nicht in die Schublade. Bring sie auf Stoff.</h2>
+            <p>
+              Be Different sucht Menschen mit Haltung, Stil und Reibung: Designer, Künstler,
+              Unternehmer oder einfach jemanden mit einer verrückten Idee. Wenn dein Motiv Fragen
+              auslöst, Humor hat oder den Zeitgeist kratzt, kann daraus ein Drop entstehen.
+            </p>
+            <div className="collaboration-manifest">
+              <strong>Wir suchen keine glatten Bewerbungen.</strong>
+              <span>Wir suchen Blickwinkel, die hängen bleiben.</span>
+            </div>
+          </div>
+
+          <div className="collaboration-grid" aria-label="Gesuchte Kooperationsprofile">
+            {collaborationRoles.map((role, index) => (
+              <article key={role.title}>
+                {index === 0 && <Sparkles size={22} />}
+                {index === 1 && <Eye size={22} />}
+                {index === 2 && <Zap size={22} />}
+                {index === 3 && <Flame size={22} />}
+                <strong>{role.title}</strong>
+                <p>{role.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <form className="collaboration-form" onSubmit={handleCollaborationSubmit}>
+            <div>
+              <span className="eyebrow">Bewerbung</span>
+              <h3>Zeig uns, was nicht normal ist.</h3>
+            </div>
+            <label>
+              Name / Künstlername
+              <input type="text" name="name" placeholder="Dein Name" required />
+            </label>
+            <label>
+              E-Mail
+              <input type="email" name="email" placeholder="artist@beispiel.de" required />
+            </label>
+            <label>
+              Ich bin
+              <select
+                value={collaborationRole}
+                onChange={(event) => setCollaborationRole(event.target.value)}
+              >
+                {collaborationRoles.map((role) => (
+                  <option key={role.title}>{role.title}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Idee / Portfolio / Link
+              <textarea
+                name="idea"
+                rows={4}
+                placeholder="Beschreib kurz dein Motiv, deine Kunst, dein Portfolio oder den Gedanken hinter deiner Idee."
+                required
+              />
+            </label>
+            <label className="consent-line collaboration-consent">
+              <input type="checkbox" required />
+              <span>
+                Ich stimme zu, dass meine Angaben zur Prüfung einer Kooperation verarbeitet werden.
+                Details werden in der finalen Datenschutzerklärung ergänzt.
+              </span>
+            </label>
+            <button className="primary-button" type="submit">
+              <Sparkles size={18} />
+              Bewerbung vormerken
+            </button>
+            {collaborationSubmitted && (
+              <p className="form-success">
+                Bewerbung vorgemerkt. Im Live-Shop wird das Formular mit E-Mail-Versand,
+                Datenschutzlink und Spam-Schutz verbunden.
+              </p>
+            )}
+          </form>
+        </section>
+
         <section className="drop-section" id="drops">
           <div className="drop-copy">
             <span className="eyebrow">Neue Drops</span>
             <h2>Designs, die erst stören und dann bleiben.</h2>
             <p>
-              Aus der CI: minimalistisch, kontrastreich, surreal, Street-Art. Jedes Motiv braucht
-              einen Gegenpol, einen Witz und einen Grund, warum man zweimal hinschaut.
+              Minimalistisch, kontrastreich, surreal. Jedes Motiv braucht einen Gegner, einen
+              Witz und genug Wahrheit, damit man zweimal hinschaut.
             </p>
             <div className="campaign-tags">
               {campaignIdeas.map((idea) => (
@@ -1105,9 +1360,8 @@ function App() {
             <span className="eyebrow">Checkout</span>
             <h2>Alles führt zum Abschluss.</h2>
             <p>
-              Der Prototyp ist auf WooCommerce als Commerce-Core ausgerichtet: Produkte,
-              Varianten, Warenkorb, Checkout Blocks und POD/Stock-Fulfillment werden als nächster
-              Schritt angebunden.
+              Der finale Shop läuft über WooCommerce: Produkt wählen, Variante prüfen,
+              Zahlungsart auswählen und ohne Reibung abschließen.
             </p>
           </div>
           <div className="checkout-grid">
@@ -1171,23 +1425,48 @@ function App() {
           </div>
           <aside className="shipping-card">
             <Truck size={24} />
-            <strong>Launch-Ready Pflichtblock</strong>
+            <strong>Recht & Vertrauen</strong>
             <p>
-              Vor Livegang: Impressum, Datenschutz, AGB, Widerruf, Cookie Consent,
-              MwSt.-Hinweise, Versandhinweise und Produktdaten finalisieren.
+              Pflichttexte müssen vor dem Kauf erreichbar sein: Impressum, Datenschutz, AGB,
+              Widerruf, Versandkosten, Zahlungsarten und Cookie Consent.
             </p>
             <ul>
               <li>
-                <Check size={15} /> Mobile Checkout zuerst testen
+                <Check size={15} /> Keine Tracking-Cookies ohne Consent
               </li>
               <li>
-                <Check size={15} /> Pixel-Events validieren
+                <Check size={15} /> Preisangaben inkl. Steuerhinweis
               </li>
               <li>
-                <Check size={15} /> POD-Fulfillment synchronisieren
+                <Check size={15} /> Widerruf und Rückgabe klar erreichbar
               </li>
             </ul>
           </aside>
+        </section>
+
+        <section className="legal-section" id="legal">
+          <div className="legal-heading">
+            <span className="eyebrow neon">DSGVO & Shop-Recht</span>
+            <h2>Rebellisch im Look. Sauber im Kleingedruckten.</h2>
+            <p>
+              Die Texte sind als Launch-Vorlage vorbereitet. Alle Felder in geschweiften Klammern
+              müssen vor Veröffentlichung mit echten Angaben gefüllt und rechtlich geprüft werden.
+            </p>
+          </div>
+          <div className="legal-grid">
+            {legalSections.map((section) => (
+              <article key={section.title}>
+                <span>{section.kicker}</span>
+                <strong>{section.title}</strong>
+                <p>{section.intro}</p>
+                <ul>
+                  {section.placeholders.map((placeholder) => (
+                    <li key={placeholder}>{placeholder}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="newsletter">
@@ -1196,11 +1475,11 @@ function App() {
             <span className="eyebrow neon">Drop Alert</span>
             <h2>Verpass keinen Drop.</h2>
             <p>
-              Neue Motive, Community-Votes, Limited Runs und Aktionen direkt in dein Postfach.
-              Kurz. Laut. Relevant.
+              Neue Motive, Community-Votes und Limited Runs. Nur nach Einwilligung, jederzeit
+              abmeldbar, keine versteckte Datenakrobatik.
             </p>
             <form className="newsletter-form">
-              <input type="email" placeholder="deine@email.de" aria-label="E-Mail Adresse" />
+              <input type="email" placeholder="statement@beispiel.de" aria-label="E-Mail Adresse" />
               <button className="primary-button" type="submit">
                 <Sparkles size={18} />
                 Aktivieren
@@ -1243,11 +1522,14 @@ function App() {
           <a href="#drops" onClick={(event) => { event.preventDefault(); navigateHome('drops'); }}>
             Drops
           </a>
+          <a href="#collab" onClick={(event) => { event.preventDefault(); navigateHome('collab'); }}>
+            Mitmachen
+          </a>
           <a href="#produkt" onClick={(event) => { event.preventDefault(); navigateHome('produkt'); }}>
             Größentabelle
           </a>
           {legalLinks.map((link) => (
-            <a href="#faq" key={link} onClick={(event) => { event.preventDefault(); navigateHome('faq'); }}>
+            <a href="#legal" key={link} onClick={(event) => { event.preventDefault(); navigateHome('legal'); }}>
               {link}
             </a>
           ))}
@@ -1272,7 +1554,7 @@ function App() {
                 <span className="eyebrow">Warenkorb</span>
                 <strong>{cartCount} Artikel</strong>
               </div>
-              <button aria-label="Warenkorb schliessen" onClick={() => setCartOpen(false)}>
+              <button aria-label="Warenkorb schließen" onClick={() => setCartOpen(false)}>
                 <X size={20} />
               </button>
             </div>
@@ -1362,7 +1644,7 @@ function App() {
           <aside className="filter-sheet" onClick={(event) => event.stopPropagation()}>
             <div className="sheet-heading">
               <strong>Filter</strong>
-              <button aria-label="Filter schliessen" onClick={() => setFilterOpen(false)}>
+              <button aria-label="Filter schließen" onClick={() => setFilterOpen(false)}>
                 <X size={20} />
               </button>
             </div>

@@ -35,6 +35,13 @@ export type CampaignPoster = {
   image: string;
 };
 
+export type LegalSection = {
+  title: string;
+  kicker: string;
+  intro: string;
+  placeholders: string[];
+};
+
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 
 export const heroImage = asset(
@@ -60,9 +67,9 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.9,
     reviews: 128,
-    shortClaim: 'Ein Motiv für alle, die Haltung mit Humor tragen.',
+    shortClaim: 'Hund? Katze? Egal. Hauptsache, du passt in keine Schublade.',
     description:
-      'Catdog spielt mit dem Moment, in dem Erwartungen kippen. Ein Motiv für Menschen, die Gegensätze nicht verstecken, sondern tragen.',
+      'Cat Rebel ist der be-different Klassiker für alle, die Widerspruch mit Humor tragen. Das Motiv kippt Erwartungen, spielt mit Labels und macht aus einem Shirt eine kleine Rebellion auf Stoff.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'DTG Premiumdruck',
@@ -82,9 +89,9 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 4.8,
     reviews: 94,
-    shortClaim: 'Schwarzweisse Energie für cleane Outfits.',
+    shortClaim: 'Schwarz, schwer, wach. Ein Motiv wie ein Gedanke, der bleibt.',
     description:
-      'Whale Ink bringt Tattoo-Energie auf ein reduziertes Shirt. Clean genug für Alltag, laut genug für Haltung.',
+      'Whale Ink verbindet dunkle Tattoo-Ästhetik mit ruhiger Streetwear-Fläche. Minimal genug für Alltag, intensiv genug für Menschen, die nicht dekorieren, sondern ein Zeichen setzen.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'Feiner Motivdruck',
@@ -105,9 +112,9 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.7,
     reviews: 73,
-    shortClaim: 'Streetart-Vibe für Outfits, die nicht brav aussehen müssen.',
+    shortClaim: 'Friedlich aussehen. Unbequem wirken. Genau der Punkt.',
     description:
-      'Schaf Street ist Humor mit Kante. Das Motiv wirkt erst verspielt und bleibt dann im Kopf.',
+      'Schaf Street nutzt den scheinbar harmlosen Look als Tarnung für Haltung. Erst wirkt es verspielt, dann bleibt die Frage: Wer folgt hier eigentlich wem?',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'DTG Premiumdruck',
@@ -127,9 +134,9 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.8,
     reviews: 41,
-    shortClaim: 'Community-Ideen als Drop gedacht, nicht als Massenware.',
+    shortClaim: 'Deine Idee. Unser Drop. Kein Design für die breite Mitte.',
     description:
-      'Deine Idee Drop ist der direkte Draht zur Community. Ideen aus Instagram, Abstimmungen und Gegensätze werden zu tragbaren Motiven.',
+      'Der Community Drop sammelt Widersprüche aus echten Gesprächen, Votes und Kommentaren. Was genug Reibung erzeugt, wird zum Motiv. Was zu glatt ist, bleibt draußen.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'Motivdruck nach Drop-Auswahl',
@@ -154,10 +161,10 @@ export const brandPillars = [
 ];
 
 export const proofPoints = [
-  { value: '50+', label: 'Designs als Drop-Ziel' },
-  { value: '3', label: 'Schritte bis zum Kauf' },
-  { value: '24/7', label: 'Shop-ready Funnel' },
-  { value: 'POD', label: 'Start ohne Lagerdruck' },
+  { value: '50+', label: 'Motive aus Kontrast, Humor und Haltung' },
+  { value: '3', label: 'Entdecken. Wählen. Tragen.' },
+  { value: '24/7', label: 'Drop-Alarm für Menschen mit Meinung' },
+  { value: 'POD', label: 'Produktion erst, wenn ein Statement gewählt wird' },
 ];
 
 export const campaignIdeas = [
@@ -227,12 +234,12 @@ export const faqItems = [
   {
     question: 'Kann ich zurücksenden?',
     answer:
-      'Rücksendungen werden über WooCommerce, Rechtstexte und klare Widerrufsabläufe abgebildet. Vor Launch müssen alle Texte final geprüft werden.',
+      'Ja. Für Verbraucherinnen und Verbraucher wird der Widerruf im finalen Shop klar erklärt. Personalisierte oder individuell angefertigte Produkte können rechtlich gesondert behandelt werden.',
   },
   {
     question: 'Welche Zahlungsarten gibt es?',
     answer:
-      'Im finalen Checkout sollten Karte, PayPal, Apple Pay, Google Pay und Klarna geprüft werden.',
+      'Geplant sind Karte, PayPal, Apple Pay, Google Pay und optional Klarna. Im Live-Shop werden nur aktivierte Zahlungsarten angezeigt.',
   },
   {
     question: 'Warum Print-on-Demand zum Start?',
@@ -244,6 +251,11 @@ export const faqItems = [
     answer:
       'Die Marke arbeitet mit Gegensätzen, Street-Art-Optik, Humor und kritischem Nachdenken statt austauschbarer Basic-Ware.',
   },
+  {
+    question: 'Was passiert mit meinen Daten?',
+    answer:
+      'Im finalen Shop werden nur Daten verarbeitet, die für Bestellung, Zahlung, Versand, Support, Consent und rechtliche Pflichten erforderlich sind. Details stehen in der Datenschutzerklärung.',
+  },
 ];
 
 export const legalLinks = [
@@ -252,6 +264,79 @@ export const legalLinks = [
   'AGB',
   'Widerruf',
   'Versand & Rückgabe',
+];
+
+export const legalSections: LegalSection[] = [
+  {
+    title: 'Impressum',
+    kicker: 'Pflichtangaben nach § 5 DDG',
+    intro:
+      'Hier stehen die Anbieterangaben des finalen Shops. Vor Launch müssen alle Platzhalter durch echte, ladungsfähige Angaben ersetzt und geprüft werden.',
+    placeholders: [
+      '{{FIRMENNAME / INHABER}}',
+      '{{RECHTSFORM}}',
+      '{{LADUNGSFÄHIGE ANSCHRIFT}}',
+      '{{VERTRETUNGSBERECHTIGTE PERSON}}',
+      '{{E-MAIL}} · {{TELEFON}}',
+      '{{UST-ID / WIRTSCHAFTS-ID FALLS VORHANDEN}}',
+    ],
+  },
+  {
+    title: 'Datenschutz',
+    kicker: 'DSGVO-Informationspflichten',
+    intro:
+      'Die Datenschutzerklärung muss transparent erklären, welche Daten wofür verarbeitet werden: Bestellung, Zahlung, Versand, Kundenservice, Newsletter, Consent, Analyse und Marketing.',
+    placeholders: [
+      '{{VERANTWORTLICHER}}',
+      '{{DATENSCHUTZKONTAKT}}',
+      '{{HOSTING-ANBIETER}}',
+      '{{ZAHLUNGSANBIETER: STRIPE / PAYPAL / KLARNA}}',
+      '{{VERSAND- UND FULFILLMENT-DIENSTLEISTER}}',
+      '{{TRACKING-TOOLS NUR NACH CONSENT}}',
+    ],
+  },
+  {
+    title: 'AGB',
+    kicker: 'Kaufbedingungen für den Shop',
+    intro:
+      'Die AGB regeln Vertragsschluss, Preise, Zahlung, Lieferung, Eigentumsvorbehalt, Gewährleistung, Gutscheine und Besonderheiten bei Print-on-Demand.',
+    placeholders: [
+      '{{GELTUNGSBEREICH}}',
+      '{{VERTRAGSSCHLUSS IM WOO-CHECKOUT}}',
+      '{{PREISE INKL. UMSATZSTEUER / HINWEIS KLEINUNTERNEHMER FALLS ZUTREFFEND}}',
+      '{{ZAHLUNGSARTEN}}',
+      '{{LIEFERGEBIETE UND LIEFERZEITEN}}',
+      '{{POD- UND PERSONALISIERUNGSREGELN}}',
+    ],
+  },
+  {
+    title: 'Widerruf',
+    kicker: 'Verbraucherrecht im Fernabsatz',
+    intro:
+      'Der Widerruf muss vor Vertragsschluss klar erreichbar sein. Für personalisierte oder nach Kundenspezifikation gefertigte Produkte muss separat geprüft werden, ob Ausnahmen greifen.',
+    placeholders: [
+      '{{WIDERRUFSFRIST}}',
+      '{{WIDERRUFSADRESSE}}',
+      '{{E-MAIL FÜR WIDERRUF}}',
+      '{{MUSTER-WIDERRUFSFORMULAR}}',
+      '{{KOSTENTRAGUNG RÜCKVERSAND}}',
+      '{{AUSNAHMEN FÜR INDIVIDUELLE PRODUKTE}}',
+    ],
+  },
+  {
+    title: 'Versand & Rückgabe',
+    kicker: 'Klarheit vor dem Kauf',
+    intro:
+      'Versandkosten, Lieferzeiten, Liefergebiete und Rückgabeabläufe müssen direkt vor Kaufabschluss verständlich und vollständig dargestellt werden.',
+    placeholders: [
+      '{{VERSANDKOSTEN DEUTSCHLAND}}',
+      '{{VERSANDKOSTEN EU / INTERNATIONAL}}',
+      '{{LIEFERZEIT POD}}',
+      '{{LIEFERZEIT STOCK-PRODUKTE}}',
+      '{{RÜCKSENDEADRESSE}}',
+      '{{SUPPORT-KONTAKT}}',
+    ],
+  },
 ];
 
 export const dropDesigns = [

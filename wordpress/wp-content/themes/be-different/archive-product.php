@@ -21,8 +21,8 @@ $product_categories = get_terms([
             <p><?php esc_html_e('Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Größen, Farben und Quick Add in einer fokussierten WooCommerce-Storefront.', 'be-different'); ?></p>
         </div>
         <aside>
-            <strong><?php esc_html_e('Launch-ready Storefront', 'be-different'); ?></strong>
-            <span><?php esc_html_e('Produktarchiv, Sortierung, Kategorien und WooCommerce Loop sind für echte Produkte vorbereitet.', 'be-different'); ?></span>
+            <strong><?php esc_html_e('Statement-Shop ohne Umweg', 'be-different'); ?></strong>
+            <span><?php esc_html_e('Produktarchiv, Sortierung, Kategorien und WooCommerce Loop führen echte Produkte klar zum Checkout.', 'be-different'); ?></span>
         </aside>
     </section>
 
@@ -73,7 +73,7 @@ $product_categories = get_terms([
 
     <section class="bd-shop-trust">
         <article><strong><?php esc_html_e('Drop-Produktion', 'be-different'); ?></strong><p><?php esc_html_e('Start ohne Lagerdruck, später Limited Runs und Stock-Produkte.', 'be-different'); ?></p></article>
-        <article><strong><?php esc_html_e('Stripe-ready', 'be-different'); ?></strong><p><?php esc_html_e('WooCommerce Checkout Blocks, Stripe, PayPal und Wallets vorbereitet.', 'be-different'); ?></p></article>
+        <article><strong><?php esc_html_e('Schnelle Zahlung', 'be-different'); ?></strong><p><?php esc_html_e('WooCommerce Checkout Blocks, Stripe, PayPal und Wallets greifen im Live-Shop sauber ineinander.', 'be-different'); ?></p></article>
         <article><strong><?php esc_html_e('Mobile zuerst', 'be-different'); ?></strong><p><?php esc_html_e('Filter, Cart und Checkout sind auf schnelle Social-Traffic-Käufe ausgelegt.', 'be-different'); ?></p></article>
     </section>
 </main>

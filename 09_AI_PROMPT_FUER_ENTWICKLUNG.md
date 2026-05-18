@@ -41,10 +41,26 @@ Modern, kontrastreich, mutig, hochwertig, klar. Nutze starke Typografie, große 
 Tonalität:
 Direkt, rebellisch, jung, selbstbewusst. Keine langweiligen Standardtexte.
 
-Beispiel-Headline:
-„Sei nicht leise. Sei be-different.“
+Headline-Richtung:
+„Schubladen sind für Möbel.“
+„Normal ist langweilig.“
+„Kleine Rebellionen auf Stoff.“
+„Widerspruch steht dir.“
+„Denken statt nicken.“
+„Hund? Katze? Egal. Hauptsache anders.“
 
-Beispiel-CTA:
-„Jetzt shoppen“
+CTA-Richtung:
+„Statements shoppen“
+„Drop sichern“
+„Motiv wählen“
+„Größe checken“
+„In den Warenkorb“
+
+Pflichttexte und DSGVO:
+- Impressum, Datenschutz, AGB, Widerruf, Versand & Rückgabe müssen im Footer erreichbar sein.
+- Newsletter nur mit aktiver Einwilligung und Abmeldemöglichkeit.
+- Tracking/Marketing-Cookies nur nach Consent.
+- Rechtliche Platzhalter werden in `docs/RECHTSTEXTE_DSGVO_VORLAGEN.md` gepflegt.
+- Vor Livegang müssen alle Platzhalter wie `{{FIRMENNAME}}`, `{{ADRESSE}}`, `{{ZAHLUNGSANBIETER}}` und `{{VERSANDKOSTEN}}` ersetzt und geprüft werden.
 
 Liefere saubere, wartbare Struktur, performante Komponenten und eine klare Trennung zwischen Content, Layout und Shop-Funktionalität.

@@ -18,7 +18,7 @@
             __('Drop 01 ist offen', 'be-different'),
             __('Be different - be better - be you', 'be-different'),
             __('Free shipping ab 75 EUR', 'be-different'),
-            __('WooCommerce-ready', 'be-different'),
+            __('WooCommerce-Fokus', 'be-different'),
             __('Print-on-Demand + Limited Runs', 'be-different'),
             __('Neue Motive per Community Vote', 'be-different'),
         ];

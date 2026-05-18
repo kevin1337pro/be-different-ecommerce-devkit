@@ -21,6 +21,7 @@ Stand: 18.05.2026
   - Checkout-Skeleton
   - SEO-Basics für Live-Preview
   - FAQ
+  - DSGVO-/Rechtstext-Hub mit ausfüllbaren Launch-Vorlagen
   - WooCommerce-Systemsektion
 - WordPress/WooCommerce Theme-Scaffold:
   - `wordpress/wp-content/themes/be-different`
@@ -73,6 +74,8 @@ Das ist eine visuelle und conversion-fokussierte Vorschau, aber kein echter WooC
 12. Testkauf mit jeder Zahlungsart durchführen.
 
 Details zu SEO, Checkout und Stripe stehen in `docs/SEO_CHECKOUT_STRIPE_PLAN.md`.
+
+Rechtstext- und DSGVO-Vorlagen stehen in `docs/RECHTSTEXTE_DSGVO_VORLAGEN.md`.
 
 ## Technische Hinweise
 

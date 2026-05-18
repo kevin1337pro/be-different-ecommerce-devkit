@@ -1,19 +1,28 @@
 # Produktseiten-Template
 
 ## Produktname
-[Name des Produkts]
+{{PRODUKTNAME}}
 
 ## Kurzclaim
-Ein Statement für alle, die nicht in Schubladen passen.
+{{KURZCLAIM}}
+
+Beispielrichtung:
+- „Hund? Katze? Egal. Hauptsache, du passt in keine Schublade.“
+- „Friedlich aussehen. Unbequem wirken. Genau der Punkt.“
+- „Schwarz, schwer, wach. Ein Motiv wie ein Gedanke, der bleibt.“
 
 ## Beschreibung
-Dieses Design steht für Haltung, Individualität und den Mut, anders zu sein. Kombiniere es mit deinem eigenen Stil und mach daraus dein persönliches Statement.
+{{BESCHREIBUNG}}
+
+be-different Produkttexte sollen nicht generisch klingen. Jedes Produkt erklärt den Widerspruch im Motiv, den Humor dahinter und warum das Piece mehr ist als ein Basic-Shirt.
 
 ## Details
-- Material: [Material einfügen]
-- Passform: [Regular/Oversized/etc.]
-- Druck: [Druckart]
+- Material: {{MATERIAL}}
+- Passform: {{PASSFORM}}
+- Druck: {{DRUCKART}}
 - Pflege: Auf links waschen, nicht direkt über den Druck bügeln
+- Herkunft/Produktion: {{POD / STOCK / LIMITED RUN}}
+- Lieferzeit: {{LIEFERZEIT}}
 
 ## Varianten
 - Farbe
@@ -22,15 +31,23 @@ Dieses Design steht für Haltung, Individualität und den Mut, anders zu sein. K
 
 ## Trust-Elemente
 - Sichere Zahlung
-- Einfache Rückgabe
-- Versand in wenigen Werktagen
-- Für dich produziert
+- Rückgabe/Widerruf nach finaler Rechtstextprüfung
+- Versandkosten und Lieferzeit vor Kaufabschluss sichtbar
+- Für dich produziert oder als Limited Run verfügbar
+- Preisangaben inklusive Steuerhinweis
 
 ## CTA
 In den Warenkorb
 
 ## Cross-Sell
 „Passt dazu“:
-- Hoodie
-- Weiteres Statement-Shirt
-- Accessoire
+- {{PASSENDES PRODUKT 1}}
+- {{PASSENDES PRODUKT 2}}
+- {{PASSENDES PRODUKT 3}}
+
+## Rechtliche Pflichtangaben
+- Preis: {{PREIS}} inklusive {{STEUERHINWEIS}}
+- Versand: {{VERSANDKOSTEN UND LIEFERZEIT}}
+- Widerruf: {{WIDERRUFSLINK}}
+- Datenschutz: {{DATENSCHUTZLINK}}
+- AGB: {{AGB-LINK}}

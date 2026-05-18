@@ -112,8 +112,8 @@ $shadow_collection = [
             </div>
             <div class="bd-trust">
                 <span><?php esc_html_e('WooCommerce Checkout', 'be-different'); ?></span>
-                <span><?php esc_html_e('HPOS-ready', 'be-different'); ?></span>
-                <span><?php esc_html_e('POD + Stock vorbereitet', 'be-different'); ?></span>
+                <span><?php esc_html_e('HPOS im Fokus', 'be-different'); ?></span>
+                <span><?php esc_html_e('POD + Stock sauber planbar', 'be-different'); ?></span>
             </div>
             <div class="bd-hero-controls" aria-label="<?php esc_attr_e('Hero Slider', 'be-different'); ?>">
                 <button type="button" class="is-active" data-bd-slide="0">01 Drop</button>
