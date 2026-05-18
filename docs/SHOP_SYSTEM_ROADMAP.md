@@ -1,6 +1,6 @@
 # Shop-System Roadmap
 
-Stand: 17.05.2026
+Stand: 18.05.2026
 
 ## Entscheidung
 
