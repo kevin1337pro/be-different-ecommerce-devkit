@@ -1019,6 +1019,137 @@ h3 {
   color: var(--green);
 }
 
+.campaign-section {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+  gap: 34px;
+  align-items: center;
+  overflow: hidden;
+  padding: 86px max(24px, calc((100vw - 1180px) / 2));
+  background:
+    linear-gradient(90deg, rgba(255, 255, 0, 0.12), transparent 42%),
+    var(--black);
+  color: #ffffff;
+}
+
+.campaign-visual {
+  position: relative;
+  min-height: 560px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: #050505;
+  overflow: hidden;
+}
+
+.campaign-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+  filter: contrast(1.08) saturate(0.9);
+}
+
+.campaign-visual::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.74), transparent 48%);
+}
+
+.campaign-visual div {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 1;
+  display: grid;
+  gap: 5px;
+}
+
+.campaign-visual span {
+  color: var(--green);
+  font-size: 0.76rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.campaign-visual strong {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.campaign-copy {
+  display: grid;
+  gap: 18px;
+  max-width: 820px;
+}
+
+.campaign-copy p {
+  max-width: 720px;
+  margin-bottom: 0;
+  color: #d8d8d8;
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.campaign-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.campaign-posters {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.campaign-posters article {
+  display: grid;
+  grid-template-rows: 210px 1fr;
+  min-height: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.campaign-posters article:nth-child(even) {
+  background: var(--green);
+  color: var(--black);
+}
+
+.campaign-posters img {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.campaign-posters div {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 16px;
+}
+
+.campaign-posters strong {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.campaign-posters p {
+  margin-bottom: 0;
+  color: inherit;
+  line-height: 1.45;
+}
+
 .product-detail {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
@@ -1963,6 +2094,7 @@ h3 {
   .info-section,
   .contrast-lab,
   .about-section,
+  .campaign-section,
   .shadow-collection {
     grid-template-columns: 1fr;
   }
@@ -1978,7 +2110,8 @@ h3 {
 
   .pillar-grid,
   .stack-grid,
-  .about-values {
+  .about-values,
+  .campaign-posters {
     grid-template-columns: 1fr;
   }
 
@@ -2019,8 +2152,18 @@ h3 {
   .stack-section,
   .contrast-lab,
   .about-section,
+  .campaign-section,
   .shadow-collection {
     padding: 64px 16px;
+  }
+
+  .campaign-visual,
+  .campaign-visual img {
+    min-height: 460px;
+  }
+
+  .campaign-actions a {
+    width: 100%;
   }
 
   .about-bottom-line {

@@ -13,6 +13,7 @@ Stand: 17.05.2026
   - Mobile-first Startseite
   - Drop-Hero mit Slider
   - Shadow-Drop-Kollektion mit gegenlaeufigen Design-Slidern
+  - Manifesto-/Campaign-Section mit Mona-Lisa-Visual und Statement-Postern
   - Produktgrid
   - Produktdetailbereich
   - Warenkorb-Drawer
@@ -25,6 +26,7 @@ Stand: 17.05.2026
   - WooCommerce Support
   - Frontpage-Funnel
   - Shadow-Drop-Kollektion als WooCommerce-Shop-Einstieg
+  - Campaign-Manifesto als Marken- und Shop-Einstieg
   - WooCommerce Wrapper
   - eigene Cart-/Checkout-Seitentemplates
   - Theme CSS/JS

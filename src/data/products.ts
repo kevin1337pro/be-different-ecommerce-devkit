@@ -29,6 +29,12 @@ export type CollectionDesign = {
   productId: Product['id'];
 };
 
+export type CampaignPoster = {
+  title: string;
+  line: string;
+  image: string;
+};
+
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 
 export const heroImage = asset(
@@ -37,6 +43,7 @@ export const heroImage = asset(
 export const heroEyecatcherImage = asset('assets/hero/eyecatcher.jpeg');
 
 export const brandDropImage = asset('assets/brand/new-be-different-sammlung.png');
+export const campaignHeroImage = asset('assets/campaign/mona-lisa-vermummt.jpeg');
 
 export const products: Product[] = [
   {
@@ -158,6 +165,29 @@ export const campaignIdeas = [
   'Elefant oder Maus?',
   'Normal war gestern.',
   'Wo Hund Katze sagt.',
+];
+
+export const campaignPosters: CampaignPoster[] = [
+  {
+    title: 'Schubladen sind fuer Moebel.',
+    line: 'Nicht fuer Menschen mit Ecken, Kanten und Meinung.',
+    image: asset('assets/campaign/stop.png'),
+  },
+  {
+    title: 'Sag nichts. Trag es trotzdem.',
+    line: 'Kleidung als Stimme fuer das, was im Raum steht.',
+    image: asset('assets/campaign/hand-v2.png'),
+  },
+  {
+    title: 'Normal ist langweilig.',
+    line: 'Eine Einladung an alle, die nicht glattgebuegelt leben.',
+    image: asset('assets/campaign/walk.png'),
+  },
+  {
+    title: 'Widerspruch steht dir.',
+    line: 'Zwischen Lachen und Ernst beginnt Haltung.',
+    image: asset('assets/campaign/rotkelchen.png'),
+  },
 ];
 
 export const shopStack = [

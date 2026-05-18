@@ -32,7 +32,9 @@ import {
 import {
   brandDropImage,
   brandPillars,
+  campaignHeroImage,
   campaignIdeas,
+  campaignPosters,
   dropDesigns,
   faqItems,
   heroImage,
@@ -282,6 +284,9 @@ function App() {
           </a>
           <a href="#about" onClick={() => setMenuOpen(false)}>
             About
+          </a>
+          <a href="#campaign" onClick={() => setMenuOpen(false)}>
+            Campaign
           </a>
           <a href="#system" onClick={() => setMenuOpen(false)}>
             Stack
@@ -536,6 +541,44 @@ function App() {
             <span>Denken statt nicken.</span>
             <span>Kontrast statt Konsens.</span>
             <span>Anders sein als Anfang.</span>
+          </div>
+        </section>
+
+        <section className="campaign-section" id="campaign">
+          <div className="campaign-visual">
+            <img src={campaignHeroImage} alt="Mona Lisa vermummt als be-different Campaign Visual" loading="lazy" />
+            <div>
+              <span>Manifesto Visual</span>
+              <strong>Kunst auf Kleidung, die polarisiert.</strong>
+            </div>
+          </div>
+          <div className="campaign-copy">
+            <span className="eyebrow neon">Campaign Manifesto</span>
+            <h2>Kleine Rebellionen auf Stoff.</h2>
+            <p>
+              Unsere Designs zeigen Gegensaetze, brechen Regeln und machen sichtbar, was sonst
+              untergeht. Provokant, ehrlich, mit Stil. Kein Fashion-Trend, sondern eine Haltung
+              fuer Menschen, die sich trauen, anders zu sein.
+            </p>
+            <div className="campaign-actions">
+              <a className="primary-button" href="#shop">
+                Statements shoppen <ChevronRight size={19} />
+              </a>
+              <a className="secondary-button" href="#collection">
+                Shadow Drop ansehen
+              </a>
+            </div>
+          </div>
+          <div className="campaign-posters" aria-label="Campaign Claims">
+            {campaignPosters.map((poster) => (
+              <article key={poster.title}>
+                <img src={poster.image} alt="" loading="lazy" />
+                <div>
+                  <strong>{poster.title}</strong>
+                  <p>{poster.line}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 

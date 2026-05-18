@@ -9,6 +9,29 @@ $featured_products = bd_featured_products(4);
 $hero_image = bd_asset('images/hero/website-background-2-background-for-an-t-shirt-shop-c8302e20-e774-4efd-b4bf-c61028bdaebe.jpg');
 $hero_eyecatcher = bd_asset('images/hero/eyecatcher.jpeg');
 $drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
+$campaign_hero = bd_asset('images/campaign/mona-lisa-vermummt.jpeg');
+$campaign_posters = [
+    [
+        'title' => 'Schubladen sind fuer Moebel.',
+        'line' => 'Nicht fuer Menschen mit Ecken, Kanten und Meinung.',
+        'image' => bd_asset('images/campaign/stop.png'),
+    ],
+    [
+        'title' => 'Sag nichts. Trag es trotzdem.',
+        'line' => 'Kleidung als Stimme fuer das, was im Raum steht.',
+        'image' => bd_asset('images/campaign/hand-v2.png'),
+    ],
+    [
+        'title' => 'Normal ist langweilig.',
+        'line' => 'Eine Einladung an alle, die nicht glattgebuegelt leben.',
+        'image' => bd_asset('images/campaign/walk.png'),
+    ],
+    [
+        'title' => 'Widerspruch steht dir.',
+        'line' => 'Zwischen Lachen und Ernst beginnt Haltung.',
+        'image' => bd_asset('images/campaign/rotkelchen.png'),
+    ],
+];
 $shadow_collection = [
     [
         'title' => 'Cool Cat',
@@ -199,6 +222,36 @@ $shadow_collection = [
             <span><?php esc_html_e('Denken statt nicken.', 'be-different'); ?></span>
             <span><?php esc_html_e('Kontrast statt Konsens.', 'be-different'); ?></span>
             <span><?php esc_html_e('Anders sein als Anfang.', 'be-different'); ?></span>
+        </div>
+    </section>
+
+    <section class="bd-campaign-section" id="campaign">
+        <div class="bd-campaign-visual">
+            <img src="<?php echo esc_url($campaign_hero); ?>" alt="<?php esc_attr_e('Mona Lisa vermummt als be-different Campaign Visual', 'be-different'); ?>" loading="lazy">
+            <div>
+                <span><?php esc_html_e('Manifesto Visual', 'be-different'); ?></span>
+                <strong><?php esc_html_e('Kunst auf Kleidung, die polarisiert.', 'be-different'); ?></strong>
+            </div>
+        </div>
+        <div class="bd-campaign-copy">
+            <span class="bd-eyebrow"><?php esc_html_e('Campaign Manifesto', 'be-different'); ?></span>
+            <h2><?php esc_html_e('Kleine Rebellionen auf Stoff.', 'be-different'); ?></h2>
+            <p><?php esc_html_e('Unsere Designs zeigen Gegensaetze, brechen Regeln und machen sichtbar, was sonst untergeht. Provokant, ehrlich, mit Stil. Kein Fashion-Trend, sondern eine Haltung fuer Menschen, die sich trauen, anders zu sein.', 'be-different'); ?></p>
+            <div class="bd-campaign-actions">
+                <a class="bd-button bd-button-primary" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>"><?php esc_html_e('Statements shoppen', 'be-different'); ?></a>
+                <a class="bd-button bd-button-secondary" href="#collection"><?php esc_html_e('Shadow Drop ansehen', 'be-different'); ?></a>
+            </div>
+        </div>
+        <div class="bd-campaign-posters" aria-label="<?php esc_attr_e('Campaign Claims', 'be-different'); ?>">
+            <?php foreach ($campaign_posters as $poster) : ?>
+                <article>
+                    <img src="<?php echo esc_url($poster['image']); ?>" alt="" loading="lazy">
+                    <div>
+                        <strong><?php echo esc_html($poster['title']); ?></strong>
+                        <p><?php echo esc_html($poster['line']); ?></p>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </div>
     </section>
 
