@@ -12,18 +12,18 @@ $drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
 $campaign_hero = bd_asset('images/campaign/mona-lisa-vermummt.jpeg');
 $campaign_posters = [
     [
-        'title' => 'Schubladen sind fuer Moebel.',
-        'line' => 'Nicht fuer Menschen mit Ecken, Kanten und Meinung.',
+        'title' => 'Schubladen sind für Möbel.',
+        'line' => 'Nicht für Menschen mit Ecken, Kanten und Meinung.',
         'image' => bd_asset('images/campaign/stop.png'),
     ],
     [
         'title' => 'Sag nichts. Trag es trotzdem.',
-        'line' => 'Kleidung als Stimme fuer das, was im Raum steht.',
+        'line' => 'Kleidung als Stimme für das, was im Raum steht.',
         'image' => bd_asset('images/campaign/hand-v2.png'),
     ],
     [
         'title' => 'Normal ist langweilig.',
-        'line' => 'Eine Einladung an alle, die nicht glattgebuegelt leben.',
+        'line' => 'Eine Einladung an alle, die nicht glattgebügelt leben.',
         'image' => bd_asset('images/campaign/walk.png'),
     ],
     [
@@ -40,7 +40,7 @@ $shadow_collection = [
         'image' => bd_asset('images/designs/black-cat.png'),
     ],
     [
-        'title' => 'Elefant / Muecke',
+        'title' => 'Elefant / Mücke',
         'line' => 'Gross gegen klein, leise gegen laut.',
         'badge' => 'Kontrastmotiv',
         'image' => bd_asset('images/designs/elefant-muecke.png'),
@@ -65,7 +65,7 @@ $shadow_collection = [
     ],
     [
         'title' => 'Black Ink Frame',
-        'line' => 'Rohes Print-Element fuer Drop-Layouts.',
+        'line' => 'Rohes Print-Element für Drop-Layouts.',
         'badge' => 'Graphic Tool',
         'image' => bd_asset('images/designs/black-ink.png'),
     ],
@@ -77,7 +77,7 @@ $shadow_collection = [
     ],
     [
         'title' => 'Catdog Core',
-        'line' => 'Bestseller-Logik fuer den ersten Drop.',
+        'line' => 'Bestseller-Logik für den ersten Drop.',
         'badge' => 'Bestseller',
         'image' => bd_asset('images/designs/hip-hop-cat.png'),
     ],
@@ -91,7 +91,7 @@ $shadow_collection = [
             <div class="bd-hero-slider" data-bd-hero-slider>
                 <article class="bd-hero-slide is-active" data-bd-bg="<?php echo esc_url($hero_image); ?>">
                     <h1><?php esc_html_e('Be different.', 'be-different'); ?><span><?php esc_html_e('Be better.', 'be-different'); ?></span><em><?php esc_html_e('Be you.', 'be-different'); ?></em></h1>
-                    <p><?php esc_html_e('Kontrastreiche Statement-Shirts fuer Menschen, die nicht aussehen wollen wie der Feed von allen anderen.', 'be-different'); ?></p>
+                    <p><?php esc_html_e('Kontrastreiche Statement-Shirts für Menschen, die nicht aussehen wollen wie der Feed von allen anderen.', 'be-different'); ?></p>
                 </article>
                 <article class="bd-hero-slide" data-bd-bg="<?php echo esc_url($hero_eyecatcher); ?>">
                     <h1><?php esc_html_e('Hund?', 'be-different'); ?><span><?php esc_html_e('Katze?', 'be-different'); ?></span><em><?php esc_html_e('Egal.', 'be-different'); ?></em></h1>
@@ -99,7 +99,7 @@ $shadow_collection = [
                 </article>
                 <article class="bd-hero-slide" data-bd-bg="<?php echo esc_url($hero_image); ?>">
                     <h1><?php esc_html_e('Deine Idee.', 'be-different'); ?><span><?php esc_html_e('Unser Drop.', 'be-different'); ?></span><em><?php esc_html_e('Jetzt.', 'be-different'); ?></em></h1>
-                    <p><?php esc_html_e('Motive aus Community-Ideen, Abstimmungen und Gegensaetzen. Erst testen, dann als Limited Run ausbauen.', 'be-different'); ?></p>
+                    <p><?php esc_html_e('Motive aus Community-Ideen, Abstimmungen und Gegensätzen. Erst testen, dann als Limited Run ausbauen.', 'be-different'); ?></p>
                 </article>
             </div>
             <div class="bd-actions">
@@ -192,13 +192,13 @@ $shadow_collection = [
     <section class="bd-brand-section">
         <div>
             <span class="bd-eyebrow"><?php esc_html_e('Marken-DNA', 'be-different'); ?></span>
-            <h2><?php esc_html_e('Gegensaetze verkaufen besser, wenn sie sofort verstanden werden.', 'be-different'); ?></h2>
+            <h2><?php esc_html_e('Gegensätze verkaufen besser, wenn sie sofort verstanden werden.', 'be-different'); ?></h2>
             <p><?php esc_html_e('Be Different verbindet Street-Art, Humor, Widerspruch und tragbare Motive. WordPress liefert Content-Power, WooCommerce macht daraus einen Shop.', 'be-different'); ?></p>
         </div>
         <div class="bd-pillars">
-            <article><strong><?php esc_html_e('Kreativ', 'be-different'); ?></strong><p><?php esc_html_e('Surreale Motive, Gegensaetze und Witz.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Kreativ', 'be-different'); ?></strong><p><?php esc_html_e('Surreale Motive, Gegensätze und Witz.', 'be-different'); ?></p></article>
             <article><strong><?php esc_html_e('Rebellisch', 'be-different'); ?></strong><p><?php esc_html_e('Street-Art-Energie und kritisches Denken.', 'be-different'); ?></p></article>
-            <article><strong><?php esc_html_e('Persoenlich', 'be-different'); ?></strong><p><?php esc_html_e('Kleidung als Ausdruck von Individualitaet.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Persönlich', 'be-different'); ?></strong><p><?php esc_html_e('Kleidung als Ausdruck von Individualität.', 'be-different'); ?></p></article>
         </div>
     </section>
 
@@ -206,17 +206,17 @@ $shadow_collection = [
         <div class="bd-about-manifest">
             <span class="bd-eyebrow"><?php esc_html_e('About us', 'be-different'); ?></span>
             <h2><?php esc_html_e('Keine Uniform. Ein Angriff auf Autopilot.', 'be-different'); ?></h2>
-            <p><?php esc_html_e('Be Different ist Streetwear fuer Menschen, die Widersprueche sehen und nicht so tun wollen, als waere alles glatt. Die Marke greift Zeitgeist, Politik, Sprache, Identitaet und Konsum als Spannungsfelder auf. Nicht als Parteiprogramm, sondern als visuelle Reibung: zwischen Worten und Taten, zwischen Haltung und Bequemlichkeit.', 'be-different'); ?></p>
+            <p><?php esc_html_e('Be Different ist Streetwear für Menschen, die Widersprüche sehen und nicht so tun wollen, als wäre alles glatt. Die Marke greift Zeitgeist, Politik, Sprache, Identität und Konsum als Spannungsfelder auf. Nicht als Parteiprogramm, sondern als visuelle Reibung: zwischen Worten und Taten, zwischen Haltung und Bequemlichkeit.', 'be-different'); ?></p>
             <blockquote>
                 <strong><?php esc_html_e('Sapere Aude.', 'be-different'); ?></strong>
                 <span><?php esc_html_e('Habe Mut, dich deines eigenen Verstandes zu bedienen.', 'be-different'); ?></span>
             </blockquote>
         </div>
         <div class="bd-about-values">
-            <article><strong><?php esc_html_e('Kreativitaet', 'be-different'); ?></strong><p><?php esc_html_e('Gegensaetze werden bewusst kombiniert, damit Motive stoppen, irritieren und im besten Fall ein Schmunzeln ausloesen.', 'be-different'); ?></p></article>
-            <article><strong><?php esc_html_e('Rebellion', 'be-different'); ?></strong><p><?php esc_html_e('Be Different darf anstoessig sein. Die Designs stellen glatte Antworten infrage und fordern kritisches Denken statt Reflex.', 'be-different'); ?></p></article>
-            <article><strong><?php esc_html_e('Individualitaet', 'be-different'); ?></strong><p><?php esc_html_e('Mode wird zur Flaeche fuer Menschen, die sich nicht in Schubladen stecken lassen und ihr Anderssein sichtbar tragen.', 'be-different'); ?></p></article>
-            <article><strong><?php esc_html_e('Humor', 'be-different'); ?></strong><p><?php esc_html_e('Witz macht den Widerspruch zugaenglich. Humor verbindet, ohne die Kante aus der Aussage zu nehmen.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Kreativität', 'be-different'); ?></strong><p><?php esc_html_e('Gegensätze werden bewusst kombiniert, damit Motive stoppen, irritieren und im besten Fall ein Schmunzeln auslösen.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Rebellion', 'be-different'); ?></strong><p><?php esc_html_e('Be Different darf anstößig sein. Die Designs stellen glatte Antworten infrage und fordern kritisches Denken statt Reflex.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Individualität', 'be-different'); ?></strong><p><?php esc_html_e('Mode wird zur Fläche für Menschen, die sich nicht in Schubladen stecken lassen und ihr Anderssein sichtbar tragen.', 'be-different'); ?></p></article>
+            <article><strong><?php esc_html_e('Humor', 'be-different'); ?></strong><p><?php esc_html_e('Witz macht den Widerspruch zugänglich. Humor verbindet, ohne die Kante aus der Aussage zu nehmen.', 'be-different'); ?></p></article>
         </div>
         <div class="bd-about-bottom-line">
             <span><?php esc_html_e('Denken statt nicken.', 'be-different'); ?></span>
@@ -236,7 +236,7 @@ $shadow_collection = [
         <div class="bd-campaign-copy">
             <span class="bd-eyebrow"><?php esc_html_e('Campaign Manifesto', 'be-different'); ?></span>
             <h2><?php esc_html_e('Kleine Rebellionen auf Stoff.', 'be-different'); ?></h2>
-            <p><?php esc_html_e('Unsere Designs zeigen Gegensaetze, brechen Regeln und machen sichtbar, was sonst untergeht. Provokant, ehrlich, mit Stil. Kein Fashion-Trend, sondern eine Haltung fuer Menschen, die sich trauen, anders zu sein.', 'be-different'); ?></p>
+            <p><?php esc_html_e('Unsere Designs zeigen Gegensätze, brechen Regeln und machen sichtbar, was sonst untergeht. Provokant, ehrlich, mit Stil. Kein Fashion-Trend, sondern eine Haltung für Menschen, die sich trauen, anders zu sein.', 'be-different'); ?></p>
             <div class="bd-campaign-actions">
                 <a class="bd-button bd-button-primary" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>"><?php esc_html_e('Statements shoppen', 'be-different'); ?></a>
                 <a class="bd-button bd-button-secondary" href="#collection"><?php esc_html_e('Shadow Drop ansehen', 'be-different'); ?></a>
@@ -263,7 +263,7 @@ $shadow_collection = [
         <div class="bd-stack-grid">
             <article><span>CMS</span><strong>WordPress</strong><p><?php esc_html_e('Landingpages, Kampagnen, SEO und redaktionelle Kontrolle.', 'be-different'); ?></p></article>
             <article><span>Commerce</span><strong>WooCommerce + HPOS</strong><p><?php esc_html_e('Produkte, Varianten, Bestellungen und Order-Performance.', 'be-different'); ?></p></article>
-            <article><span>Checkout</span><strong>Cart & Checkout Blocks</strong><p><?php esc_html_e('Moderner Cart-Flow fuer Mobile-first Conversion.', 'be-different'); ?></p></article>
+            <article><span>Checkout</span><strong>Cart & Checkout Blocks</strong><p><?php esc_html_e('Moderner Cart-Flow für Mobile-first Conversion.', 'be-different'); ?></p></article>
             <article><span>Growth</span><strong>GA4 / Meta / TikTok</strong><p><?php esc_html_e('Tracking, Remarketing und Drop-Alert-Strecken.', 'be-different'); ?></p></article>
         </div>
     </section>

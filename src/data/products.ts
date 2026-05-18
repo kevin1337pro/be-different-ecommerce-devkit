@@ -60,13 +60,13 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.9,
     reviews: 128,
-    shortClaim: 'Ein Motiv fuer alle, die Haltung mit Humor tragen.',
+    shortClaim: 'Ein Motiv für alle, die Haltung mit Humor tragen.',
     description:
-      'Catdog spielt mit dem Moment, in dem Erwartungen kippen. Ein Motiv fuer Menschen, die Gegensaetze nicht verstecken, sondern tragen.',
+      'Catdog spielt mit dem Moment, in dem Erwartungen kippen. Ein Motiv für Menschen, die Gegensätze nicht verstecken, sondern tragen.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'DTG Premiumdruck',
-    shippingNote: 'Produktion fuer dich, Versand in wenigen Werktagen',
+    shippingNote: 'Produktion für dich, Versand in wenigen Werktagen',
     dropStatus: 'Drop 01: Catdog Core',
   },
   {
@@ -82,13 +82,13 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 4.8,
     reviews: 94,
-    shortClaim: 'Schwarzweisse Energie fuer cleane Outfits.',
+    shortClaim: 'Schwarzweisse Energie für cleane Outfits.',
     description:
-      'Whale Ink bringt Tattoo-Energie auf ein reduziertes Shirt. Clean genug fuer Alltag, laut genug fuer Haltung.',
+      'Whale Ink bringt Tattoo-Energie auf ein reduziertes Shirt. Clean genug für Alltag, laut genug für Haltung.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'Feiner Motivdruck',
-    shippingNote: 'Produktion fuer dich, Versand in wenigen Werktagen',
+    shippingNote: 'Produktion für dich, Versand in wenigen Werktagen',
     dropStatus: 'Monochrome Capsule',
   },
   {
@@ -105,13 +105,13 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.7,
     reviews: 73,
-    shortClaim: 'Streetart-Vibe fuer Outfits, die nicht brav aussehen muessen.',
+    shortClaim: 'Streetart-Vibe für Outfits, die nicht brav aussehen müssen.',
     description:
       'Schaf Street ist Humor mit Kante. Das Motiv wirkt erst verspielt und bleibt dann im Kopf.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'DTG Premiumdruck',
-    shippingNote: 'Produktion fuer dich, Versand in wenigen Werktagen',
+    shippingNote: 'Produktion für dich, Versand in wenigen Werktagen',
     dropStatus: 'Limited Street Run',
   },
   {
@@ -129,11 +129,11 @@ export const products: Product[] = [
     reviews: 41,
     shortClaim: 'Community-Ideen als Drop gedacht, nicht als Massenware.',
     description:
-      'Deine Idee Drop ist der direkte Draht zur Community. Ideen aus Instagram, Abstimmungen und Gegensaetze werden zu tragbaren Motiven.',
+      'Deine Idee Drop ist der direkte Draht zur Community. Ideen aus Instagram, Abstimmungen und Gegensätze werden zu tragbaren Motiven.',
     material: '100% Baumwolle',
     fit: 'Regular Fit',
     print: 'Motivdruck nach Drop-Auswahl',
-    shippingNote: 'Produktion fuer dich, Versand in wenigen Werktagen',
+    shippingNote: 'Produktion für dich, Versand in wenigen Werktagen',
     dropStatus: 'Community Vote',
   },
 ];
@@ -141,15 +141,15 @@ export const products: Product[] = [
 export const brandPillars = [
   {
     title: 'Kreativ',
-    text: 'Gegensaetze, surrealer Humor und Motive, die sofort auffallen.',
+    text: 'Gegensätze, surrealer Humor und Motive, die sofort auffallen.',
   },
   {
     title: 'Rebellisch',
-    text: 'Street-Art-Energie, kritisches Denken und eine klare Haltung gegen Gleichfoermigkeit.',
+    text: 'Street-Art-Energie, kritisches Denken und eine klare Haltung gegen Gleichförmigkeit.',
   },
   {
-    title: 'Persoenlich',
-    text: 'Mode als Ausdruck von Individualitaet, nicht als Uniform fuer alle.',
+    title: 'Persönlich',
+    text: 'Mode als Ausdruck von Individualität, nicht als Uniform für alle.',
   },
 ];
 
@@ -169,18 +169,18 @@ export const campaignIdeas = [
 
 export const campaignPosters: CampaignPoster[] = [
   {
-    title: 'Schubladen sind fuer Moebel.',
-    line: 'Nicht fuer Menschen mit Ecken, Kanten und Meinung.',
+    title: 'Schubladen sind für Möbel.',
+    line: 'Nicht für Menschen mit Ecken, Kanten und Meinung.',
     image: asset('assets/campaign/stop.png'),
   },
   {
     title: 'Sag nichts. Trag es trotzdem.',
-    line: 'Kleidung als Stimme fuer das, was im Raum steht.',
+    line: 'Kleidung als Stimme für das, was im Raum steht.',
     image: asset('assets/campaign/hand-v2.png'),
   },
   {
     title: 'Normal ist langweilig.',
-    line: 'Eine Einladung an alle, die nicht glattgebuegelt leben.',
+    line: 'Eine Einladung an alle, die nicht glattgebügelt leben.',
     image: asset('assets/campaign/walk.png'),
   },
   {
@@ -209,7 +209,7 @@ export const shopStack = [
   {
     label: 'Marketing',
     value: 'Woo + GA4 + Meta + TikTok',
-    text: 'Events, Remarketing, Newsletter, Abbruchstrecken und Drop-Alerts ueber WordPress integrieren.',
+    text: 'Events, Remarketing, Newsletter, Abbruchstrecken und Drop-Alerts über WordPress integrieren.',
   },
 ];
 
@@ -217,32 +217,32 @@ export const faqItems = [
   {
     question: 'Wie lange dauert der Versand?',
     answer:
-      'Die Produkte werden fuer dich produziert. Plane fuer Produktion und Versand wenige Werktage ein.',
+      'Die Produkte werden für dich produziert. Plane für Produktion und Versand wenige Werktage ein.',
   },
   {
-    question: 'Wie fallen die Groessen aus?',
+    question: 'Wie fallen die Größen aus?',
     answer:
-      'Die Shirts sind als Regular Fit geplant. Zwischen zwei Groessen empfehlen wir die groessere Variante.',
+      'Die Shirts sind als Regular Fit geplant. Zwischen zwei Größen empfehlen wir die größere Variante.',
   },
   {
-    question: 'Kann ich zuruecksenden?',
+    question: 'Kann ich zurücksenden?',
     answer:
-      'Ruecksendungen werden ueber WooCommerce, Rechtstexte und klare Widerrufsablaeufe abgebildet. Vor Launch muessen alle Texte final geprueft werden.',
+      'Rücksendungen werden über WooCommerce, Rechtstexte und klare Widerrufsabläufe abgebildet. Vor Launch müssen alle Texte final geprüft werden.',
   },
   {
     question: 'Welche Zahlungsarten gibt es?',
     answer:
-      'Im finalen Checkout sollten Karte, PayPal, Apple Pay, Google Pay und Klarna geprueft werden.',
+      'Im finalen Checkout sollten Karte, PayPal, Apple Pay, Google Pay und Klarna geprüft werden.',
   },
   {
     question: 'Warum Print-on-Demand zum Start?',
     answer:
-      'POD reduziert Lagerdruck, erlaubt schnelle Motivtests und macht aus guten Designs spaeter Stock- oder Limited-Runs.',
+      'POD reduziert Lagerdruck, erlaubt schnelle Motivtests und macht aus guten Designs später Stock- oder Limited-Runs.',
   },
   {
     question: 'Was macht be-different anders?',
     answer:
-      'Die Marke arbeitet mit Gegensaetzen, Street-Art-Optik, Humor und kritischem Nachdenken statt austauschbarer Basic-Ware.',
+      'Die Marke arbeitet mit Gegensätzen, Street-Art-Optik, Humor und kritischem Nachdenken statt austauschbarer Basic-Ware.',
   },
 ];
 
@@ -251,7 +251,7 @@ export const legalLinks = [
   'Datenschutz',
   'AGB',
   'Widerruf',
-  'Versand & Rueckgabe',
+  'Versand & Rückgabe',
 ];
 
 export const dropDesigns = [
@@ -274,7 +274,7 @@ export const shadowCollection: CollectionDesign[] = [
   },
   {
     id: 'shadow-elephant',
-    title: 'Elefant / Muecke',
+    title: 'Elefant / Mücke',
     line: 'Gross gegen klein, leise gegen laut.',
     badge: 'Kontrastmotiv',
     image: asset('assets/designs/elefant-muecke.png'),
@@ -307,7 +307,7 @@ export const shadowCollection: CollectionDesign[] = [
   {
     id: 'shadow-frame',
     title: 'Black Ink Frame',
-    line: 'Rohes Print-Element fuer Drop-Layouts.',
+    line: 'Rohes Print-Element für Drop-Layouts.',
     badge: 'Graphic Tool',
     image: asset('assets/designs/black-ink.png'),
     productId: 'open-brief',
@@ -323,7 +323,7 @@ export const shadowCollection: CollectionDesign[] = [
   {
     id: 'shadow-catdog',
     title: 'Catdog Core',
-    line: 'Bestseller-Logik fuer den ersten Drop.',
+    line: 'Bestseller-Logik für den ersten Drop.',
     badge: 'Bestseller',
     image: asset('assets/designs/hip-hop-cat.png'),
     productId: 'cat-rebel',

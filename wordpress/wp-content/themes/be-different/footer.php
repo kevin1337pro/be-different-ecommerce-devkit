@@ -18,7 +18,7 @@
 
             foreach ($bd_social_links as $bd_social_name => $bd_social) :
                 ?>
-                <a class="bd-social-link" href="<?php echo esc_url($bd_social['url']); ?>" target="_blank" rel="noreferrer" aria-label="<?php echo esc_attr(sprintf(__('%s oeffnen', 'be-different'), $bd_social_name)); ?>">
+                <a class="bd-social-link" href="<?php echo esc_url($bd_social['url']); ?>" target="_blank" rel="noreferrer" aria-label="<?php echo esc_attr(sprintf(__('%s öffnen', 'be-different'), $bd_social_name)); ?>">
                     <span><?php echo esc_html($bd_social['label']); ?></span>
                 </a>
             <?php endforeach; ?>

@@ -18,11 +18,11 @@ $product_categories = get_terms([
         <div>
             <span class="bd-eyebrow"><?php esc_html_e('Eigene Shop-Seite', 'be-different'); ?></span>
             <h1><?php woocommerce_page_title(); ?><span><?php esc_html_e('the contradiction.', 'be-different'); ?></span></h1>
-            <p><?php esc_html_e('Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Groessen, Farben und Quick Add in einer fokussierten WooCommerce-Storefront.', 'be-different'); ?></p>
+            <p><?php esc_html_e('Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Größen, Farben und Quick Add in einer fokussierten WooCommerce-Storefront.', 'be-different'); ?></p>
         </div>
         <aside>
             <strong><?php esc_html_e('Launch-ready Storefront', 'be-different'); ?></strong>
-            <span><?php esc_html_e('Produktarchiv, Sortierung, Kategorien und WooCommerce Loop sind fuer echte Produkte vorbereitet.', 'be-different'); ?></span>
+            <span><?php esc_html_e('Produktarchiv, Sortierung, Kategorien und WooCommerce Loop sind für echte Produkte vorbereitet.', 'be-different'); ?></span>
         </aside>
     </section>
 
@@ -40,7 +40,7 @@ $product_categories = get_terms([
                 </div>
             </div>
             <div class="bd-shop-filter-note">
-                <?php esc_html_e('Naechster WooCommerce-Schritt: Attribute fuer Groesse, Farbe, Drop und Produktionsart anlegen und Filter-Plugin oder Block-Filter aktivieren.', 'be-different'); ?>
+                <?php esc_html_e('Nächster WooCommerce-Schritt: Attribute für Größe, Farbe, Drop und Produktionsart anlegen und Filter-Plugin oder Block-Filter aktivieren.', 'be-different'); ?>
             </div>
         </aside>
 
@@ -72,9 +72,9 @@ $product_categories = get_terms([
     </section>
 
     <section class="bd-shop-trust">
-        <article><strong><?php esc_html_e('Drop-Produktion', 'be-different'); ?></strong><p><?php esc_html_e('Start ohne Lagerdruck, spaeter Limited Runs und Stock-Produkte.', 'be-different'); ?></p></article>
+        <article><strong><?php esc_html_e('Drop-Produktion', 'be-different'); ?></strong><p><?php esc_html_e('Start ohne Lagerdruck, später Limited Runs und Stock-Produkte.', 'be-different'); ?></p></article>
         <article><strong><?php esc_html_e('Stripe-ready', 'be-different'); ?></strong><p><?php esc_html_e('WooCommerce Checkout Blocks, Stripe, PayPal und Wallets vorbereitet.', 'be-different'); ?></p></article>
-        <article><strong><?php esc_html_e('Mobile zuerst', 'be-different'); ?></strong><p><?php esc_html_e('Filter, Cart und Checkout sind auf schnelle Social-Traffic-Kaeufe ausgelegt.', 'be-different'); ?></p></article>
+        <article><strong><?php esc_html_e('Mobile zuerst', 'be-different'); ?></strong><p><?php esc_html_e('Filter, Cart und Checkout sind auf schnelle Social-Traffic-Käufe ausgelegt.', 'be-different'); ?></p></article>
     </section>
 </main>
 

@@ -19,7 +19,7 @@ Im statischen Prototyp:
 - `robots.txt`
 - `sitemap.xml`
 
-Im finalen WordPress-Shop sollte ein SEO-Plugin wie Rank Math oder Yoast SEO die dynamischen Produkt-, Kategorie- und Sitemap-Daten uebernehmen.
+Im finalen WordPress-Shop sollte ein SEO-Plugin wie Rank Math oder Yoast SEO die dynamischen Produkt-, Kategorie- und Sitemap-Daten übernehmen.
 
 ## Checkout als eigene Seite
 
@@ -33,28 +33,28 @@ Empfohlene Seiten:
 Grund:
 
 - WooCommerce erwartet definierte Cart- und Checkout-Seiten.
-- Der Checkout Block ist fuer den Kaufabschluss gebaut.
-- Tracking, Payment-Gateways, Rechtstexte und Consent lassen sich sauberer auf einer dedizierten Checkout-Seite pruefen.
+- Der Checkout Block ist für den Kaufabschluss gebaut.
+- Tracking, Payment-Gateways, Rechtstexte und Consent lassen sich sauberer auf einer dedizierten Checkout-Seite prüfen.
 
 Im Theme vorbereitet:
 
 - `wordpress/wp-content/themes/be-different/page-cart.php`
 - `wordpress/wp-content/themes/be-different/page-checkout.php`
 
-## Stripe Setup fuer WooCommerce
+## Stripe Setup für WooCommerce
 
 Plugin:
 
 - WooPayments oder WooCommerce Stripe Payment Gateway
 
-Empfehlung fuer Start:
+Empfehlung für Start:
 
 - Stripe/WooCommerce Stripe Payment Gateway verwenden
 - Test Mode aktivieren
 - Webhook automatisch/laut Plugin-Anleitung einrichten
 - Kreditkarte aktivieren
 - Apple Pay / Google Pay / Link als Express Checkout aktivieren, wenn Plugin und Domain es erlauben
-- Live Mode erst nach Testkaeufen aktivieren
+- Live Mode erst nach Testkäufen aktivieren
 
 ## Stripe Checkliste
 
@@ -68,10 +68,10 @@ Empfehlung fuer Start:
    - Google Pay
    - Link
    - Klarna optional, falls wirtschaftlich sinnvoll
-6. Webhooks pruefen.
+6. Webhooks prüfen.
 7. Checkout Block testen.
-8. Testkaeufe mit Stripe-Testkarten durchfuehren.
-9. Rueckerstattung testen.
+8. Testkäufe mit Stripe-Testkarten durchführen.
+9. Rückerstattung testen.
 10. Live Mode aktivieren.
 
 ## Tracking Events
@@ -89,4 +89,4 @@ Mindestens messen:
 - WooCommerce Checkout Block: https://woocommerce.com/document/woocommerce-store-editing/customizing-cart-and-checkout/checkout-block/
 - WooCommerce Stripe Extension: https://woocommerce.com/document/stripe/
 - WooCommerce Stripe Express Checkouts: https://woocommerce.com/document/stripe/setup-and-configuration/express-checkouts/
-- Stripe Checkout Uebersicht: https://docs.stripe.com/payments/checkout
+- Stripe Checkout Übersicht: https://docs.stripe.com/payments/checkout

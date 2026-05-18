@@ -10,7 +10,7 @@ get_header();
         <span class="bd-eyebrow"><?php esc_html_e('Stripe Checkout', 'be-different'); ?></span>
         <h1><?php esc_html_e('Sicher zahlen. Schnell raus.', 'be-different'); ?></h1>
         <p class="bd-checkout-intro">
-            <?php esc_html_e('Die finale WooCommerce Checkout-Seite nutzt den Checkout Block und Stripe fuer Karte, Apple Pay, Google Pay und weitere aktivierte Zahlungsarten.', 'be-different'); ?>
+            <?php esc_html_e('Die finale WooCommerce Checkout-Seite nutzt den Checkout Block und Stripe für Karte, Apple Pay, Google Pay und weitere aktivierte Zahlungsarten.', 'be-different'); ?>
         </p>
         <div class="bd-checkout-shell">
             <?php

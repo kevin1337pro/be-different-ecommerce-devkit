@@ -74,7 +74,7 @@ const heroSlides = [
     highlight: 'Be better.',
     signature: 'Be you.',
     copy:
-      'Kontrastreiche Statement-Shirts fuer Menschen, die nicht aussehen wollen wie der Feed von allen anderen.',
+      'Kontrastreiche Statement-Shirts für Menschen, die nicht aussehen wollen wie der Feed von allen anderen.',
     product: products[0],
     background: heroImage,
   },
@@ -94,7 +94,7 @@ const heroSlides = [
     highlight: 'Unser Drop.',
     signature: 'Jetzt.',
     copy:
-      'Motive aus Community-Ideen, Abstimmungen und Gegensaetzen. Erst testen, dann als Limited Run ausbauen.',
+      'Motive aus Community-Ideen, Abstimmungen und Gegensätzen. Erst testen, dann als Limited Run ausbauen.',
     product: products[3],
     background: heroImage,
   },
@@ -116,11 +116,11 @@ const sizeGuide = [
 const reviewSnippets = [
   {
     name: 'Mara',
-    text: 'Motiv wirkt live noch staerker. Genau dieser schwarze Street-Art-Look.',
+    text: 'Motiv wirkt live noch stärker. Genau dieser schwarze Street-Art-Look.',
   },
   {
     name: 'Deniz',
-    text: 'Regular Fit sitzt clean, Druck fuehlt sich nicht billig an.',
+    text: 'Regular Fit sitzt clean, Druck fühlt sich nicht billig an.',
   },
 ];
 
@@ -438,7 +438,7 @@ function App() {
           </button>
           <button
             className="menu-button"
-            aria-label={menuOpen ? 'Menue schliessen' : 'Menue oeffnen'}
+            aria-label={menuOpen ? 'Menü schliessen' : 'Menü öffnen'}
             onClick={() => setMenuOpen((open) => !open)}
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -457,7 +457,7 @@ function App() {
                   <span>the contradiction.</span>
                 </h1>
                 <p>
-                  Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Groessen, Farben und
+                  Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Größen, Farben und
                   Quick-Add in einem fokussierten Store-Layout.
                 </p>
                 <div className="shop-hero-actions">
@@ -523,7 +523,7 @@ function App() {
                 </div>
 
                 <div className="filter-group">
-                  <strong>Groesse</strong>
+                  <strong>Größe</strong>
                   <div>
                     {shopSizes.map((size) => (
                       <button
@@ -539,7 +539,7 @@ function App() {
 
                 <div className="shop-filter-note">
                   <ShieldCheck size={18} />
-                  <span>WooCommerce-Filter spaeter ueber Attribute: Groesse, Farbe, Drop, Preis.</span>
+                  <span>WooCommerce-Filter später über Attribute: Größe, Farbe, Drop, Preis.</span>
                 </div>
               </aside>
 
@@ -587,7 +587,7 @@ function App() {
                         setShopQuery('');
                       }}
                     >
-                      Filter zuruecksetzen
+                      Filter zurücksetzen
                     </button>
                   </div>
                 )}
@@ -598,7 +598,7 @@ function App() {
               <article>
                 <PackageCheck size={22} />
                 <strong>Drop-Produktion</strong>
-                <p>Start ohne Lagerdruck, spaeter Limited Runs und Stock-Produkte.</p>
+                <p>Start ohne Lagerdruck, später Limited Runs und Stock-Produkte.</p>
               </article>
               <article>
                 <CreditCard size={22} />
@@ -608,7 +608,7 @@ function App() {
               <article>
                 <Truck size={22} />
                 <strong>Mobile zuerst</strong>
-                <p>Filter, Cart und Checkout sind auf schnelle Social-Traffic-Kaeufe ausgelegt.</p>
+                <p>Filter, Cart und Checkout sind auf schnelle Social-Traffic-Käufe ausgelegt.</p>
               </article>
             </section>
           </>
@@ -647,7 +647,7 @@ function App() {
                 <Truck size={17} /> POD ohne Lagerdruck
               </span>
               <span>
-                <RotateCcw size={17} /> Rueckgabe vorbereitet
+                <RotateCcw size={17} /> Rückgabe vorbereitet
               </span>
             </div>
             <div className="hero-slider-controls" aria-label="Hero Slider">
@@ -771,7 +771,7 @@ function App() {
         <section className="contrast-lab" id="brand">
           <div>
             <span className="eyebrow neon">Marken-DNA</span>
-            <h2>Gegensaetze verkaufen besser, wenn sie sofort verstanden werden.</h2>
+            <h2>Gegensätze verkaufen besser, wenn sie sofort verstanden werden.</h2>
             <p>
               Be Different verbindet Street-Art, Humor, Widerspruch und tragbare Motive. Die
               Seite muss deshalb schnell sein, laut aussehen und trotzdem ohne Reibung verkaufen.
@@ -793,9 +793,9 @@ function App() {
             <span className="eyebrow">About us</span>
             <h2>Keine Uniform. Ein Angriff auf Autopilot.</h2>
             <p>
-              Be Different ist Streetwear fuer Menschen, die Widersprueche sehen und nicht so
-              tun wollen, als waere alles glatt. Die Marke greift Zeitgeist, Politik, Sprache,
-              Identitaet und Konsum als Spannungsfelder auf. Nicht als Parteiprogramm, sondern
+              Be Different ist Streetwear für Menschen, die Widersprüche sehen und nicht so
+              tun wollen, als wäre alles glatt. Die Marke greift Zeitgeist, Politik, Sprache,
+              Identität und Konsum als Spannungsfelder auf. Nicht als Parteiprogramm, sondern
               als visuelle Reibung: zwischen Worten und Taten, zwischen Haltung und Bequemlichkeit.
             </p>
             <blockquote>
@@ -807,25 +807,25 @@ function App() {
           <div className="about-values">
             <article>
               <Sparkles size={22} />
-              <strong>Kreativitaet</strong>
+              <strong>Kreativität</strong>
               <p>
-                Gegensaetze werden bewusst kombiniert, damit Motive stoppen, irritieren und im
-                besten Fall ein Schmunzeln ausloesen.
+                Gegensätze werden bewusst kombiniert, damit Motive stoppen, irritieren und im
+                besten Fall ein Schmunzeln auslösen.
               </p>
             </article>
             <article>
               <Zap size={22} />
               <strong>Rebellion</strong>
               <p>
-                Be Different darf anstoessig sein. Die Designs stellen glatte Antworten infrage
+                Be Different darf anstößig sein. Die Designs stellen glatte Antworten infrage
                 und fordern kritisches Denken statt Reflex.
               </p>
             </article>
             <article>
               <Eye size={22} />
-              <strong>Individualitaet</strong>
+              <strong>Individualität</strong>
               <p>
-                Mode wird zur Flaeche fuer Menschen, die sich nicht in Schubladen stecken lassen
+                Mode wird zur Fläche für Menschen, die sich nicht in Schubladen stecken lassen
                 und ihr Anderssein sichtbar tragen.
               </p>
             </article>
@@ -833,7 +833,7 @@ function App() {
               <Heart size={22} />
               <strong>Humor</strong>
               <p>
-                Witz macht den Widerspruch zugaenglich. Humor verbindet, ohne die Kante aus der
+                Witz macht den Widerspruch zugänglich. Humor verbindet, ohne die Kante aus der
                 Aussage zu nehmen.
               </p>
             </article>
@@ -858,9 +858,9 @@ function App() {
             <span className="eyebrow neon">Campaign Manifesto</span>
             <h2>Kleine Rebellionen auf Stoff.</h2>
             <p>
-              Unsere Designs zeigen Gegensaetze, brechen Regeln und machen sichtbar, was sonst
+              Unsere Designs zeigen Gegensätze, brechen Regeln und machen sichtbar, was sonst
               untergeht. Provokant, ehrlich, mit Stil. Kein Fashion-Trend, sondern eine Haltung
-              fuer Menschen, die sich trauen, anders zu sein.
+              für Menschen, die sich trauen, anders zu sein.
             </p>
             <div className="campaign-actions">
               <a
@@ -916,7 +916,7 @@ function App() {
               </span>
             </div>
             <div className="variant-block">
-              <span>Groesse</span>
+              <span>Größe</span>
               <div className="size-grid">
                 {selectedProduct.sizes.map((size) => (
                   <button
@@ -986,18 +986,18 @@ function App() {
                 </span>
                 <span>
                   <RotateCcw size={16} />
-                  Rueckgabe-Flow
+                  Rückgabe-Flow
                 </span>
               </div>
 
               <details className="size-guide" open>
-                <summary>Groessencheck</summary>
-                <div className="size-table" role="table" aria-label="Groessentabelle">
+                <summary>Größencheck</summary>
+                <div className="size-table" role="table" aria-label="Größentabelle">
                   {sizeGuide.map((row) => (
                     <div role="row" key={row.size}>
                       <strong role="cell">{row.size}</strong>
                       <span role="cell">Brust {row.chest}</span>
-                      <span role="cell">Laenge {row.length}</span>
+                      <span role="cell">Länge {row.length}</span>
                     </div>
                   ))}
                 </div>
@@ -1039,7 +1039,7 @@ function App() {
         <section className="drop-section" id="drops">
           <div className="drop-copy">
             <span className="eyebrow">Neue Drops</span>
-            <h2>Designs, die erst stoeren und dann bleiben.</h2>
+            <h2>Designs, die erst stören und dann bleiben.</h2>
             <p>
               Aus der CI: minimalistisch, kontrastreich, surreal, Street-Art. Jedes Motiv braucht
               einen Gegenpol, einen Witz und einen Grund, warum man zweimal hinschaut.
@@ -1071,7 +1071,7 @@ function App() {
             </li>
             <li>
               <strong>2. Variante sitzt</strong>
-              <span>Groesse, Farbe, Preis und Trust ohne Suche.</span>
+              <span>Größe, Farbe, Preis und Trust ohne Suche.</span>
             </li>
             <li>
               <strong>3. Checkout zieht</strong>
@@ -1085,8 +1085,8 @@ function App() {
             <span className="eyebrow neon">Smart Shop System</span>
             <h2>WordPress-Look. WooCommerce-Power.</h2>
             <p>
-              Fuer Umsatz zaehlt ein System, das du pflegen kannst: WordPress fuer Content,
-              WooCommerce fuer Produkte und Checkout, HPOS fuer saubere Order-Performance.
+              Für Umsatz zählt ein System, das du pflegen kannst: WordPress für Content,
+              WooCommerce für Produkte und Checkout, HPOS für saubere Order-Performance.
             </p>
           </div>
           <div className="stack-grid">
@@ -1103,10 +1103,10 @@ function App() {
         <section className="checkout-section" id="checkout">
           <div className="checkout-intro">
             <span className="eyebrow">Checkout</span>
-            <h2>Alles fuehrt zum Abschluss.</h2>
+            <h2>Alles führt zum Abschluss.</h2>
             <p>
               Der Prototyp ist auf WooCommerce als Commerce-Core ausgerichtet: Produkte,
-              Varianten, Warenkorb, Checkout Blocks und POD/Stock-Fulfillment werden als naechster
+              Varianten, Warenkorb, Checkout Blocks und POD/Stock-Fulfillment werden als nächster
               Schritt angebunden.
             </p>
           </div>
@@ -1116,7 +1116,7 @@ function App() {
                 <PackageCheck size={22} />
                 <div>
                   <strong>1. Warenkorb</strong>
-                  <span>{cartCount > 0 ? `${cartCount} Artikel gewaehlt` : 'Noch leer'}</span>
+                  <span>{cartCount > 0 ? `${cartCount} Artikel gewählt` : 'Noch leer'}</span>
                 </div>
               </div>
               <div className="checkout-step">
@@ -1135,7 +1135,7 @@ function App() {
               </div>
             </div>
             <div className="order-summary">
-              <strong>Bestelluebersicht</strong>
+              <strong>Bestellübersicht</strong>
               <div>
                 <span>Zwischensumme</span>
                 <span>{formatPrice(subtotal)}</span>
@@ -1159,7 +1159,7 @@ function App() {
         <section className="section info-section" id="faq">
           <div className="faq-block">
             <span className="eyebrow">FAQ</span>
-            <h2>Einwaende vor dem Kauf killen.</h2>
+            <h2>Einwände vor dem Kauf killen.</h2>
             <div className="faq-list">
               {faqItems.map((item) => (
                 <details key={item.question}>
@@ -1221,7 +1221,7 @@ function App() {
                 className="social-link"
                 href={href}
                 key={label}
-                aria-label={`${label} oeffnen`}
+                aria-label={`${label} öffnen`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1244,7 +1244,7 @@ function App() {
             Drops
           </a>
           <a href="#produkt" onClick={(event) => { event.preventDefault(); navigateHome('produkt'); }}>
-            Groessentabelle
+            Größentabelle
           </a>
           {legalLinks.map((link) => (
             <a href="#faq" key={link} onClick={(event) => { event.preventDefault(); navigateHome('faq'); }}>
@@ -1319,7 +1319,7 @@ function App() {
                           </button>
                           <span>{item.quantity}</span>
                           <button
-                            aria-label="Menge erhoehen"
+                            aria-label="Menge erhöhen"
                             onClick={() => updateQuantity(item.key, 1)}
                           >
                             <Plus size={15} />

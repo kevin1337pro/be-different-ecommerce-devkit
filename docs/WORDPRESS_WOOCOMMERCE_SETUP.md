@@ -2,7 +2,7 @@
 
 ## Ziel
 
-be-different wird als WordPress/WooCommerce-Shop umgesetzt. WordPress steuert Content, Landingpages und Kampagnen. WooCommerce steuert Produkte, Varianten, Warenkorb, Checkout, Zahlungen, Steuern, Bestellungen und spaeter POD/Stock-Fulfillment.
+be-different wird als WordPress/WooCommerce-Shop umgesetzt. WordPress steuert Content, Landingpages und Kampagnen. WooCommerce steuert Produkte, Varianten, Warenkorb, Checkout, Zahlungen, Steuern, Bestellungen und später POD/Stock-Fulfillment.
 
 ## Lokale oder Staging-Installation
 
@@ -21,18 +21,18 @@ wp-content/themes/be-different
 ```
 
 4. Theme in WordPress aktivieren.
-5. Menues fuer `Primary Menu` und `Footer Menu` anlegen.
+5. Menüs für `Primary Menu` und `Footer Menu` anlegen.
 6. Startseite als statische Seite setzen.
 
 ## WooCommerce Grundeinstellungen
 
 - Shop-Land: Deutschland
-- Waehrung: EUR
+- Währung: EUR
 - Preise inklusive MwSt. anzeigen
-- Versandzonen fuer Deutschland/EU anlegen
+- Versandzonen für Deutschland/EU anlegen
 - Cart/Checkout Blocks verwenden
 - Eigene Seiten `/cart/` und `/checkout/` in WooCommerce > Einstellungen > Erweitert zuweisen
-- HPOS aktivieren bzw. pruefen
+- HPOS aktivieren bzw. prüfen
 - Nur HPOS-kompatible Plugins einsetzen
 
 ## Produktstruktur
@@ -43,20 +43,20 @@ Kategorien:
 - Animal Art
 - Custom Drops
 - Limited Runs
-- Accessories spaeter
+- Accessories später
 
 Attribute:
 
-- Groesse: S, M, L, XL, XXL
+- Größe: S, M, L, XL, XXL
 - Farbe: White, Black
 - Produktionsart: Print-on-Demand, Stock, Limited
 - Drop: Drop 01, Drop 02, Community Vote
 
 Produkttyp:
 
-- Variable Produkte fuer Shirts mit Groesse/Farbe
-- Einfache Produkte fuer Sticker, Prints oder Accessoires
-- Bundles spaeter ueber kompatibles WooCommerce Bundle-Plugin
+- Variable Produkte für Shirts mit Größe/Farbe
+- Einfache Produkte für Sticker, Prints oder Accessoires
+- Bundles später über kompatibles WooCommerce Bundle-Plugin
 
 ## Pflicht-Plugins
 
@@ -74,7 +74,7 @@ Produkttyp:
 ## Conversion-Regeln
 
 - Mobile Checkout zuerst optimieren.
-- Checkout als eigene WooCommerce-Seite fuehren.
+- Checkout als eigene WooCommerce-Seite führen.
 - Hero immer mit Produkt, Preisanker und CTA.
 - Produktdetailseite mit Sticky Add-to-Cart auf Mobile.
 - Kostenloser Versand-Schwellenwert im Warenkorb zeigen.
@@ -84,10 +84,10 @@ Produkttyp:
 ## Launch-Check
 
 - Testkauf mit jeder Zahlungsart
-- Versandmail und Bestellmail pruefen
-- Steuer-/MwSt.-Anzeige pruefen
-- Impressum, Datenschutz, AGB, Widerruf, Versand/Rueckgabe final
-- Cookie Consent und Tracking Consent pruefen
+- Versandmail und Bestellmail prüfen
+- Steuer-/MwSt.-Anzeige prüfen
+- Impressum, Datenschutz, AGB, Widerruf, Versand/Rückgabe final
+- Cookie Consent und Tracking Consent prüfen
 - GA4, Meta und TikTok Events testen
 - Mobile Pagespeed testen
 - Backup und Staging-Prozess einrichten

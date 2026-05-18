@@ -2,7 +2,7 @@
 
 ## Repository
 
-Das Projekt wird als GitHub-Repository veroeffentlicht.
+Das Projekt wird als GitHub-Repository veröffentlicht.
 
 Geplanter Name:
 
@@ -12,7 +12,7 @@ be-different-ecommerce-devkit
 
 ## Live-Preview
 
-Die Live-Preview laeuft ueber GitHub Pages und deployed den statischen Vite-Prototyp aus dem Branch `gh-pages`.
+Die Live-Preview läuft über GitHub Pages und deployed den statischen Vite-Prototyp aus dem Branch `gh-pages`.
 
 Geplante URL:
 
