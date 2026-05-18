@@ -23,16 +23,23 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
     linear-gradient(0deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
     #ffffff;
   background-size: 36px 36px;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 button,
@@ -464,8 +471,17 @@ h3 {
   color: #ffffff;
 }
 
+.shop-page-hero > *,
+.shop-page-shell > *,
+.shop-page-trust > *,
+.shop-results,
+.shop-filter-panel {
+  min-width: 0;
+}
+
 .shop-page-hero h1 {
   margin-bottom: 20px;
+  max-width: 100%;
 }
 
 .shop-page-hero p {
@@ -473,6 +489,7 @@ h3 {
   color: #dddddd;
   font-size: clamp(1.02rem, 2vw, 1.24rem);
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .shop-hero-actions {
@@ -494,11 +511,13 @@ h3 {
 .shop-page-hero aside > strong {
   color: var(--green);
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .shop-page-hero aside > span {
   color: #d8d8d8;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .shop-page-hero aside div {
@@ -2403,6 +2422,19 @@ h3 {
     padding-inline: 16px;
   }
 
+  .shop-page-hero h1 {
+    font-size: clamp(3.6rem, 15vw, 5.4rem);
+    line-height: 0.82;
+  }
+
+  .shop-page-hero h1 span {
+    max-width: 100%;
+  }
+
+  .shop-page-hero p {
+    font-size: 1rem;
+  }
+
   .shop-page-trust article {
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.16);
@@ -2559,6 +2591,19 @@ h3 {
 @media (max-width: 560px) {
   h1 {
     font-size: clamp(4rem, 23vw, 6.2rem);
+  }
+
+  .shop-page-hero h1 {
+    font-size: clamp(3rem, 14.2vw, 3.95rem);
+  }
+
+  .shop-page-hero {
+    padding-top: 46px;
+    padding-bottom: 44px;
+  }
+
+  .shop-page-hero aside {
+    padding: 16px;
   }
 
   h2 {

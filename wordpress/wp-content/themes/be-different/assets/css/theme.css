@@ -8,12 +8,17 @@
   --bd-muted: #666;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body.bd-site {
   margin: 0;
+  overflow-x: hidden;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
     linear-gradient(0deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
@@ -968,12 +973,21 @@ img {
   color: var(--bd-white);
 }
 
+.bd-shop-hero > *,
+.bd-shop-shell > *,
+.bd-shop-trust > *,
+.bd-shop-results,
+.bd-shop-filter-panel {
+  min-width: 0;
+}
+
 .bd-shop-hero h1 {
   margin: 0 0 20px;
   font-family: Impact, "Arial Narrow", sans-serif;
   font-size: clamp(4.4rem, 12vw, 10rem);
   line-height: 0.78;
   text-transform: lowercase;
+  max-width: 100%;
 }
 
 .bd-shop-hero h1 span {
@@ -986,6 +1000,7 @@ img {
   color: #ddd;
   font-size: clamp(1.02rem, 2vw, 1.24rem);
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .bd-shop-hero aside {
@@ -1000,11 +1015,13 @@ img {
 .bd-shop-hero aside strong {
   color: var(--bd-yellow);
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .bd-shop-hero aside span {
   color: #d8d8d8;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .bd-shop-shell {
@@ -1245,6 +1262,15 @@ img {
   .bd-shop-hero,
   .bd-shop-shell {
     padding-inline: 16px;
+  }
+
+  .bd-shop-hero h1 {
+    font-size: clamp(3.6rem, 15vw, 5.4rem);
+    line-height: 0.82;
+  }
+
+  .bd-shop-hero p {
+    font-size: 1rem;
   }
 
   .bd-shop-filter-panel {
