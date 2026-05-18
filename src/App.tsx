@@ -48,6 +48,16 @@ import {
 } from './data/products';
 
 const categories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops'] as const;
+const shopCategories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops', 'Shadow Drop'] as const;
+const shopColors = ['Alle', 'White', 'Black'] as const;
+const shopSizes = ['Alle', 'S', 'M', 'L', 'XL', 'XXL'] as const;
+const shopSortOptions = [
+  { value: 'featured', label: 'Empfohlen' },
+  { value: 'newest', label: 'Neueste Drops' },
+  { value: 'price-low', label: 'Preis aufsteigend' },
+  { value: 'price-high', label: 'Preis absteigend' },
+  { value: 'rating', label: 'Beste Bewertung' },
+] as const;
 const freeShippingThreshold = 75;
 const tickerItems = [
   'Drop 01 ist offen',
@@ -122,6 +132,12 @@ type CartItem = {
   quantity: number;
 };
 
+type AppRoute = 'home' | 'shop';
+type ShopCategory = (typeof shopCategories)[number];
+type ShopColor = (typeof shopColors)[number];
+type ShopSize = (typeof shopSizes)[number];
+type ShopSort = (typeof shopSortOptions)[number]['value'];
+
 function formatPrice(value: number) {
   return new Intl.NumberFormat('de-DE', {
     style: 'currency',
@@ -175,7 +191,16 @@ function ProductCard({
 }
 
 function App() {
+  const [route, setRoute] = useState<AppRoute>(() =>
+    window.location.hash === '#/shop' ? 'shop' : 'home',
+  );
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('Alle');
+  const [shopCategory, setShopCategory] = useState<ShopCategory>('Alle');
+  const [shopColor, setShopColor] = useState<ShopColor>('Alle');
+  const [shopSize, setShopSize] = useState<ShopSize>('Alle');
+  const [shopSort, setShopSort] = useState<ShopSort>('featured');
+  const [shopQuery, setShopQuery] = useState('');
+  const [pendingScrollId, setPendingScrollId] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product>(products[0]);
   const [selectedSize, setSelectedSize] = useState(selectedProduct.sizes[1]);
   const [selectedColor, setSelectedColor] = useState(selectedProduct.colors[0]);
@@ -189,6 +214,36 @@ function App() {
     if (activeCategory === 'Alle') return products;
     return products.filter((product) => product.category === activeCategory);
   }, [activeCategory]);
+
+  const shopProducts = useMemo(() => {
+    const query = shopQuery.trim().toLowerCase();
+    const filtered = products.filter((product) => {
+      const categoryMatch =
+        shopCategory === 'Alle' ||
+        product.category === shopCategory ||
+        (shopCategory === 'Shadow Drop' &&
+          (product.dropStatus.toLowerCase().includes('shadow') ||
+            product.dropStatus.toLowerCase().includes('monochrome') ||
+            product.id === 'cat-rebel'));
+      const colorMatch = shopColor === 'Alle' || product.colors.includes(shopColor);
+      const sizeMatch = shopSize === 'Alle' || product.sizes.includes(shopSize);
+      const queryMatch =
+        !query ||
+        product.name.toLowerCase().includes(query) ||
+        product.shortClaim.toLowerCase().includes(query) ||
+        product.dropStatus.toLowerCase().includes(query);
+
+      return categoryMatch && colorMatch && sizeMatch && queryMatch;
+    });
+
+    return [...filtered].sort((a, b) => {
+      if (shopSort === 'price-low') return a.price - b.price;
+      if (shopSort === 'price-high') return b.price - a.price;
+      if (shopSort === 'rating') return b.rating - a.rating;
+      if (shopSort === 'newest') return b.reviews - a.reviews;
+      return Number(Boolean(b.compareAtPrice)) - Number(Boolean(a.compareAtPrice));
+    });
+  }, [shopCategory, shopColor, shopQuery, shopSize, shopSort]);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
@@ -211,11 +266,65 @@ function App() {
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const syncRoute = () => {
+      setRoute(window.location.hash === '#/shop' ? 'shop' : 'home');
+    };
+
+    syncRoute();
+    window.addEventListener('hashchange', syncRoute);
+
+    return () => window.removeEventListener('hashchange', syncRoute);
+  }, []);
+
+  useEffect(() => {
+    if (route !== 'home' || !pendingScrollId) return undefined;
+
+    const timer = window.setTimeout(() => {
+      document.getElementById(pendingScrollId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setPendingScrollId(null);
+    }, 50);
+
+    return () => window.clearTimeout(timer);
+  }, [pendingScrollId, route]);
+
+  function scrollToSection(sectionId: string) {
+    window.setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  }
+
+  function navigateHome(sectionId = 'home') {
+    const shouldWaitForHomeRender = route === 'shop';
+
+    window.location.hash = sectionId;
+    setRoute('home');
+    setMenuOpen(false);
+
+    if (shouldWaitForHomeRender) {
+      setPendingScrollId(sectionId);
+      return;
+    }
+
+    scrollToSection(sectionId);
+  }
+
+  function navigateShop() {
+    window.location.hash = '/shop';
+    setRoute('shop');
+    setMenuOpen(false);
+    window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
+  }
+
   function handleSelectProduct(product: Product) {
     setSelectedProduct(product);
     setSelectedSize(product.sizes[1] ?? product.sizes[0]);
     setSelectedColor(product.colors[0]);
-    document.getElementById('produkt')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (route === 'shop') {
+      navigateHome('produkt');
+      return;
+    }
+    scrollToSection('produkt');
   }
 
   function addProduct(product: Product, size = product.sizes[1] ?? product.sizes[0], color = product.colors[0]) {
@@ -246,7 +355,11 @@ function App() {
 
   function jumpToCheckout() {
     setCartOpen(false);
-    document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (route === 'shop') {
+      navigateHome('checkout');
+      return;
+    }
+    scrollToSection('checkout');
   }
 
   function openCollectionDesign(productId: Product['id']) {
@@ -265,33 +378,48 @@ function App() {
       </div>
 
       <header className="site-header">
-        <a className="brand" href="#home" aria-label="be-different Startseite">
+        <a
+          className="brand"
+          href="#home"
+          aria-label="be-different Startseite"
+          onClick={(event) => {
+            event.preventDefault();
+            navigateHome();
+          }}
+        >
           <span>be</span>
           <strong>different</strong>
         </a>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Hauptnavigation">
-          <a href="#shop" onClick={() => setMenuOpen(false)}>
+          <a
+            href="#/shop"
+            className={route === 'shop' ? 'active' : ''}
+            onClick={(event) => {
+              event.preventDefault();
+              navigateShop();
+            }}
+          >
             Shop
           </a>
-          <a href="#drops" onClick={() => setMenuOpen(false)}>
+          <a href="#drops" onClick={(event) => { event.preventDefault(); navigateHome('drops'); }}>
             Drops
           </a>
-          <a href="#collection" onClick={() => setMenuOpen(false)}>
+          <a href="#collection" onClick={(event) => { event.preventDefault(); navigateHome('collection'); }}>
             Collection
           </a>
-          <a href="#brand" onClick={() => setMenuOpen(false)}>
+          <a href="#brand" onClick={(event) => { event.preventDefault(); navigateHome('brand'); }}>
             Brand
           </a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>
+          <a href="#about" onClick={(event) => { event.preventDefault(); navigateHome('about'); }}>
             About
           </a>
-          <a href="#campaign" onClick={() => setMenuOpen(false)}>
+          <a href="#campaign" onClick={(event) => { event.preventDefault(); navigateHome('campaign'); }}>
             Campaign
           </a>
-          <a href="#system" onClick={() => setMenuOpen(false)}>
+          <a href="#system" onClick={(event) => { event.preventDefault(); navigateHome('system'); }}>
             Stack
           </a>
-          <a href="#faq" onClick={() => setMenuOpen(false)}>
+          <a href="#faq" onClick={(event) => { event.preventDefault(); navigateHome('faq'); }}>
             FAQ
           </a>
         </nav>
@@ -318,7 +446,174 @@ function App() {
         </div>
       </header>
 
-      <main id="home">
+      <main id={route === 'shop' ? 'shop-page' : 'home'}>
+        {route === 'shop' ? (
+          <>
+            <section className="shop-page-hero">
+              <div>
+                <span className="eyebrow neon">Eigene Shop-Seite</span>
+                <h1>
+                  Shop
+                  <span>the contradiction.</span>
+                </h1>
+                <p>
+                  Direkt kaufen, ohne Kampagnen-Umweg: Drops, Motive, Groessen, Farben und
+                  Quick-Add in einem fokussierten Store-Layout.
+                </p>
+                <div className="shop-hero-actions">
+                  <button className="primary-button" onClick={() => addProduct(topProduct)}>
+                    <ShoppingBag size={18} />
+                    Bestseller sichern
+                  </button>
+                  <button className="secondary-button" onClick={() => navigateHome('campaign')}>
+                    Manifesto ansehen
+                  </button>
+                </div>
+              </div>
+              <aside aria-label="Shop Vorteile">
+                <strong>Launch-ready Storefront</strong>
+                <span>Filter, Sortierung, Quick Add und Cart Drawer sind vorbereitet.</span>
+                <div>
+                  <b>{products.length}</b>
+                  <small>Startprodukte</small>
+                </div>
+              </aside>
+            </section>
+
+            <section className="shop-page-shell">
+              <aside className="shop-filter-panel" aria-label="Shop Filter">
+                <div className="shop-search">
+                  <span>Suche</span>
+                  <input
+                    value={shopQuery}
+                    onChange={(event) => setShopQuery(event.target.value)}
+                    placeholder="Motiv, Drop, Claim"
+                    aria-label="Shop durchsuchen"
+                  />
+                </div>
+
+                <div className="filter-group">
+                  <strong>Kategorie</strong>
+                  <div>
+                    {shopCategories.map((category) => (
+                      <button
+                        key={category}
+                        className={shopCategory === category ? 'active' : ''}
+                        onClick={() => setShopCategory(category)}
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="filter-group">
+                  <strong>Farbe</strong>
+                  <div>
+                    {shopColors.map((color) => (
+                      <button
+                        key={color}
+                        className={shopColor === color ? 'active' : ''}
+                        onClick={() => setShopColor(color)}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="filter-group">
+                  <strong>Groesse</strong>
+                  <div>
+                    {shopSizes.map((size) => (
+                      <button
+                        key={size}
+                        className={shopSize === size ? 'active' : ''}
+                        onClick={() => setShopSize(size)}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="shop-filter-note">
+                  <ShieldCheck size={18} />
+                  <span>WooCommerce-Filter spaeter ueber Attribute: Groesse, Farbe, Drop, Preis.</span>
+                </div>
+              </aside>
+
+              <section className="shop-results" aria-label="Shop Produkte">
+                <div className="shop-toolbar">
+                  <div>
+                    <span className="eyebrow">Alle Produkte</span>
+                    <strong>{shopProducts.length} Treffer</strong>
+                  </div>
+                  <label>
+                    Sortieren
+                    <select
+                      value={shopSort}
+                      onChange={(event) => setShopSort(event.target.value as ShopSort)}
+                    >
+                      {shopSortOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                {shopProducts.length > 0 ? (
+                  <div className="shop-product-grid">
+                    {shopProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onSelect={handleSelectProduct}
+                        onAdd={addProduct}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="shop-empty-state">
+                    <strong>Kein Motiv passt zu den Filtern.</strong>
+                    <button
+                      className="primary-button"
+                      onClick={() => {
+                        setShopCategory('Alle');
+                        setShopColor('Alle');
+                        setShopSize('Alle');
+                        setShopQuery('');
+                      }}
+                    >
+                      Filter zuruecksetzen
+                    </button>
+                  </div>
+                )}
+              </section>
+            </section>
+
+            <section className="shop-page-trust">
+              <article>
+                <PackageCheck size={22} />
+                <strong>Drop-Produktion</strong>
+                <p>Start ohne Lagerdruck, spaeter Limited Runs und Stock-Produkte.</p>
+              </article>
+              <article>
+                <CreditCard size={22} />
+                <strong>Stripe-ready</strong>
+                <p>WooCommerce Checkout Blocks, Stripe, PayPal und Wallets vorbereitet.</p>
+              </article>
+              <article>
+                <Truck size={22} />
+                <strong>Mobile zuerst</strong>
+                <p>Filter, Cart und Checkout sind auf schnelle Social-Traffic-Kaeufe ausgelegt.</p>
+              </article>
+            </section>
+          </>
+        ) : (
+          <>
         <section className="hero" style={{ backgroundImage: `url(${currentHeroSlide.background})` }}>
           <div className="hero-content">
             <span className="eyebrow neon">{currentHeroSlide.kicker}</span>
@@ -329,7 +624,14 @@ function App() {
             </h1>
             <p>{currentHeroSlide.copy}</p>
             <div className="hero-actions">
-              <a className="primary-button" href="#shop">
+              <a
+                className="primary-button"
+                href="#/shop"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigateShop();
+                }}
+              >
                 Drop shoppen <ChevronRight size={19} />
               </a>
               <button className="secondary-button" onClick={() => addProduct(currentHeroSlide.product)}>
@@ -561,7 +863,14 @@ function App() {
               fuer Menschen, die sich trauen, anders zu sein.
             </p>
             <div className="campaign-actions">
-              <a className="primary-button" href="#shop">
+              <a
+                className="primary-button"
+                href="#/shop"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigateShop();
+                }}
+              >
                 Statements shoppen <ChevronRight size={19} />
               </a>
               <a className="secondary-button" href="#collection">
@@ -899,6 +1208,8 @@ function App() {
             </form>
           </div>
         </section>
+          </>
+        )}
       </main>
 
       <footer className="site-footer">
@@ -920,24 +1231,38 @@ function App() {
           </div>
         </div>
         <nav aria-label="Footer Navigation">
-          <a href="#shop">Shop</a>
-          <a href="#drops">Drops</a>
-          <a href="#produkt">Groessentabelle</a>
+          <a
+            href="#/shop"
+            onClick={(event) => {
+              event.preventDefault();
+              navigateShop();
+            }}
+          >
+            Shop
+          </a>
+          <a href="#drops" onClick={(event) => { event.preventDefault(); navigateHome('drops'); }}>
+            Drops
+          </a>
+          <a href="#produkt" onClick={(event) => { event.preventDefault(); navigateHome('produkt'); }}>
+            Groessentabelle
+          </a>
           {legalLinks.map((link) => (
-            <a href="#faq" key={link}>
+            <a href="#faq" key={link} onClick={(event) => { event.preventDefault(); navigateHome('faq'); }}>
               {link}
             </a>
           ))}
         </nav>
       </footer>
 
-      <div className="mobile-buy-bar">
-        <span>{selectedProduct.name}</span>
-        <button onClick={() => addProduct(selectedProduct, selectedSize, selectedColor)}>
-          <ShoppingBag size={18} />
-          {formatPrice(selectedProduct.price)}
-        </button>
-      </div>
+      {route === 'home' && (
+        <div className="mobile-buy-bar">
+          <span>{selectedProduct.name}</span>
+          <button onClick={() => addProduct(selectedProduct, selectedSize, selectedColor)}>
+            <ShoppingBag size={18} />
+            {formatPrice(selectedProduct.price)}
+          </button>
+        </div>
+      )}
 
       {cartOpen && (
         <div className="drawer-backdrop" onClick={() => setCartOpen(false)}>

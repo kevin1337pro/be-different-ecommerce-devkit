@@ -952,6 +952,184 @@ img {
   padding: clamp(16px, 3vw, 28px);
 }
 
+.bd-shop-archive {
+  background: var(--bd-white);
+}
+
+.bd-shop-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 28px;
+  align-items: end;
+  padding: 82px max(18px, calc((100vw - 1180px) / 2)) 58px;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.62)),
+    var(--bd-black);
+  color: var(--bd-white);
+}
+
+.bd-shop-hero h1 {
+  margin: 0 0 20px;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(4.4rem, 12vw, 10rem);
+  line-height: 0.78;
+  text-transform: lowercase;
+}
+
+.bd-shop-hero h1 span {
+  display: block;
+  color: var(--bd-yellow);
+}
+
+.bd-shop-hero p {
+  max-width: 700px;
+  color: #ddd;
+  font-size: clamp(1.02rem, 2vw, 1.24rem);
+  line-height: 1.55;
+}
+
+.bd-shop-hero aside {
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 18px;
+}
+
+.bd-shop-hero aside strong {
+  color: var(--bd-yellow);
+  text-transform: uppercase;
+}
+
+.bd-shop-hero aside span {
+  color: #d8d8d8;
+  line-height: 1.45;
+}
+
+.bd-shop-shell {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: 42px max(18px, calc((100vw - 1180px) / 2)) 78px;
+}
+
+.bd-shop-filter-panel {
+  position: sticky;
+  top: 116px;
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--bd-line);
+  border-radius: 8px;
+  background: var(--bd-white);
+  padding: 16px;
+}
+
+.bd-shop-filter-group {
+  display: grid;
+  gap: 10px;
+}
+
+.bd-shop-filter-group strong {
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.bd-shop-filter-group div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bd-shop-filter-group a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  border: 1px solid var(--bd-line);
+  border-radius: 999px;
+  padding: 0 11px;
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.bd-shop-filter-group a:hover {
+  border-color: var(--bd-black);
+  background: var(--bd-black);
+  color: var(--bd-white);
+}
+
+.bd-shop-filter-note {
+  border-radius: 8px;
+  background: #f7f7f3;
+  color: var(--bd-muted);
+  padding: 12px;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.bd-shop-results {
+  min-width: 0;
+}
+
+.bd-shop-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--bd-line);
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+}
+
+.bd-shop-toolbar .woocommerce-result-count {
+  margin: 0;
+  font-weight: 900;
+}
+
+.bd-shop-toolbar .woocommerce-ordering {
+  margin: 0;
+}
+
+.bd-shop-toolbar select {
+  min-height: 44px;
+  border: 1px solid var(--bd-line);
+  border-radius: 6px;
+  background: var(--bd-white);
+  padding: 0 12px;
+}
+
+.bd-shop-trust {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--bd-black);
+  color: var(--bd-white);
+}
+
+.bd-shop-trust article {
+  display: grid;
+  gap: 12px;
+  min-height: 190px;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 24px max(18px, calc((100vw - 1180px) / 2));
+}
+
+.bd-shop-trust article:last-child {
+  border-right: 0;
+}
+
+.bd-shop-trust strong {
+  color: var(--bd-yellow);
+  font-size: 1.2rem;
+}
+
+.bd-shop-trust p {
+  margin: 0;
+  color: #d8d8d8;
+  line-height: 1.55;
+}
+
 .bd-footer nav {
   display: flex;
   gap: 16px;
@@ -1036,6 +1214,9 @@ img {
   .bd-newsletter,
   .bd-about-section,
   .bd-campaign-section,
+  .bd-shop-hero,
+  .bd-shop-shell,
+  .bd-shop-trust,
   .bd-shadow-collection {
     grid-template-columns: 1fr;
   }
@@ -1059,6 +1240,30 @@ img {
 
   .bd-campaign-section {
     padding: 64px 16px;
+  }
+
+  .bd-shop-hero,
+  .bd-shop-shell {
+    padding-inline: 16px;
+  }
+
+  .bd-shop-filter-panel {
+    position: static;
+  }
+
+  .bd-shop-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .bd-shop-trust article {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 22px 16px;
+  }
+
+  .bd-shop-trust article:last-child {
+    border-bottom: 0;
   }
 
   .bd-about-values,

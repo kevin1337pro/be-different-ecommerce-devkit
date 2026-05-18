@@ -31,7 +31,7 @@ Der empfohlene Stack:
 ## Umsetzung in Phasen
 
 1. **Phase 1:** WordPress lokal/staging installieren, WooCommerce aktivieren, HPOS pruefen.
-2. **Phase 2:** Eigenes Theme aktivieren und Startseite als Drop-Funnel bauen.
+2. **Phase 2:** Eigenes Theme aktivieren, Startseite als Drop-Funnel bauen und Shop-Archiv `/shop` als fokussierte Storefront ausspielen.
 3. **Phase 3:** Kategorien, Attribute, Varianten, Groessentabellen und Produkttexte pflegen.
 4. **Phase 4:** Cart/Checkout Blocks, Zahlung, Versand, Steuern und Rechtstexte konfigurieren.
 5. **Phase 5:** POD/Fulfillment, Bestellmails, Rechnungen und Rueckgabeprozess testen.
@@ -57,6 +57,7 @@ Der empfohlene Stack:
 - HPOS aktiv lassen und nur HPOS-kompatible Plugins einsetzen.
 - Cart und Checkout nicht mit Popups ueberladen.
 - Mobile Checkout zuerst testen.
+- Shop-Seite getrennt vom Brand-Funnel halten: Startseite verkauft Haltung, `/shop` verkauft Produkte.
 - Produktbilder als WebP/AVIF ausliefern.
 - Rechtstexte und Preisangaben vor Launch final pruefen.
 - Staging-System nutzen, bevor Plugins im Live-Shop aktualisiert werden.
