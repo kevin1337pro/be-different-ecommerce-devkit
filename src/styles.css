@@ -2357,95 +2357,123 @@ h3 {
   font-size: 0.92rem;
 }
 
-.legal-section {
-  padding: 86px max(24px, calc((100vw - 1180px) / 2));
-  background: #ffffff;
-  border-top: 1px solid var(--black);
-}
-
-.legal-heading {
+.legal-page {
   display: grid;
-  gap: 14px;
-  max-width: 860px;
-  margin-bottom: 28px;
+  gap: 22px;
+  padding: 76px max(24px, calc((100vw - 1180px) / 2));
+  background: #ffffff;
 }
 
-.legal-heading p {
-  color: var(--muted);
+.legal-page-hero {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  background: var(--black);
+  color: #ffffff;
+  padding: 28px;
+}
+
+.legal-page-hero h1 {
+  max-width: 880px;
+  font-size: clamp(3.2rem, 8vw, 7.2rem);
+  line-height: 0.84;
+  text-transform: none;
+}
+
+.legal-page-hero p {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: #d8d8d8;
   font-size: 1.05rem;
   line-height: 1.6;
 }
 
-.legal-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(220px, 1fr));
+.legal-page-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 6px;
+  margin-top: 6px;
 }
 
-.legal-grid article {
+.legal-page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.legal-page-nav button {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--black);
+  padding: 0 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.legal-page-nav button.active {
+  border-color: var(--black);
+  background: var(--green);
+}
+
+.legal-page-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.legal-page-content article {
   display: grid;
   align-content: start;
   gap: 12px;
-  min-height: 430px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
-  padding: 16px;
+  padding: 18px;
 }
 
-.legal-grid article:nth-child(2) {
-  border-color: var(--black);
-  background: var(--black);
-  color: #ffffff;
+.legal-page-content article:nth-child(2n) {
+  background: #ffffff;
 }
 
-.legal-grid article:nth-child(2) p,
-.legal-grid article:nth-child(2) li {
-  color: #d8d8d8;
+.legal-page-content h2 {
+  font-size: clamp(1.9rem, 3vw, 3.2rem);
+  line-height: 0.95;
 }
 
-.legal-grid span {
-  color: var(--blue);
-  font-size: 0.74rem;
-  font-weight: 950;
-  text-transform: uppercase;
-}
-
-.legal-grid article:nth-child(2) span {
-  color: var(--green);
-}
-
-.legal-grid strong {
-  font-size: 1.2rem;
-}
-
-.legal-grid p {
-  margin-bottom: 0;
-  color: var(--muted);
-  line-height: 1.52;
-}
-
-.legal-grid ul {
+.legal-page-content ul {
   display: grid;
-  gap: 7px;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.legal-grid li {
+.legal-page-content li {
   overflow-wrap: anywhere;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  padding-top: 7px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 850;
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+  padding-top: 8px;
+  color: #3f3f3f;
+  line-height: 1.48;
 }
 
-.legal-grid article:nth-child(2) li {
-  border-top-color: rgba(255, 255, 255, 0.16);
+.legal-page-note {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  background: var(--green);
+  color: var(--black);
+  padding: 18px;
+}
+
+.legal-page-note p {
+  max-width: 760px;
+  margin: 6px 0 0;
+  line-height: 1.55;
 }
 
 .newsletter {
@@ -2515,6 +2543,24 @@ h3 {
   gap: 16px;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.back-to-top {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  background: var(--black);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  background: var(--green);
+  color: var(--black);
 }
 
 .social-links {
@@ -2820,6 +2866,7 @@ h3 {
   .about-section,
   .campaign-section,
   .collaboration-section,
+  .legal-page-content,
   .shadow-collection {
     grid-template-columns: 1fr;
   }
@@ -2932,18 +2979,17 @@ h3 {
   .about-section,
   .campaign-section,
   .collaboration-section,
-  .legal-section,
+  .legal-page,
   .shadow-collection {
     padding: 64px 16px;
   }
 
-  .legal-grid {
-    grid-template-columns: 1fr;
-    overflow-x: visible;
+  .legal-page-hero {
+    padding: 22px 16px;
   }
 
-  .legal-grid article {
-    min-height: auto;
+  .legal-page-hero h1 {
+    font-size: clamp(2.8rem, 13vw, 5.2rem);
   }
 
   .campaign-visual,

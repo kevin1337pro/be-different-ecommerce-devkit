@@ -35,13 +35,6 @@ export type CampaignPoster = {
   image: string;
 };
 
-export type LegalSection = {
-  title: string;
-  kicker: string;
-  intro: string;
-  placeholders: string[];
-};
-
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
 
 export const heroImage = asset(
@@ -255,87 +248,6 @@ export const faqItems = [
     question: 'Was passiert mit meinen Daten?',
     answer:
       'Im finalen Shop werden nur Daten verarbeitet, die für Bestellung, Zahlung, Versand, Support, Consent und rechtliche Pflichten erforderlich sind. Details stehen in der Datenschutzerklärung.',
-  },
-];
-
-export const legalLinks = [
-  'Impressum',
-  'Datenschutz',
-  'AGB',
-  'Widerruf',
-  'Versand & Rückgabe',
-];
-
-export const legalSections: LegalSection[] = [
-  {
-    title: 'Impressum',
-    kicker: 'Pflichtangaben nach § 5 DDG',
-    intro:
-      'Hier stehen die Anbieterangaben des finalen Shops. Vor Launch müssen alle Platzhalter durch echte, ladungsfähige Angaben ersetzt und geprüft werden.',
-    placeholders: [
-      '{{FIRMENNAME / INHABER}}',
-      '{{RECHTSFORM}}',
-      '{{LADUNGSFÄHIGE ANSCHRIFT}}',
-      '{{VERTRETUNGSBERECHTIGTE PERSON}}',
-      '{{E-MAIL}} · {{TELEFON}}',
-      '{{UST-ID / WIRTSCHAFTS-ID FALLS VORHANDEN}}',
-    ],
-  },
-  {
-    title: 'Datenschutz',
-    kicker: 'DSGVO-Informationspflichten',
-    intro:
-      'Die Datenschutzerklärung muss transparent erklären, welche Daten wofür verarbeitet werden: Bestellung, Zahlung, Versand, Kundenservice, Newsletter, Consent, Analyse und Marketing.',
-    placeholders: [
-      '{{VERANTWORTLICHER}}',
-      '{{DATENSCHUTZKONTAKT}}',
-      '{{HOSTING-ANBIETER}}',
-      '{{ZAHLUNGSANBIETER: STRIPE / PAYPAL / KLARNA}}',
-      '{{VERSAND- UND FULFILLMENT-DIENSTLEISTER}}',
-      '{{TRACKING-TOOLS NUR NACH CONSENT}}',
-    ],
-  },
-  {
-    title: 'AGB',
-    kicker: 'Kaufbedingungen für den Shop',
-    intro:
-      'Die AGB regeln Vertragsschluss, Preise, Zahlung, Lieferung, Eigentumsvorbehalt, Gewährleistung, Gutscheine und Besonderheiten bei Print-on-Demand.',
-    placeholders: [
-      '{{GELTUNGSBEREICH}}',
-      '{{VERTRAGSSCHLUSS IM WOO-CHECKOUT}}',
-      '{{PREISE INKL. UMSATZSTEUER / HINWEIS KLEINUNTERNEHMER FALLS ZUTREFFEND}}',
-      '{{ZAHLUNGSARTEN}}',
-      '{{LIEFERGEBIETE UND LIEFERZEITEN}}',
-      '{{POD- UND PERSONALISIERUNGSREGELN}}',
-    ],
-  },
-  {
-    title: 'Widerruf',
-    kicker: 'Verbraucherrecht im Fernabsatz',
-    intro:
-      'Der Widerruf muss vor Vertragsschluss klar erreichbar sein. Für personalisierte oder nach Kundenspezifikation gefertigte Produkte muss separat geprüft werden, ob Ausnahmen greifen.',
-    placeholders: [
-      '{{WIDERRUFSFRIST}}',
-      '{{WIDERRUFSADRESSE}}',
-      '{{E-MAIL FÜR WIDERRUF}}',
-      '{{MUSTER-WIDERRUFSFORMULAR}}',
-      '{{KOSTENTRAGUNG RÜCKVERSAND}}',
-      '{{AUSNAHMEN FÜR INDIVIDUELLE PRODUKTE}}',
-    ],
-  },
-  {
-    title: 'Versand & Rückgabe',
-    kicker: 'Klarheit vor dem Kauf',
-    intro:
-      'Versandkosten, Lieferzeiten, Liefergebiete und Rückgabeabläufe müssen direkt vor Kaufabschluss verständlich und vollständig dargestellt werden.',
-    placeholders: [
-      '{{VERSANDKOSTEN DEUTSCHLAND}}',
-      '{{VERSANDKOSTEN EU / INTERNATIONAL}}',
-      '{{LIEFERZEIT POD}}',
-      '{{LIEFERZEIT STOCK-PRODUKTE}}',
-      '{{RÜCKSENDEADRESSE}}',
-      '{{SUPPORT-KONTAKT}}',
-    ],
   },
 ];
 

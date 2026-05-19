@@ -11,6 +11,7 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<div id="top"></div>
 <div class="bd-announcement">
     <div class="bd-ticker-track" aria-label="<?php esc_attr_e('Shop Nachrichten', 'be-different'); ?>">
         <?php

@@ -10,6 +10,7 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -1152,6 +1153,32 @@ img {
   gap: 16px;
   flex-wrap: wrap;
   color: var(--bd-muted);
+}
+
+.bd-back-to-top {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--bd-black);
+  border-radius: 50%;
+  background: var(--bd-black);
+  color: var(--bd-white);
+  font-size: 1.35rem;
+  font-weight: 950;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.bd-back-to-top:hover {
+  background: var(--bd-yellow);
+  color: var(--bd-black);
+  transform: translateY(-3px);
 }
 
 .bd-social-links {

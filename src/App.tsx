@@ -1,5 +1,6 @@
 import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import {
+  ArrowUp,
   BadgePercent,
   Check,
   ChevronRight,
@@ -39,8 +40,6 @@ import {
   faqItems,
   heroImage,
   heroEyecatcherImage,
-  legalLinks,
-  legalSections,
   Product,
   products,
   proofPoints,
@@ -108,6 +107,306 @@ const socialLinks = [
   { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Facebook },
   { label: 'X', href: 'https://x.com/', Icon: Twitter },
 ];
+const legalPages = [
+  {
+    slug: 'impressum',
+    label: 'Impressum',
+    kicker: 'Pflichtangaben nach § 5 DDG',
+    title: 'Impressum',
+    intro:
+      'Dieses Impressum ist als vollständige Launch-Vorlage vorbereitet. Vor Veröffentlichung müssen alle Platzhalter durch echte Unternehmensdaten ersetzt werden.',
+    blocks: [
+      {
+        title: 'Anbieter',
+        items: [
+          '{{FIRMENNAME / SHOP-BETREIBER}}',
+          '{{RECHTSFORM, Z. B. Einzelunternehmen / UG / GmbH}}',
+          '{{VERTRETUNGSBERECHTIGTE PERSON}}',
+          '{{LADUNGSFÄHIGE STRASSE UND HAUSNUMMER}}',
+          '{{PLZ ORT, LAND}}',
+        ],
+      },
+      {
+        title: 'Kontakt',
+        items: ['E-Mail: {{E-MAIL}}', 'Telefon: {{TELEFON}}', 'Kontaktformular: {{LINK ZUM KONTAKTFORMULAR}}'],
+      },
+      {
+        title: 'Register / Steuern',
+        items: [
+          'Registergericht: {{REGISTERGERICHT, FALLS VORHANDEN}}',
+          'Registernummer: {{REGISTERNUMMER, FALLS VORHANDEN}}',
+          'Umsatzsteuer-ID: {{UST-ID, FALLS VORHANDEN}}',
+          'Wirtschafts-ID: {{W-IDD, FALLS VORHANDEN}}',
+          'Kleinunternehmerhinweis: {{NUR FALLS § 19 USTG ZUTRIFFT}}',
+        ],
+      },
+      {
+        title: 'Verantwortlich für Inhalte',
+        items: [
+          '{{NAME DER VERANTWORTLICHEN PERSON}}',
+          '{{ANSCHRIFT WIE OBEN ODER ABWEICHENDE REDAKTIONSANSCHRIFT}}',
+        ],
+      },
+      {
+        title: 'EU-Streitbeilegung / Verbraucherstreitbeilegung',
+        items: [
+          'Plattform der EU-Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr/',
+          'Wir sind {{BEREIT / NICHT BEREIT}} und {{VERPFLICHTET / NICHT VERPFLICHTET}}, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'datenschutz',
+    label: 'Datenschutz',
+    kicker: 'DSGVO-Informationspflichten',
+    title: 'Datenschutzerklärung',
+    intro:
+      'Diese Datenschutzerklärung beschreibt die geplanten Datenverarbeitungen für den be-different Shop. Toolnamen, Anbieter und Rechtsgrundlagen müssen vor Livegang final geprüft werden.',
+    blocks: [
+      {
+        title: 'Verantwortlicher',
+        items: [
+          '{{FIRMENNAME / SHOP-BETREIBER}}',
+          '{{ANSCHRIFT}}',
+          'E-Mail: {{DATENSCHUTZ-KONTAKT}}',
+          'Datenschutzbeauftragter: {{ANGABE, FALLS ERFORDERLICH}}',
+        ],
+      },
+      {
+        title: 'Hosting und technische Bereitstellung',
+        items: [
+          'Hosting-Anbieter: {{HOSTING-ANBIETER}}',
+          'Verarbeitete Daten: IP-Adresse, Logfiles, Browserdaten, Zeitpunkt des Aufrufs, technische Fehlermeldungen.',
+          'Zweck: sichere Bereitstellung, Stabilität, Missbrauchserkennung.',
+          'Speicherdauer: {{LOGFILE-SPEICHERDAUER}}.',
+        ],
+      },
+      {
+        title: 'Bestellungen und Kundenkonto',
+        items: [
+          'Verarbeitete Daten: Name, Rechnungs- und Lieferadresse, E-Mail, Bestellinhalt, Zahlungsstatus, Supportkommunikation.',
+          'Zweck: Vertragsabwicklung, Lieferung, Rechnungsstellung, Kundenservice und gesetzliche Aufbewahrungspflichten.',
+          'System: WooCommerce / WordPress.',
+        ],
+      },
+      {
+        title: 'Zahlung, Versand und Fulfillment',
+        items: [
+          'Zahlungsanbieter: {{STRIPE / PAYPAL / KLARNA / WEITERE}}.',
+          'Versanddienstleister: {{DHL / DPD / GLS / WEITERE}}.',
+          'Print-on-Demand / Fulfillment: {{ANBIETER, FALLS EINGESETZT}}.',
+          'Daten werden nur übermittelt, soweit dies für Zahlung, Produktion und Versand erforderlich ist.',
+        ],
+      },
+      {
+        title: 'Newsletter, Early Access und Kooperationen',
+        items: [
+          'Newsletter nur nach aktiver Einwilligung und Double-Opt-in.',
+          'Abmeldung jederzeit über Abmeldelink oder Nachricht an {{E-MAIL}} möglich.',
+          'Bewerbungsdaten aus “Arbeite mit uns zusammen” werden nur zur Prüfung einer Kooperation verarbeitet.',
+          'Newsletter-Tool: {{MAILCHIMP / KLAVIYO / BREVO / WOO NEWSLETTER TOOL}}.',
+        ],
+      },
+      {
+        title: 'Cookies, Consent, Analyse und Marketing',
+        items: [
+          'Technisch notwendige Cookies werden für Warenkorb, Checkout, Sicherheit und Spracheinstellungen genutzt.',
+          'Analyse- und Marketingtools wie GA4, Meta Pixel oder TikTok Pixel werden erst nach Einwilligung aktiviert.',
+          'Consent-Tool: {{COOKIE-CONSENT-ANBIETER}}.',
+          'Widerruf der Einwilligung jederzeit über {{COOKIE-EINSTELLUNGEN-LINK}} möglich.',
+        ],
+      },
+      {
+        title: 'Betroffenenrechte',
+        items: [
+          'Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch und Widerruf erteilter Einwilligungen.',
+          'Beschwerderecht bei einer Datenschutzaufsichtsbehörde.',
+          'Kontakt für Datenschutzanfragen: {{DATENSCHUTZ-E-MAIL}}.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'agb',
+    label: 'AGB',
+    kicker: 'Allgemeine Geschäftsbedingungen',
+    title: 'AGB für den be-different Online-Shop',
+    intro:
+      'Diese AGB-Vorlage ist auf einen deutschen WooCommerce-Shop mit Standardprodukten, Limited Runs und optional Print-on-Demand vorbereitet.',
+    blocks: [
+      {
+        title: '1. Geltungsbereich',
+        items: [
+          'Diese AGB gelten für alle Bestellungen über den Online-Shop {{SHOP-DOMAIN}} durch Verbraucher und Unternehmer.',
+          'Abweichende Bedingungen von Kunden gelten nur, wenn wir ihrer Geltung ausdrücklich zustimmen.',
+        ],
+      },
+      {
+        title: '2. Vertragspartner und Vertragsschluss',
+        items: [
+          'Vertragspartner ist {{FIRMENNAME / SHOP-BETREIBER}}.',
+          'Die Produktdarstellung ist kein rechtlich bindendes Angebot, sondern eine Aufforderung zur Bestellung.',
+          'Durch Klick auf den finalen Kaufen-Button gibt der Kunde ein verbindliches Angebot ab.',
+          'Der Vertrag kommt zustande durch Bestellbestätigung per E-Mail oder Versand der Ware.',
+        ],
+      },
+      {
+        title: '3. Produkte, Varianten und Individualisierung',
+        items: [
+          'Produkte werden mit verfügbaren Größen, Farben, Motiven, Preisen und Lieferzeiten angezeigt.',
+          'Bei Print-on-Demand kann die Produktion erst nach Bestellung starten.',
+          'Bei personalisierten Produkten gelten gesonderte Hinweise zum Widerrufsrecht.',
+        ],
+      },
+      {
+        title: '4. Preise, Versandkosten und Zahlung',
+        items: [
+          'Alle Preise verstehen sich in Euro und inklusive gesetzlicher Umsatzsteuer, sofern nicht ein Kleinunternehmerhinweis gilt.',
+          'Zusätzliche Versandkosten werden vor Abgabe der Bestellung angezeigt.',
+          'Akzeptierte Zahlungsarten: {{ZAHLUNGSARTEN}}.',
+          'Die Belastung erfolgt nach den Bedingungen des jeweiligen Zahlungsanbieters.',
+        ],
+      },
+      {
+        title: '5. Lieferung',
+        items: [
+          'Liefergebiet: {{DEUTSCHLAND / EU / INTERNATIONAL}}.',
+          'Lieferzeiten werden am Produkt und im Checkout angezeigt.',
+          'Bei Teillieferungen entstehen zusätzliche Versandkosten nur, wenn dies vorher vereinbart wurde.',
+        ],
+      },
+      {
+        title: '6. Eigentumsvorbehalt und Gewährleistung',
+        items: [
+          'Die Ware bleibt bis zur vollständigen Zahlung unser Eigentum.',
+          'Es gelten die gesetzlichen Mängelhaftungsrechte.',
+          'Farb- und Positionsabweichungen beim Druck können produktionsbedingt in angemessenem Umfang auftreten.',
+        ],
+      },
+      {
+        title: '7. Gutscheine, Rabattcodes und Drops',
+        items: [
+          'Rabattcodes gelten nur im angegebenen Zeitraum und solange Vorrat oder Kontingent reicht.',
+          'Limited Editions können mengenmäßig begrenzt sein.',
+          'Eine Barauszahlung von Rabattcodes ist ausgeschlossen.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'widerruf',
+    label: 'Widerruf',
+    kicker: 'Widerrufsbelehrung',
+    title: 'Widerruf und Muster-Widerrufsformular',
+    intro:
+      'Diese Seite bündelt Widerrufsbelehrung, Rücksendekontakt und Musterformular. Ausnahmen für personalisierte Produkte müssen vor Launch geprüft werden.',
+    blocks: [
+      {
+        title: 'Widerrufsrecht',
+        items: [
+          'Verbraucher haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.',
+          'Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem du oder ein von dir benannter Dritter die Ware erhalten hast.',
+        ],
+      },
+      {
+        title: 'Widerruf ausüben',
+        items: [
+          'Um den Widerruf auszuüben, informiere uns eindeutig per E-Mail oder Brief.',
+          'Empfänger: {{FIRMENNAME}}',
+          'Adresse: {{WIDERRUFSADRESSE}}',
+          'E-Mail: {{WIDERRUFS-E-MAIL}}',
+        ],
+      },
+      {
+        title: 'Folgen des Widerrufs',
+        items: [
+          'Wir erstatten alle erhaltenen Zahlungen einschließlich Standardlieferkosten unverzüglich und spätestens binnen vierzehn Tagen ab Eingang des Widerrufs.',
+          'Für die Rückzahlung verwenden wir dasselbe Zahlungsmittel wie bei der ursprünglichen Transaktion, sofern nichts anderes vereinbart wurde.',
+          'Wir können die Rückzahlung verweigern, bis wir die Ware zurückerhalten haben oder der Nachweis der Rücksendung erbracht wurde.',
+          'Rücksendekosten: {{KUNDE TRÄGT / SHOP TRÄGT RÜCKSENDEKOSTEN}}.',
+        ],
+      },
+      {
+        title: 'Ausnahmen',
+        items: [
+          'Das Widerrufsrecht kann bei Waren ausgeschlossen sein, die nach Kundenspezifikation angefertigt oder eindeutig personalisiert wurden.',
+          'Für Standardshirts ohne Personalisierung gilt grundsätzlich das Verbraucher-Widerrufsrecht.',
+        ],
+      },
+      {
+        title: 'Muster-Widerrufsformular',
+        items: [
+          'An {{FIRMENNAME}}, {{ANSCHRIFT}}, {{E-MAIL}}',
+          'Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über den Kauf der folgenden Waren: {{WAREN}}.',
+          'Bestellt am: {{DATUM}} / erhalten am: {{DATUM}}.',
+          'Name und Anschrift des Verbrauchers: {{NAME, ANSCHRIFT}}.',
+          'Datum und Unterschrift: {{NUR BEI MITTEILUNG AUF PAPIER}}.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'versand-rueckgabe',
+    label: 'Versand & Rückgabe',
+    kicker: 'Lieferung, Zahlung und Retouren',
+    title: 'Versand, Zahlung und Rückgabe',
+    intro:
+      'Diese Seite fasst alle kaufrelevanten Informationen zusammen, die im deutschen Online-Shop vor Bestellung klar sichtbar sein müssen.',
+    blocks: [
+      {
+        title: 'Versandgebiete',
+        items: [
+          'Deutschland: {{JA / NEIN}}',
+          'EU: {{LÄNDER / PAUSCHALEN}}',
+          'International: {{LÄNDER / PAUSCHALEN}}',
+        ],
+      },
+      {
+        title: 'Versandkosten',
+        items: [
+          'Deutschland: {{VERSANDKOSTEN DE}}',
+          'Kostenloser Versand ab: {{WARENWERT}}',
+          'EU / International: {{VERSANDKOSTEN}}',
+          'Alle Versandkosten werden im Checkout vor Bestellung angezeigt.',
+        ],
+      },
+      {
+        title: 'Lieferzeiten',
+        items: [
+          'Standardprodukte: {{LIEFERZEIT}}',
+          'Print-on-Demand Produkte: {{PRODUKTIONSZEIT + LIEFERZEIT}}',
+          'Limited Runs / Drops: {{SPEZIELLE LIEFERZEIT}}',
+        ],
+      },
+      {
+        title: 'Zahlungsarten',
+        items: [
+          'Kreditkarte über Stripe: {{AKTIV / GEPLANT}}',
+          'PayPal: {{AKTIV / GEPLANT}}',
+          'Apple Pay / Google Pay: {{AKTIV / GEPLANT}}',
+          'Klarna oder Rechnungskauf: {{AKTIV / GEPLANT}}',
+        ],
+      },
+      {
+        title: 'Rückgabeablauf',
+        items: [
+          '1. Widerruf oder Retourenwunsch an {{SUPPORT-E-MAIL}} senden.',
+          '2. Bestellnummer und betroffene Produkte angeben.',
+          '3. Ware sicher verpackt an {{RÜCKSENDEADRESSE}} zurücksenden.',
+          '4. Erstattung nach Prüfung der Rücksendung.',
+        ],
+      },
+      {
+        title: 'Zustand der Ware',
+        items: [
+          'Bitte sende Ware ungetragen, sauber und möglichst in Originalverpackung zurück.',
+          'Gesetzliche Rechte werden durch diese Bitte nicht eingeschränkt.',
+        ],
+      },
+    ],
+  },
+] as const;
 const collaborationRoles = [
   {
     title: 'Designer',
@@ -152,7 +451,8 @@ type CartItem = {
   quantity: number;
 };
 
-type AppRoute = 'home' | 'shop';
+type LegalSlug = (typeof legalPages)[number]['slug'];
+type AppRoute = 'home' | 'shop' | LegalSlug;
 type ShopCategory = (typeof shopCategories)[number];
 type ShopColor = (typeof shopColors)[number];
 type ShopSize = (typeof shopSizes)[number];
@@ -163,6 +463,13 @@ function formatPrice(value: number) {
     style: 'currency',
     currency: 'EUR',
   }).format(value);
+}
+
+function getRouteFromHash(): AppRoute {
+  const hash = window.location.hash.replace(/^#\/?/, '');
+  if (hash === 'shop') return 'shop';
+  if (legalPages.some((page) => page.slug === hash)) return hash as LegalSlug;
+  return 'home';
 }
 
 function ProductCard({
@@ -211,9 +518,7 @@ function ProductCard({
 }
 
 function App() {
-  const [route, setRoute] = useState<AppRoute>(() =>
-    window.location.hash === '#/shop' ? 'shop' : 'home',
-  );
+  const [route, setRoute] = useState<AppRoute>(() => getRouteFromHash());
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('Alle');
   const [shopCategory, setShopCategory] = useState<ShopCategory>('Alle');
   const [shopColor, setShopColor] = useState<ShopColor>('Alle');
@@ -279,6 +584,7 @@ function App() {
   const progressToFreeShipping = Math.min((subtotal / freeShippingThreshold) * 100, 100);
   const topProduct = products[0];
   const currentHeroSlide = heroSlides[activeHeroSlide];
+  const currentLegalPage = legalPages.find((page) => page.slug === route);
   const collectionRows = [shadowCollection.slice(0, 4), shadowCollection.slice(4)];
   const relatedProducts = useMemo(
     () => products.filter((product) => product.id !== selectedProduct.id).slice(0, 2),
@@ -322,7 +628,7 @@ function App() {
 
   useEffect(() => {
     const syncRoute = () => {
-      setRoute(window.location.hash === '#/shop' ? 'shop' : 'home');
+      setRoute(getRouteFromHash());
     };
 
     syncRoute();
@@ -349,7 +655,7 @@ function App() {
   }
 
   function navigateHome(sectionId = 'home') {
-    const shouldWaitForHomeRender = route === 'shop';
+    const shouldWaitForHomeRender = route !== 'home';
 
     window.location.hash = sectionId;
     setRoute('home');
@@ -366,6 +672,13 @@ function App() {
   function navigateShop() {
     window.location.hash = '/shop';
     setRoute('shop');
+    setMenuOpen(false);
+    window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
+  }
+
+  function navigateLegal(slug: LegalSlug) {
+    window.location.hash = `/${slug}`;
+    setRoute(slug);
     setMenuOpen(false);
     window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
   }
@@ -620,7 +933,7 @@ function App() {
         </div>
       </header>
 
-      <main id={route === 'shop' ? 'shop-page' : 'home'}>
+      <main id={route === 'shop' ? 'shop-page' : currentLegalPage ? 'legal-page' : 'home'}>
         {route === 'shop' ? (
           <>
             <section className="shop-page-hero">
@@ -786,6 +1099,58 @@ function App() {
               </article>
             </section>
           </>
+        ) : currentLegalPage ? (
+          <section className="legal-page" aria-labelledby="legal-page-title">
+            <div className="legal-page-hero">
+              <span className="eyebrow neon">{currentLegalPage.kicker}</span>
+              <h1 id="legal-page-title">{currentLegalPage.title}</h1>
+              <p>{currentLegalPage.intro}</p>
+              <div className="legal-page-actions">
+                <button className="primary-button" onClick={() => navigateHome()}>
+                  Zur Startseite
+                </button>
+                <button className="secondary-button" onClick={navigateShop}>
+                  Zum Shop
+                </button>
+              </div>
+            </div>
+
+            <div className="legal-page-nav" aria-label="Rechteseiten">
+              {legalPages.map((page) => (
+                <button
+                  key={page.slug}
+                  className={currentLegalPage.slug === page.slug ? 'active' : ''}
+                  onClick={() => navigateLegal(page.slug)}
+                >
+                  {page.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="legal-page-content">
+              {currentLegalPage.blocks.map((block) => (
+                <article key={block.title}>
+                  <h2>{block.title}</h2>
+                  <ul>
+                    {block.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <aside className="legal-page-note">
+              <ShieldCheck size={22} />
+              <div>
+                <strong>Launch-Hinweis</strong>
+                <p>
+                  Diese Seiten sind vollständige Arbeitsvorlagen für den Shop-Launch. Vor Livegang
+                  müssen alle Platzhalter mit echten Daten ersetzt und rechtlich geprüft werden.
+                </p>
+              </div>
+            </aside>
+          </section>
         ) : (
           <>
         <section className="hero" style={{ backgroundImage: `url(${currentHeroSlide.background})` }}>
@@ -1444,31 +1809,6 @@ function App() {
           </aside>
         </section>
 
-        <section className="legal-section" id="legal">
-          <div className="legal-heading">
-            <span className="eyebrow neon">DSGVO & Shop-Recht</span>
-            <h2>Rebellisch im Look. Sauber im Kleingedruckten.</h2>
-            <p>
-              Die Texte sind als Launch-Vorlage vorbereitet. Alle Felder in geschweiften Klammern
-              müssen vor Veröffentlichung mit echten Angaben gefüllt und rechtlich geprüft werden.
-            </p>
-          </div>
-          <div className="legal-grid">
-            {legalSections.map((section) => (
-              <article key={section.title}>
-                <span>{section.kicker}</span>
-                <strong>{section.title}</strong>
-                <p>{section.intro}</p>
-                <ul>
-                  {section.placeholders.map((placeholder) => (
-                    <li key={placeholder}>{placeholder}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="newsletter">
           <img src={brandDropImage} alt="be-different Sammlung" loading="lazy" />
           <div>
@@ -1528,12 +1868,26 @@ function App() {
           <a href="#produkt" onClick={(event) => { event.preventDefault(); navigateHome('produkt'); }}>
             Größentabelle
           </a>
-          {legalLinks.map((link) => (
-            <a href="#legal" key={link} onClick={(event) => { event.preventDefault(); navigateHome('legal'); }}>
-              {link}
+          {legalPages.map((page) => (
+            <a
+              href={`#/${page.slug}`}
+              key={page.slug}
+              onClick={(event) => {
+                event.preventDefault();
+                navigateLegal(page.slug);
+              }}
+            >
+              {page.label}
             </a>
           ))}
         </nav>
+        <button
+          className="back-to-top"
+          aria-label="Nach oben"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <ArrowUp size={20} />
+        </button>
       </footer>
 
       {route === 'home' && (

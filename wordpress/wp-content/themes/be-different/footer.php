@@ -34,6 +34,9 @@
         ]);
         ?>
     </nav>
+    <a class="bd-back-to-top" href="#top" aria-label="<?php esc_attr_e('Nach oben', 'be-different'); ?>">
+        <span aria-hidden="true">↑</span>
+    </a>
 </footer>
 <?php wp_footer(); ?>
 </body>
