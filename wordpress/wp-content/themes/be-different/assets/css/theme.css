@@ -4,6 +4,7 @@
   --bd-yellow: #ffff00;
   --bd-pink: #ff00ff;
   --bd-cyan: #00ffff;
+  --bd-blue: #1e6bff;
   --bd-line: #e7e7e7;
   --bd-muted: #666;
 }
@@ -108,16 +109,35 @@ img {
 }
 
 .bd-brand {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
-  font-family: Impact, "Arial Narrow", sans-serif;
-  font-size: 1.3rem;
-  text-transform: lowercase;
+  position: relative;
+  display: block;
+  flex: 0 0 205px;
+  width: 205px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--bd-white);
 }
 
-.bd-brand span {
-  color: var(--bd-yellow);
+.bd-brand-logo-crop,
+.bd-footer-logo-crop {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--bd-white);
+}
+
+.bd-brand-logo-crop {
+  width: 205px;
+  height: 54px;
+}
+
+.bd-brand-logo-crop img {
+  position: absolute;
+  top: -47px;
+  left: -10px;
+  width: 220px;
+  max-width: none;
 }
 
 .bd-nav ul,
@@ -931,6 +951,161 @@ img {
   text-transform: lowercase;
 }
 
+.bd-footer-logo-crop {
+  width: 225px;
+  height: 66px;
+}
+
+.bd-footer-logo-crop img {
+  position: absolute;
+  top: -51px;
+  left: -12px;
+  width: 250px;
+  max-width: none;
+}
+
+.bd-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.bd-withdrawal-link {
+  font-weight: 900;
+  text-decoration: underline;
+  text-decoration-color: var(--bd-blue);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.bd-cookie-settings {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.bd-consent {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: minmax(280px, 1.2fr) minmax(220px, 0.8fr) auto;
+  gap: 22px;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  border: 2px solid var(--bd-white);
+  border-radius: 9px;
+  background: var(--bd-black);
+  color: var(--bd-white);
+  padding: 20px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+}
+
+.bd-consent[hidden] {
+  display: none;
+}
+
+.bd-consent p {
+  margin: 6px 0;
+  color: #d5d5d5;
+  line-height: 1.45;
+}
+
+.bd-consent a,
+.bd-cookie-settings {
+  text-decoration: underline;
+}
+
+.bd-consent-options,
+.bd-consent-actions {
+  display: grid;
+  gap: 9px;
+}
+
+.bd-consent-options label {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.bd-consent-options input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--bd-yellow);
+}
+
+.bd-consent-actions button,
+.bd-withdrawal button {
+  min-height: 44px;
+  border: 1px solid var(--bd-white);
+  border-radius: 5px;
+  background: var(--bd-yellow);
+  color: var(--bd-black);
+  padding: 0 14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.bd-withdrawal {
+  max-width: 900px;
+  margin: 32px auto;
+  border: 2px solid var(--bd-black);
+  border-radius: 8px;
+  background: var(--bd-white);
+  padding: clamp(18px, 4vw, 34px);
+}
+
+.bd-withdrawal-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.bd-withdrawal-form label {
+  display: grid;
+  gap: 7px;
+  font-weight: 850;
+}
+
+.bd-withdrawal-form label:nth-of-type(4),
+.bd-withdrawal-form button,
+.bd-withdrawal-status {
+  grid-column: 1 / -1;
+}
+
+.bd-withdrawal-form input,
+.bd-withdrawal-form textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #969696;
+  border-radius: 5px;
+  padding: 11px 12px;
+  font: inherit;
+}
+
+.bd-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.bd-withdrawal-status {
+  min-height: 24px;
+  margin: 0;
+  line-height: 1.5;
+}
+
 .bd-checkout-page {
   background: var(--bd-white);
 }
@@ -1245,6 +1420,12 @@ img {
     display: none;
   }
 
+  .bd-consent {
+    grid-template-columns: 1fr;
+    max-height: calc(100svh - 16px);
+    overflow-y: auto;
+  }
+
   .bd-hero {
     min-height: 78svh;
     padding: 58px 16px;
@@ -1376,5 +1557,37 @@ img {
   .bd-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 620px) {
+  .bd-brand,
+  .bd-brand-logo-crop {
+    flex-basis: 158px;
+    width: 158px;
+    height: 48px;
+  }
+
+  .bd-brand-logo-crop img {
+    top: -38px;
+    left: -7px;
+    width: 174px;
+  }
+
+  .bd-consent {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    padding: 16px;
+  }
+
+  .bd-withdrawal-form {
+    grid-template-columns: 1fr;
+  }
+
+  .bd-withdrawal-form label,
+  .bd-withdrawal-form button,
+  .bd-withdrawal-status {
+    grid-column: auto;
   }
 }

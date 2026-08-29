@@ -3,7 +3,7 @@ export type Product = {
   name: string;
   category: 'Statement Shirts' | 'Animal Art' | 'Custom Drops';
   price: number;
-  compareAtPrice?: number;
+  lowestPrice30Days?: number;
   badge: string;
   image: string;
   design: string;
@@ -51,7 +51,7 @@ export const products: Product[] = [
     name: 'Cat Rebel Shirt',
     category: 'Animal Art',
     price: 34.9,
-    compareAtPrice: 44.9,
+    lowestPrice30Days: 44.9,
     badge: 'Bestseller',
     image:
       asset('assets/products/produktbildreihe2-1-cat-t-shirt-mockup-white-sideview-399d4b8a-bb89-42d3-98b9-8e1f7b5f9321.jpg'),
@@ -96,7 +96,7 @@ export const products: Product[] = [
     name: 'Schaf Street Shirt',
     category: 'Animal Art',
     price: 34.9,
-    compareAtPrice: 42.9,
+    lowestPrice30Days: 42.9,
     badge: 'Limited',
     image: asset('assets/products/produktreihe2-schaf-1.jpg'),
     design:

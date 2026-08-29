@@ -9,6 +9,8 @@ Eigenes WordPress/WooCommerce Theme für den be-different Shop.
 3. WooCommerce installieren und aktivieren.
 4. Menüs für `Primary Menu` und `Footer Menu` anlegen.
 5. Startseite auf eine statische Seite setzen, damit `front-page.php` genutzt wird.
+6. Seiten für Impressum, Datenschutz, AGB, Widerruf und Barrierefreiheit mit den in der Projekt-Dokumentation beschriebenen Slugs anlegen.
+7. Auf der Widerrufsseite den Shortcode `[bd_withdrawal]` einfügen und E-Mail-Zustellung testen.
 
 ## WooCommerce
 
@@ -29,6 +31,12 @@ Die finalen WooCommerce-Seiten sollten so gesetzt werden:
 
 Stripe wird nicht im Theme selbst konfiguriert, sondern über WooCommerce > Einstellungen > Zahlungen. Details stehen in `docs/SEO_CHECKOUT_STRIPE_PLAN.md`.
 
+## Datenschutz und Widerruf
+
+Das Theme enthält eine Consent-Oberfläche. Optionale Analyse- oder Marketing-Scripts müssen das Browser-Ereignis `bd:consent` auswerten und dürfen vor Einwilligung nicht geladen werden.
+
+Der Shortcode `[bd_withdrawal]` stellt die elektronische Widerrufsfunktion bereit. Eingänge werden als private Datensätze im WooCommerce-Adminbereich gespeichert und per E-Mail bestätigt. Mailversand, Löschfrist, Spam-Schutz und Fehlerfall müssen auf Staging getestet werden.
+
 ## Assets
 
 Die aktuellen Webbilder liegen unter:
@@ -36,3 +44,5 @@ Die aktuellen Webbilder liegen unter:
 `assets/images`
 
 Neue finale Webbilder zuerst im Hauptprojekt unter `assets/library` sammeln und dann nur die benötigten Bilder ins Theme kopieren.
+
+Das neue Different-Mind-Logo liegt unter `assets/images/brand/different-mind-logo.png`; das Vektor-Signet unter `assets/images/brand/different-mind-mark.svg`.

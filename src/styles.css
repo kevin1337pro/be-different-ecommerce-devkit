@@ -58,6 +58,11 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -339,22 +344,35 @@ a {
 }
 
 .brand {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
-  font-family: Impact, "Arial Narrow", sans-serif;
-  font-size: 1.28rem;
-  letter-spacing: 0;
-  text-transform: lowercase;
+  position: relative;
+  display: block;
+  flex: 0 0 205px;
+  width: 205px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #ffffff;
 }
 
-.brand span {
-  color: var(--green);
-  font-weight: 900;
+.brand-logo-crop,
+.footer-logo-crop {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #ffffff;
 }
 
-.brand strong {
-  font-weight: 900;
+.brand-logo-crop {
+  width: 205px;
+  height: 54px;
+}
+
+.brand-logo-crop img {
+  position: absolute;
+  top: -47px;
+  left: -10px;
+  width: 220px;
+  max-width: none;
 }
 
 .nav {
@@ -2535,6 +2553,249 @@ h3 {
   font-size: 1.35rem;
   letter-spacing: 0;
   text-transform: lowercase;
+}
+
+.footer-logo-crop {
+  width: 225px;
+  height: 66px;
+}
+
+.footer-logo-crop img {
+  position: absolute;
+  top: -51px;
+  left: -12px;
+  width: 250px;
+  max-width: none;
+}
+
+.footer-text-button,
+.inline-link-button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.withdrawal-link {
+  font-weight: 900;
+  color: var(--black);
+  text-decoration: underline;
+  text-decoration-color: var(--blue);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.withdrawal-function {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(340px, 1.2fr);
+  gap: 28px;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  padding: 24px;
+  background: #ffffff;
+}
+
+.withdrawal-function h2 {
+  margin-top: 10px;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.9;
+}
+
+.withdrawal-function p {
+  line-height: 1.55;
+}
+
+.withdrawal-function form {
+  display: grid;
+  gap: 14px;
+}
+
+.withdrawal-function label {
+  display: grid;
+  gap: 7px;
+  font-weight: 850;
+}
+
+.withdrawal-function input,
+.withdrawal-function textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #969696;
+  border-radius: 5px;
+  background: #ffffff;
+  color: var(--black);
+  padding: 11px 12px;
+}
+
+.form-warning {
+  border-left: 4px solid var(--red);
+  background: #fff1f0;
+  color: #60120c;
+  padding: 12px;
+}
+
+.consent-panel {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: minmax(280px, 1.2fr) minmax(280px, 0.8fr) auto;
+  gap: 22px;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  border: 2px solid #ffffff;
+  border-radius: 9px;
+  background: #080808;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48);
+}
+
+.consent-copy h2 {
+  margin: 6px 0 10px;
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  line-height: 0.95;
+}
+
+.consent-copy p {
+  margin: 0 0 8px;
+  color: #d5d5d5;
+  line-height: 1.45;
+}
+
+.consent-options {
+  display: grid;
+  gap: 9px;
+}
+
+.consent-options label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: #dedede;
+  cursor: pointer;
+}
+
+.consent-options input {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--green);
+}
+
+.consent-options strong {
+  display: block;
+  color: #ffffff;
+}
+
+.consent-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.consent-actions button {
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.product-safety {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  padding: 14px;
+}
+
+.product-safety summary {
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.product-safety dl {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+}
+
+.product-safety dl div {
+  display: grid;
+  gap: 3px;
+}
+
+.product-safety dt {
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.product-safety dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.newsletter-form {
+  display: grid;
+  gap: 12px;
+}
+
+.newsletter-consent {
+  max-width: 620px;
+  color: #d8d8d8;
+}
+
+@media (max-width: 1040px) {
+  .consent-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .consent-actions {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .brand,
+  .brand-logo-crop {
+    flex-basis: 158px;
+    width: 158px;
+    height: 48px;
+  }
+
+  .brand-logo-crop img {
+    top: -38px;
+    left: -7px;
+    width: 174px;
+  }
+
+  .withdrawal-function,
+  .consent-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .consent-panel {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    max-height: calc(100svh - 16px);
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  .consent-actions {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .withdrawal-function {
+    padding: 18px 14px;
+  }
 }
 
 .site-footer nav {

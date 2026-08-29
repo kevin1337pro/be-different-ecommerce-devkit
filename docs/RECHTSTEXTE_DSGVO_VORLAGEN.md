@@ -1,203 +1,147 @@
-# Rechtstexte und DSGVO-Vorlagen
+# Recht, Datenschutz und Launch-Check
 
-Stand: 18.05.2026
+Stand: 29. August 2026
 
-Diese Datei ist eine Arbeitsvorlage für den späteren WooCommerce-Livegang in Deutschland/EU. Sie ersetzt keine Rechtsberatung. Alle Platzhalter in `{{...}}` müssen vor Veröffentlichung mit echten Angaben gefüllt und rechtlich geprüft werden.
+Diese Projektfassung bildet die bekannten Angaben aus `IMPRESSUM und Co, ohne Klammern.docx` ab und berücksichtigt zentrale Neuerungen für einen an Verbraucher gerichteten EU-Onlineshop. Sie ist eine technische und redaktionelle Arbeitsgrundlage, keine anwaltliche Einzelfallprüfung. Rechtstexte, Checkout, Plugins und tatsächliche Datenflüsse müssen vor Veröffentlichung deckungsgleich sein.
 
-## Impressum
+## Hinterlegte Anbieterangaben
 
-**Anbieter nach § 5 DDG**
+- Kirlana Consulting Ltd. (Limited Company)
+- Vertreten durch Kathrin Rölker
+- 26 Anthipolochagou Georgiou M. Savva, Shop 1–2, 8201 Paphos, Cyprus
+- Registergericht Nicosia, Registernummer HE 481328
+- Umsatzsteuer-ID CY60229531E
+- E-Mail info@be-different.shop
+- Telefon +49 1520 6677415
+- Datenschutzbeauftragter laut Quelldokument: Thomas Rölker
+- Redaktionell verantwortlich, soweit erforderlich: Kevin Stumpe, c/o Kirlana Consulting Ltd.
 
-{{FIRMENNAME / INHABER}}  
-{{RECHTSFORM}}  
-{{LADUNGSFÄHIGE ANSCHRIFT}}  
-{{PLZ ORT LAND}}
+Die Quelldatei nennt an einer Stelle `info@bedifferentbebetter.com`, sonst überwiegend `info@be-different.shop`. Im Projekt wird zur Konsistenz `info@be-different.shop` verwendet. Das muss vor Livegang bestätigt werden.
 
-Vertreten durch: {{VERTRETUNGSBERECHTIGTE PERSON}}  
-E-Mail: {{E-MAIL}}  
-Telefon: {{TELEFON}}  
+## Umgesetzte Rechteseiten
 
-Umsatzsteuer-ID: {{UST-ID FALLS VORHANDEN}}  
-Wirtschafts-ID: {{WIRTSCHAFTS-ID FALLS VORHANDEN}}  
-Register: {{REGISTERGERICHT UND REGISTERNUMMER FALLS VORHANDEN}}
+Die React-Vorschau enthält aktuell:
 
-Verantwortlich für Inhalte: {{NAME UND ANSCHRIFT}}
+- Impressum nach § 5 DDG
+- Datenschutzerklärung nach Art. 13/14 DSGVO und § 25 TDDDG
+- AGB
+- Widerrufsbelehrung und Muster-Widerrufsformular
+- Versand-, Zahlungs- und Retoureninformationen
+- Informationen zur Barrierefreiheit
+- stets erreichbaren Link „Vertrag widerrufen“
+- granulare Cookie-Einstellungen mit gleichwertiger Ablehnung
 
-Online-Streitbeilegung / Verbraucherstreitbeilegung:  
-{{HINWEIS ZU OS-PLATTFORM / VERBRAUCHERSTREITBEILEGUNG AKTUELL PRÜFEN}}
+Die frühere EU-OS-Plattform wurde entfernt. Die zugrundeliegende EU-Verordnung wurde mit Wirkung zum 20. Juli 2025 aufgehoben.
 
-## Datenschutzerklärung
+## Online-Widerruf ab 2026
 
-**1. Verantwortlicher**
+Für über eine Online-Benutzeroberfläche geschlossene Fernabsatzverträge sieht § 356a BGB eine hervorgehobene, ständig zugängliche Funktion „Vertrag widerrufen“ und anschließend „Widerruf bestätigen“ vor. Die Funktion muss Name, Vertragsidentifikation und elektronischen Bestätigungskanal erfassen. Nach Übermittlung ist unverzüglich eine Bestätigung auf einem dauerhaften Datenträger mit Inhalt, Datum und Uhrzeit zu senden.
 
-Verantwortlich für die Datenverarbeitung in diesem Shop ist:
+Umsetzung im Projekt:
 
-{{FIRMENNAME / INHABER}}  
-{{ADRESSE}}  
-{{E-MAIL}}  
-{{TELEFON}}
+- React: Formular auf `#/widerruf`; produktive Übermittlung über `VITE_WITHDRAWAL_ENDPOINT`. Ohne Endpoint öffnet die Vorschau ausdrücklich nur einen E-Mail-Entwurf und behauptet keinen erfolgreichen Eingang.
+- WordPress: REST-Endpunkt `be-different/v1/withdrawal`, private Speicherung, Admin-E-Mail und Eingangsbestätigung an den Verbraucher.
+- WordPress-Shortcode für die Seite „Widerruf“: `[bd_withdrawal]`
 
-Datenschutzkontakt: {{DATENSCHUTZKONTAKT}}
+Vor Livegang testen:
 
-**2. Verarbeitete Daten**
+- erfolgreiche Speicherung und E-Mail-Zustellung
+- korrekte Zeitzone, Datum und Uhrzeit
+- Fehlerfall und alternative Kontaktmöglichkeit
+- Schutz vor Spam und Missbrauch
+- definierte Aufbewahrungs- und Löschfrist für Widerrufsdatensätze
 
-Wir verarbeiten personenbezogene Daten, wenn du den Shop besuchst, Produkte kaufst, ein Kundenkonto nutzt, uns kontaktierst, den Newsletter abonnierst oder Tracking/Marketing einwilligst.
+## Datenschutzkonfiguration
 
-Betroffene Daten können sein:
+Bekannte Empfänger bzw. Systeme:
 
-- Kontaktdaten: Name, Adresse, E-Mail, Telefonnummer
-- Bestelldaten: Produkte, Größen, Farben, Preise, Gutscheine, Warenkorb
-- Zahlungsdaten: abhängig vom Zahlungsanbieter
-- Versanddaten: Lieferadresse, Sendungsstatus
-- Kommunikationsdaten: Support-Anfragen, E-Mail-Verlauf
-- technische Daten: IP-Adresse, Browser, Gerät, Consent-Status, Logfiles
-- Marketingdaten: Newsletter-Einwilligung, Kampagnen- und Pixel-Events nur nach Consent
+- Hosting: ALL-INKL.COM – Neue Medien Münnich
+- Shop: WordPress/WooCommerce
+- Zahlung: Stripe und Klarna; Apple Pay/Google Pay soweit über den Zahlungsdienst verfügbar
+- Fulfillment: Shirtigo GmbH
+- Versand: je nach Bestellung DHL, DPD oder GLS
 
-**3. Zwecke und Rechtsgrundlagen**
+Vor Aktivierung zwingend vervollständigen:
 
-- Bestellabwicklung und Vertragserfüllung: Art. 6 Abs. 1 lit. b DSGVO
-- Zahlung und Betrugsprävention: Art. 6 Abs. 1 lit. b und f DSGVO
-- Versand und Fulfillment: Art. 6 Abs. 1 lit. b DSGVO
-- Buchhaltung und gesetzliche Aufbewahrung: Art. 6 Abs. 1 lit. c DSGVO
-- Kundenservice: Art. 6 Abs. 1 lit. b oder f DSGVO
-- Newsletter: Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO
-- Analyse/Marketing/Pixel: Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO
+- Newsletter-Anbieter und Double-Opt-in-Prozess
+- genaue Gesellschaft des jeweiligen Zahlungsdienstes aus dem Händlervertrag
+- Cookie-/Consent-Lösung samt vollständiger Liste aller Cookies, Speicherfristen und Anbieter
+- tatsächlich aktive Analyse-, Marketing-, Chat-, Karten-, Video- und Social-Media-Dienste
+- mögliche Drittlandübermittlungen, Transfergrundlage und ergänzende Schutzmaßnahmen
+- Auftragsverarbeitungsverträge nach Art. 28 DSGVO
+- Verzeichnis von Verarbeitungstätigkeiten, Löschkonzept, TOM, Berechtigungskonzept und Datenschutzvorfall-Prozess
+- WooCommerce- und WordPress-Datenschutzexport/-löschung, Backups und Aufbewahrungsfristen
 
-**4. Dienstleister**
+Optionale Scripts dürfen technisch erst nach Einwilligung geladen werden. Das WordPress-Theme speichert die Auswahl lokal und sendet das Ereignis `bd:consent`; Analyse- oder Marketing-Code muss dieses Signal respektieren. Die bloße Anzeige eines Banners ohne technische Blockierung genügt nicht.
 
-Folgende Dienstleister sind vor Livegang konkret einzutragen:
+## Checkout- und Preisprüfung
 
-- Hosting: {{HOSTING-ANBIETER}}
-- Shop-System: WordPress / WooCommerce
-- Zahlung: {{STRIPE / PAYPAL / KLARNA / WOO PAYMENTS}}
-- Versand/Fulfillment: {{POD-ANBIETER / VERSANDDIENSTLEISTER}}
-- Newsletter: {{MAILPOET / BREVO / KLAVIYO}}
-- Analyse/Marketing: {{GA4 / META PIXEL / TIKTOK PIXEL}}
+Vor Abgabe der Bestellung müssen insbesondere eindeutig sichtbar sein:
 
-**5. Cookies und Consent**
+- wesentliche Produkteigenschaften und ausgewählte Varianten
+- Gesamtpreis einschließlich Steuern
+- konkrete Versandkosten und Lieferzeit
+- Zahlungsart
+- klare Korrekturmöglichkeit
+- AGB und Widerrufsbelehrung in speicherbarer Form
+- Button „zahlungspflichtig bestellen“ oder gleichbedeutend eindeutige Formulierung
 
-Technisch notwendige Cookies werden für Warenkorb, Checkout, Login, Sicherheit und Consent-Status eingesetzt. Analyse- und Marketing-Cookies werden erst nach aktiver Einwilligung gesetzt.
+Bei einer angekündigten Preisermäßigung ist der niedrigste Gesamtpreis der letzten 30 Tage anzugeben. Die Beispielwerte in `src/data/products.ts` sind als `lowestPrice30Days` modelliert, müssen aber aus echten Preisdaten gespeist und vor Veröffentlichung verifiziert werden.
 
-Consent-Tool: {{CONSENT-MANAGEMENT-TOOL}}  
-Consent-Protokollierung: {{JA / NEIN / TOOL}}
+## Produktrecht für Textilien
 
-**6. Speicherdauer**
+Für jedes Produktangebot müssen mindestens geprüft und gepflegt werden:
 
-Personenbezogene Daten werden nur so lange gespeichert, wie es für Bestellung, Support, gesetzliche Pflichten oder berechtigte Interessen erforderlich ist. Steuer- und handelsrechtliche Aufbewahrungsfristen sind vor Livegang zu ergänzen.
-
-**7. Rechte der betroffenen Personen**
-
-Du hast je nach Voraussetzung Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch und Widerruf erteilter Einwilligungen. Außerdem besteht ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde.
-
-## AGB
-
-**1. Geltungsbereich**
-
-Diese AGB gelten für alle Bestellungen über den Online-Shop von {{FIRMENNAME}}.
-
-**2. Vertragspartner**
-
-Der Kaufvertrag kommt zustande mit {{FIRMENNAME / INHABER}}, {{ADRESSE}}.
-
-**3. Produkte und Verfügbarkeit**
-
-be-different verkauft Statement-Fashion, Print-on-Demand-Produkte, Limited Runs und gegebenenfalls Stock-Produkte. Produktbilder können je nach Bildschirmdarstellung leicht abweichen.
-
-**4. Vertragsschluss**
-
-Die Darstellung der Produkte im Shop ist kein rechtlich bindendes Angebot. Mit Klick auf den finalen Kaufbutton gibst du ein verbindliches Angebot ab. Die Annahme erfolgt durch Bestellbestätigung oder Versandbestätigung. Exakte WooCommerce-Texte vor Launch mit Checkout-Button und Bestellmail abgleichen.
-
-**5. Preise, Steuern, Versand**
-
-Alle Preise verstehen sich {{INKL. UMSATZSTEUER / KLEINUNTERNEHMER-HINWEIS}} zuzüglich Versandkosten, sofern nicht anders angegeben. Versandkosten werden vor Abschluss der Bestellung angezeigt.
-
-**6. Zahlung**
-
-Akzeptierte Zahlungsarten: {{ZAHLUNGSARTEN}}. Die Zahlungsabwicklung erfolgt über die jeweils eingebundenen Zahlungsdienstleister.
-
-**7. Lieferung**
-
-Liefergebiet: {{LIEFERGEBIETE}}  
-Lieferzeit POD-Produkte: {{LIEFERZEIT POD}}  
-Lieferzeit Stock-Produkte: {{LIEFERZEIT STOCK}}
-
-**8. Print-on-Demand und Individualisierung**
-
-Produkte können erst nach Bestellung produziert werden. Für personalisierte oder nach Kundenspezifikation gefertigte Produkte muss vor Livegang geprüft werden, ob und wie das Widerrufsrecht eingeschränkt ist.
-
-**9. Gewährleistung**
-
-Es gilt das gesetzliche Mängelhaftungsrecht.
-
-## Widerrufsbelehrung
-
-**Widerrufsrecht**
-
-Verbraucher haben grundsätzlich das Recht, binnen {{WIDERRUFSFRIST}} Tagen ohne Angabe von Gründen den Vertrag zu widerrufen. Die Frist beginnt {{FRISTBEGINN KONKRET EINTRAGEN}}.
-
-Um dein Widerrufsrecht auszuüben, musst du uns unter:
-
-{{FIRMENNAME}}  
-{{WIDERRUFSADRESSE}}  
-{{E-MAIL}}  
-{{TELEFON OPTIONAL}}
-
-mittels einer eindeutigen Erklärung über deinen Entschluss informieren.
-
-**Folgen des Widerrufs**
-
-Wenn du widerrufst, erstatten wir dir alle erhaltenen Zahlungen einschließlich der Lieferkosten nach den gesetzlichen Vorgaben. Details zu Rückzahlungsmethode, Fristen und Rücksendekosten müssen vor Launch final eingetragen werden.
-
-**Rücksendekosten**
-
-{{REGELUNG RÜCKSENDEKOSTEN}}
-
-**Ausnahmen**
-
-{{REGELUNG FÜR PERSONALISIERTE / INDIVIDUELL ANGEFERTIGTE PRODUKTE}}
-
-## Muster-Widerrufsformular
-
-An:  
-{{FIRMENNAME}}  
-{{ADRESSE}}  
-{{E-MAIL}}
-
-Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über den Kauf der folgenden Waren:
-
-{{WAREN / BESTELLNUMMER}}  
-Bestellt am: {{DATUM}}  
-Erhalten am: {{DATUM}}  
-Name: {{KUNDENNAME}}  
-Anschrift: {{KUNDENANSCHRIFT}}  
-Datum: {{DATUM}}
-
-## Versand & Rückgabe
-
-Versandkosten Deutschland: {{VERSANDKOSTEN DE}}  
-Versandkosten EU: {{VERSANDKOSTEN EU}}  
-Kostenloser Versand ab: {{SCHWELLE}}  
-Lieferzeit POD: {{LIEFERZEIT POD}}  
-Lieferzeit Stock: {{LIEFERZEIT STOCK}}  
-Versanddienstleister: {{DHL / DPD / HERMES / ANDERE}}  
-Rücksendeadresse: {{RÜCKSENDEADRESSE}}  
-Support: {{SUPPORT-E-MAIL}}
-
-## Checkout-Hinweise
-
-Direkt vor dem Kauf sichtbar machen:
-
-- Produktname, Variante, Größe, Farbe, Menge
-- Gesamtpreis inklusive Steuern oder korrekter Kleinunternehmer-Hinweis
-- Versandkosten und Lieferzeit
-- Zahlungsarten
-- Link zu AGB
-- Link zu Widerruf
-- Link zu Datenschutz
-- Buttontext eindeutig: „Zahlungspflichtig bestellen“
-
-## Quellen für Prüfung
-
-- DDG § 5 Allgemeine Informationspflichten: https://www.gesetze-im-internet.de/ddg/
-- EGBGB Art. 246a § 1 Informationspflichten im Fernabsatz: https://www.gesetze-im-internet.de/bgbeg/art_246a__1.html
-- DSGVO Art. 13 Informationspflichten: https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=uriserv%3AOJ.L_.2016.119.01.0001.01.DEU
+- Herstellername, Post- und E-Mail-Adresse
+- bei Hersteller außerhalb der EU zusätzlich die verantwortliche Person in der EU
+- Produktbild, Typ und eindeutige Produktkennung/SKU
+- erforderliche Warn- und Sicherheitsinformationen in verständlicher Sprache
+- Textilfaserzusammensetzung nach Textilkennzeichnungsrecht
+- Pflegehinweise und produktspezifische Risiken
+- Rückverfolgbarkeit, technische Dokumentation und Verfahren für Sicherheitsmeldungen/Rückrufe
+- Registrierungs- und Systembeteiligungspflichten nach Verpackungsgesetz, einschließlich LUCID, soweit anwendbar
+
+Die Vorschau zeigt den bekannten EU-Wirtschaftsakteur, Kontakt, Produktkennung und Material. Ob Kirlana Consulting Ltd. rechtlich Hersteller, Händler oder ein anderer Wirtschaftsakteur ist, muss anhand der Liefer- und Markenverträge mit Shirtigo final bestätigt werden.
+
+## Barrierefreiheit
+
+Seit 28. Juni 2025 fallen Dienstleistungen im elektronischen Geschäftsverkehr grundsätzlich unter das BFSG. Kleinstunternehmen, die Dienstleistungen anbieten, sind nach § 3 Abs. 3 BFSG ausgenommen, wenn die gesetzlichen Schwellen tatsächlich erfüllt sind. Die Ausnahme sollte dokumentiert statt nur vermutet werden.
+
+Auch bei einer möglichen Ausnahme empfiehlt sich vor Livegang:
+
+- Tastaturnavigation und sichtbare Fokuszustände
+- Screenreader-Test von Navigation, Produktvarianten, Warenkorb und Checkout
+- Prüfung bei 200 bis 400 Prozent Zoom und auf kleinen Displays
+- Kontrastprüfung
+- verständliche Labels, Fehlermeldungen und Statusmeldungen
+- Textalternativen und korrekte Überschriftenstruktur
+- Prüfung externer Zahlungsdialoge und WooCommerce-Plugins
+- aktuelle zuständige Marktüberwachungsbehörde auf der Barrierefreiheitsseite
+
+## Noch zu bestätigende Geschäftsentscheidungen
+
+- Ist Kathrin Rölker die aktuell vertretungsberechtigte Person?
+- Ist Thomas Rölker förmlich als Datenschutzbeauftragter bestellt und sind seine direkten Kontaktdaten zu veröffentlichen?
+- Ist `info@be-different.shop` die verbindliche Datenschutz-, Support- und Widerrufsadresse?
+- Bleibt die Erklärung bestehen, nicht an Verbraucherschlichtung teilzunehmen?
+- Welche EU-Länder werden tatsächlich beliefert und welche Kosten gelten je Land?
+- Trägt der Verbraucher nur die unmittelbaren tatsächlichen Rücksendekosten? Eine pauschale Formulierung „Rücksendekosten 5,25 €“ wurde bewusst nicht übernommen.
+- Welche Zahlungsarten sind am Launch-Tag wirklich aktiv?
+- Werden personalisierte Produkte angeboten? Print-on-Demand allein ist keine Personalisierung und schließt den Widerruf nicht automatisch aus.
+- Erfüllt Kirlana Consulting Ltd. die BFSG-Kleinstunternehmensschwelle oder wird volle Konformität erklärt?
+
+## Amtliche Kernquellen
+
+- § 5 DDG: https://www.gesetze-im-internet.de/ddg/__5.html
+- § 25 TDDDG: https://www.gesetze-im-internet.de/ttdsg/__25.html
+- DSGVO: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+- § 356a BGB: https://www.gesetze-im-internet.de/bgb/__356a.html
+- Amtliches Muster der Widerrufsbelehrung: https://www.gesetze-im-internet.de/bgbeg/art_253anlage_1.html
+- Amtliches Muster-Widerrufsformular: https://www.gesetze-im-internet.de/bgbeg/art_253anlage_2.html
+- § 36 VSBG: https://www.gesetze-im-internet.de/vsbg/__36.html
+- Preisangabenverordnung: https://www.gesetze-im-internet.de/pangv_2022/
+- BFSG § 3 und § 14: https://www.gesetze-im-internet.de/bfsg/__3.html und https://www.gesetze-im-internet.de/bfsg/__14.html
+- BFSG Anlage 3: https://www.gesetze-im-internet.de/bfsg/anlage_3.html
+- GPSR, insbesondere Art. 19: https://eur-lex.europa.eu/eli/reg/2023/988/oj
+- Aufhebung der EU-OS-Plattform: https://eur-lex.europa.eu/eli/reg/2024/3228/oj
+- Datenschutzaufsicht Zypern: https://www.dataprotection.gov.cy/dataprotection/dataprotection.nsf/contact_en/contact_en

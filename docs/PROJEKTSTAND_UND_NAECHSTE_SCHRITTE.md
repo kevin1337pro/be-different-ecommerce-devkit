@@ -1,6 +1,6 @@
 # Projektstand und nächste Schritte
 
-Stand: 18.05.2026
+Stand: 29.08.2026
 
 ## Was vorhanden ist
 
@@ -21,7 +21,11 @@ Stand: 18.05.2026
   - Checkout-Skeleton
   - SEO-Basics für Live-Preview
   - FAQ
-  - DSGVO-/Rechtstext-Hub mit ausfüllbaren Launch-Vorlagen
+  - DSGVO-/Rechtstext-Hub mit konkreten Firmendaten und Rechtsstand 29.08.2026
+  - Consent-Auswahl mit gleichwertiger Ablehnung und jederzeitiger Änderung
+  - Online-Widerruf nach § 356a BGB
+  - GPSR-Angaben und 30-Tage-Preis-Kennzeichnung als Datenmodell
+  - BFSG-Informationsseite und Fokuszustände
   - WooCommerce-Systemsektion
 - WordPress/WooCommerce Theme-Scaffold:
   - `wordpress/wp-content/themes/be-different`
@@ -33,6 +37,9 @@ Stand: 18.05.2026
   - WooCommerce Wrapper
   - eigene Cart-/Checkout-Seitentemplates
   - Theme CSS/JS
+  - neues Different-Mind-Logo
+  - Widerrufs-REST-Endpunkt, private Speicherung, E-Mail-Bestätigung und Shortcode `[bd_withdrawal]`
+  - Consent-Oberfläche mit `bd:consent`-Event für nachgelagerte optionale Scripts
 - GitHub Pages Live-Preview über Branch `gh-pages`
 
 ## Was live geht
@@ -58,13 +65,16 @@ Das ist eine visuelle und conversion-fokussierte Vorschau, aber kein echter WooC
    - PayPal
    - Klarna optional
 8. Versandzonen, Steuern und MwSt.-Anzeige einrichten.
-9. Rechtstexte:
+9. Rechtstexte und Prozesse:
    - Impressum
    - Datenschutz
    - AGB
    - Widerruf
    - Versand & Rückgabe
    - Cookie Consent
+   - Online-Widerruf samt Zustelltest
+   - Produktsicherheit/GPSR und Textilkennzeichnung
+   - Barrierefreiheit/BFSG oder dokumentierte Kleinstunternehmensausnahme
 10. Tracking:
     - GA4
     - Meta Pixel
@@ -85,3 +95,4 @@ Rechtstext- und DSGVO-Vorlagen stehen in `docs/RECHTSTEXTE_DSGVO_VORLAGEN.md`.
 - Mobile Checkout vor Desktop testen.
 - Bilder vor Livegang als WebP/AVIF optimieren.
 - GitHub Pages ersetzt kein WordPress Hosting.
+- Alle Punkte unter „Noch zu bestätigende Geschäftsentscheidungen“ in `docs/RECHTSTEXTE_DSGVO_VORLAGEN.md` vor Veröffentlichung beantworten.

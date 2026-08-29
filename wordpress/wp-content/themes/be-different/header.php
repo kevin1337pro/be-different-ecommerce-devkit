@@ -32,7 +32,9 @@
 </div>
 <header class="bd-header">
     <a class="bd-brand" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
-        <span>be</span><strong>different</strong>
+        <span class="bd-brand-logo-crop">
+            <img src="<?php echo bd_asset('images/brand/different-mind-logo.png'); ?>" alt="Different Mind">
+        </span>
     </a>
 
     <nav class="bd-nav" aria-label="<?php esc_attr_e('Hauptnavigation', 'be-different'); ?>">

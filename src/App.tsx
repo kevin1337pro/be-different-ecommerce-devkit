@@ -2,20 +2,21 @@ import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   ArrowUp,
   BadgePercent,
+  Camera,
   Check,
   ChevronRight,
   CreditCard,
   Eye,
-  Facebook,
   Flame,
   Heart,
-  Instagram,
   LockKeyhole,
   Menu,
+  MessageCircle,
   Minus,
   Music2,
   PackageCheck,
   Plus,
+  Play,
   Radio,
   RotateCcw,
   ShieldCheck,
@@ -25,10 +26,9 @@ import {
   Star,
   Trash2,
   Truck,
-  Twitter,
   X,
   Zap,
-  Youtube,
+  Users,
 } from 'lucide-react';
 import {
   brandDropImage,
@@ -47,6 +47,7 @@ import {
   shopStack,
 } from './data/products';
 import earlyAccessImage from '../assets/image_pop_up_1.png';
+import differentMindLogo from './assets/different-mind-logo.png';
 
 const categories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops'] as const;
 const shopCategories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops', 'Shadow Drop'] as const;
@@ -101,11 +102,11 @@ const heroSlides = [
   },
 ];
 const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/', Icon: Instagram },
+  { label: 'Instagram', href: 'https://www.instagram.com/', Icon: Camera },
   { label: 'TikTok', href: 'https://www.tiktok.com/', Icon: Music2 },
-  { label: 'YouTube', href: 'https://www.youtube.com/', Icon: Youtube },
-  { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Facebook },
-  { label: 'X', href: 'https://x.com/', Icon: Twitter },
+  { label: 'YouTube', href: 'https://www.youtube.com/', Icon: Play },
+  { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Users },
+  { label: 'X', href: 'https://x.com/', Icon: MessageCircle },
 ];
 const legalPages = [
   {
@@ -113,45 +114,40 @@ const legalPages = [
     label: 'Impressum',
     kicker: 'Pflichtangaben nach § 5 DDG',
     title: 'Impressum',
-    intro:
-      'Dieses Impressum ist als vollständige Launch-Vorlage vorbereitet. Vor Veröffentlichung müssen alle Platzhalter durch echte Unternehmensdaten ersetzt werden.',
+    intro: 'Anbieterkennzeichnung für den Online-Shop be-different. Stand: 29. August 2026.',
     blocks: [
       {
-        title: 'Anbieter',
+        title: 'Anbieter und Vertragspartner',
         items: [
-          '{{FIRMENNAME / SHOP-BETREIBER}}',
-          '{{RECHTSFORM, Z. B. Einzelunternehmen / UG / GmbH}}',
-          '{{VERTRETUNGSBERECHTIGTE PERSON}}',
-          '{{LADUNGSFÄHIGE STRASSE UND HAUSNUMMER}}',
-          '{{PLZ ORT, LAND}}',
+          'Kirlana Consulting Ltd. (Limited Company)',
+          'Vertreten durch: Kathrin Rölker',
+          '26 Anthipolochagou Georgiou M. Savva, Shop 1–2, 8201 Paphos, Cyprus',
         ],
       },
       {
         title: 'Kontakt',
-        items: ['E-Mail: {{E-MAIL}}', 'Telefon: {{TELEFON}}', 'Kontaktformular: {{LINK ZUM KONTAKTFORMULAR}}'],
+        items: ['E-Mail: info@be-different.shop', 'Telefon: +49 1520 6677415'],
       },
       {
-        title: 'Register / Steuern',
+        title: 'Register und Umsatzsteuer',
         items: [
-          'Registergericht: {{REGISTERGERICHT, FALLS VORHANDEN}}',
-          'Registernummer: {{REGISTERNUMMER, FALLS VORHANDEN}}',
-          'Umsatzsteuer-ID: {{UST-ID, FALLS VORHANDEN}}',
-          'Wirtschafts-ID: {{W-IDD, FALLS VORHANDEN}}',
-          'Kleinunternehmerhinweis: {{NUR FALLS § 19 USTG ZUTRIFFT}}',
+          'Registergericht: Nicosia, Cyprus',
+          'Registernummer: HE 481328',
+          'Umsatzsteuer-Identifikationsnummer: CY60229531E',
         ],
       },
       {
-        title: 'Verantwortlich für Inhalte',
+        title: 'Redaktionell verantwortlich',
         items: [
-          '{{NAME DER VERANTWORTLICHEN PERSON}}',
-          '{{ANSCHRIFT WIE OBEN ODER ABWEICHENDE REDAKTIONSANSCHRIFT}}',
+          'Soweit journalistisch-redaktionelle Inhalte angeboten werden: Kevin Stumpe',
+          'c/o Kirlana Consulting Ltd., Anschrift wie oben',
         ],
       },
       {
-        title: 'EU-Streitbeilegung / Verbraucherstreitbeilegung',
+        title: 'Verbraucherstreitbeilegung',
         items: [
-          'Plattform der EU-Kommission zur Online-Streitbeilegung: https://ec.europa.eu/consumers/odr/',
-          'Wir sind {{BEREIT / NICHT BEREIT}} und {{VERPFLICHTET / NICHT VERPFLICHTET}}, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+          'Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+          'Die frühere EU-Plattform zur Online-Streitbeilegung wurde am 20. Juli 2025 eingestellt; ein OS-Link wird deshalb nicht mehr geführt.',
         ],
       },
     ],
@@ -159,70 +155,78 @@ const legalPages = [
   {
     slug: 'datenschutz',
     label: 'Datenschutz',
-    kicker: 'DSGVO-Informationspflichten',
+    kicker: 'DSGVO + TDDDG',
     title: 'Datenschutzerklärung',
-    intro:
-      'Diese Datenschutzerklärung beschreibt die geplanten Datenverarbeitungen für den be-different Shop. Toolnamen, Anbieter und Rechtsgrundlagen müssen vor Livegang final geprüft werden.',
+    intro: 'Informationen nach Art. 13 und 14 DSGVO. Stand: 29. August 2026.',
     blocks: [
       {
-        title: 'Verantwortlicher',
+        title: '1. Verantwortlicher',
         items: [
-          '{{FIRMENNAME / SHOP-BETREIBER}}',
-          '{{ANSCHRIFT}}',
-          'E-Mail: {{DATENSCHUTZ-KONTAKT}}',
-          'Datenschutzbeauftragter: {{ANGABE, FALLS ERFORDERLICH}}',
+          'Kirlana Consulting Ltd., 26 Anthipolochagou Georgiou M. Savva, Shop 1–2, 8201 Paphos, Cyprus',
+          'E-Mail: info@be-different.shop',
+          'Datenschutzbeauftragter: Thomas Rölker',
         ],
       },
       {
-        title: 'Hosting und technische Bereitstellung',
+        title: '2. Hosting und Logfiles',
         items: [
-          'Hosting-Anbieter: {{HOSTING-ANBIETER}}',
-          'Verarbeitete Daten: IP-Adresse, Logfiles, Browserdaten, Zeitpunkt des Aufrufs, technische Fehlermeldungen.',
-          'Zweck: sichere Bereitstellung, Stabilität, Missbrauchserkennung.',
-          'Speicherdauer: {{LOGFILE-SPEICHERDAUER}}.',
+          'Hosting-Anbieter: ALL-INKL.COM – Neue Medien Münnich, Deutschland.',
+          'Verarbeitet werden insbesondere IP-Adresse, Datum, aufgerufene URL, Referrer, Browser-/Geräteinformationen und Fehlermeldungen.',
+          'Zwecke: Auslieferung, Systemsicherheit, Fehleranalyse und Missbrauchserkennung; Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.',
+          'Server-Logfiles werden regelmäßig nach 14 Tagen gelöscht, sofern kein Sicherheitsvorfall eine längere Aufbewahrung erfordert.',
         ],
       },
       {
-        title: 'Bestellungen und Kundenkonto',
+        title: '3. Bestellungen, Konto und Support',
         items: [
-          'Verarbeitete Daten: Name, Rechnungs- und Lieferadresse, E-Mail, Bestellinhalt, Zahlungsstatus, Supportkommunikation.',
-          'Zweck: Vertragsabwicklung, Lieferung, Rechnungsstellung, Kundenservice und gesetzliche Aufbewahrungspflichten.',
-          'System: WooCommerce / WordPress.',
+          'Daten: Name, Rechnungs- und Lieferadresse, Kontaktdaten, Warenkorb, Bestellung, Zahlungsstatus, Retouren und Kommunikation.',
+          'Vertragsabwicklung erfolgt nach Art. 6 Abs. 1 lit. b DSGVO; gesetzliche Aufbewahrung nach lit. c; Missbrauchsabwehr nach lit. f.',
+          'Shop-System: WordPress/WooCommerce. Ohne erforderliche Pflichtdaten ist eine Bestellung nicht möglich.',
+          'Steuer- und handelsrechtlich relevante Daten werden entsprechend der gesetzlichen Fristen aufbewahrt und danach gelöscht oder gesperrt.',
         ],
       },
       {
-        title: 'Zahlung, Versand und Fulfillment',
+        title: '4. Zahlung, Versand und Fulfillment',
         items: [
-          'Zahlungsanbieter: {{STRIPE / PAYPAL / KLARNA / WEITERE}}.',
-          'Versanddienstleister: {{DHL / DPD / GLS / WEITERE}}.',
-          'Print-on-Demand / Fulfillment: {{ANBIETER, FALLS EINGESETZT}}.',
-          'Daten werden nur übermittelt, soweit dies für Zahlung, Produktion und Versand erforderlich ist.',
+          'Aktive Zahlungsdienste: Stripe und Klarna; Apple Pay und Google Pay können über den gewählten Zahlungsdienst angeboten werden.',
+          'Zahlungsdaten verarbeitet der Zahlungsdienst direkt. Wir erhalten regelmäßig nur Status-, Identifikations- und Abrechnungsdaten, keine vollständigen Kartendaten.',
+          'Versand kann über DHL, DPD oder GLS erfolgen; Print-on-Demand und Fulfillment erfolgen über Shirtigo GmbH.',
+          'Die Übermittlung ist auf Zahlung, Produktion, Lieferung, Betrugsprävention und Rückabwicklung beschränkt; Art. 6 Abs. 1 lit. b, c oder f DSGVO.',
         ],
       },
       {
-        title: 'Newsletter, Early Access und Kooperationen',
+        title: '5. Kontakt, Kooperationen und Newsletter',
         items: [
-          'Newsletter nur nach aktiver Einwilligung und Double-Opt-in.',
-          'Abmeldung jederzeit über Abmeldelink oder Nachricht an {{E-MAIL}} möglich.',
-          'Bewerbungsdaten aus “Arbeite mit uns zusammen” werden nur zur Prüfung einer Kooperation verarbeitet.',
-          'Newsletter-Tool: {{MAILCHIMP / KLAVIYO / BREVO / WOO NEWSLETTER TOOL}}.',
+          'Anfragen und Bewerbungen werden zur Bearbeitung nach Art. 6 Abs. 1 lit. b oder f DSGVO verarbeitet und anschließend gelöscht, soweit keine Pflicht oder Einwilligung fortbesteht.',
+          'Newsletter und Early Access werden nur mit Einwilligung und Double-Opt-in nach Art. 6 Abs. 1 lit. a DSGVO versendet; Widerruf ist jederzeit möglich.',
+          'Einwilligungsnachweise können zur Rechtsverteidigung nach Art. 6 Abs. 1 lit. f DSGVO gespeichert werden.',
+          'Vor Aktivierung ist der ausgewählte Newsletter-Dienst einschließlich möglicher Drittlandübermittlung in dieser Erklärung zu ergänzen.',
         ],
       },
       {
-        title: 'Cookies, Consent, Analyse und Marketing',
+        title: '6. Cookies und Consent',
         items: [
-          'Technisch notwendige Cookies werden für Warenkorb, Checkout, Sicherheit und Spracheinstellungen genutzt.',
-          'Analyse- und Marketingtools wie GA4, Meta Pixel oder TikTok Pixel werden erst nach Einwilligung aktiviert.',
-          'Consent-Tool: {{COOKIE-CONSENT-ANBIETER}}.',
-          'Widerruf der Einwilligung jederzeit über {{COOKIE-EINSTELLUNGEN-LINK}} möglich.',
+          'Unbedingt erforderliche Speicherungen sichern Warenkorb, Checkout, Sicherheit und die Consent-Auswahl; § 25 Abs. 2 TDDDG.',
+          'Optionale Analyse-, Marketing- oder externe Mediendienste werden nur nach Einwilligung gemäß § 25 Abs. 1 TDDDG und Art. 6 Abs. 1 lit. a DSGVO geladen.',
+          'Die Auswahl ist freiwillig, granular und jederzeit über „Cookie-Einstellungen“ im Footer änderbar. Ablehnen ist ebenso einfach wie Zustimmen.',
+          'Diese Vorschau lädt keine Analyse- oder Marketing-Skripte. Im Live-Shop müssen alle tatsächlich eingesetzten Dienste und Laufzeiten dokumentiert werden.',
         ],
       },
       {
-        title: 'Betroffenenrechte',
+        title: '7. Empfänger und Drittländer',
         items: [
-          'Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch und Widerruf erteilter Einwilligungen.',
-          'Beschwerderecht bei einer Datenschutzaufsichtsbehörde.',
-          'Kontakt für Datenschutzanfragen: {{DATENSCHUTZ-E-MAIL}}.',
+          'Empfänger können Hosting-, IT-, Zahlungs-, Fulfillment-, Versand-, Kommunikations-, Steuer- und Rechtsdienstleister sein, jeweils nur im erforderlichen Umfang.',
+          'Auftragsverarbeiter werden – soweit erforderlich – nach Art. 28 DSGVO verpflichtet.',
+          'Übermittlungen außerhalb des EWR erfolgen nur bei Angemessenheitsbeschluss, geeigneten Garantien nach Art. 46 DSGVO oder einer anwendbaren Ausnahme.',
+        ],
+      },
+      {
+        title: '8. Ihre Rechte',
+        items: [
+          'Sie haben nach Maßgabe der DSGVO Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch. Einwilligungen können jederzeit mit Wirkung für die Zukunft widerrufen werden.',
+          'Direktwerbung können Sie jederzeit ohne Begründung widersprechen. Datenschutzanfragen richten Sie an info@be-different.shop.',
+          'Beschwerden können insbesondere an das Office of the Commissioner for Personal Data Protection, Kypranoros 15, 1061 Nicosia, Cyprus, commissioner@dataprotection.gov.cy, gerichtet werden.',
+          'Automatisierte Entscheidungen mit rechtlicher oder ähnlich erheblicher Wirkung finden derzeit nicht statt.',
         ],
       },
     ],
@@ -232,64 +236,70 @@ const legalPages = [
     label: 'AGB',
     kicker: 'Allgemeine Geschäftsbedingungen',
     title: 'AGB für den be-different Online-Shop',
-    intro:
-      'Diese AGB-Vorlage ist auf einen deutschen WooCommerce-Shop mit Standardprodukten, Limited Runs und optional Print-on-Demand vorbereitet.',
+    intro: 'AGB der Kirlana Consulting Ltd. für Bestellungen über be-different.shop. Stand: 29. August 2026.',
     blocks: [
       {
         title: '1. Geltungsbereich',
         items: [
-          'Diese AGB gelten für alle Bestellungen über den Online-Shop {{SHOP-DOMAIN}} durch Verbraucher und Unternehmer.',
-          'Abweichende Bedingungen von Kunden gelten nur, wenn wir ihrer Geltung ausdrücklich zustimmen.',
+          'Diese AGB gelten für Bestellungen über https://be-different.shop/ durch Verbraucher und Unternehmer.',
+          'Vertragspartner ist Kirlana Consulting Ltd., Anschrift wie im Impressum.',
+          'Abweichende Kundenbedingungen gelten nur nach ausdrücklicher Zustimmung.',
         ],
       },
       {
-        title: '2. Vertragspartner und Vertragsschluss',
+        title: '2. Vertragsschluss',
         items: [
-          'Vertragspartner ist {{FIRMENNAME / SHOP-BETREIBER}}.',
-          'Die Produktdarstellung ist kein rechtlich bindendes Angebot, sondern eine Aufforderung zur Bestellung.',
-          'Durch Klick auf den finalen Kaufen-Button gibt der Kunde ein verbindliches Angebot ab.',
-          'Der Vertrag kommt zustande durch Bestellbestätigung per E-Mail oder Versand der Ware.',
+          'Produktdarstellungen sind kein bindendes Angebot. Eingaben können vor Abgabe im Warenkorb und Checkout geprüft und korrigiert werden.',
+          'Mit Klick auf „zahlungspflichtig bestellen“ gibt der Kunde ein verbindliches Angebot ab.',
+          'Der Vertrag kommt mit ausdrücklicher Auftragsbestätigung oder Versand der Ware zustande. Eine reine Eingangsbestätigung ist noch keine Annahme, sofern sie dies nicht ausdrücklich erklärt.',
         ],
       },
       {
-        title: '3. Produkte, Varianten und Individualisierung',
+        title: '3. Sprache und Vertragstext',
         items: [
-          'Produkte werden mit verfügbaren Größen, Farben, Motiven, Preisen und Lieferzeiten angezeigt.',
-          'Bei Print-on-Demand kann die Produktion erst nach Bestellung starten.',
-          'Bei personalisierten Produkten gelten gesonderte Hinweise zum Widerrufsrecht.',
+          'Vertragssprache ist Deutsch.',
+          'Bestelldaten, AGB und Widerrufsbelehrung werden mit der Bestellbestätigung auf einem dauerhaften Datenträger bereitgestellt.',
+          'Bestellungen sind im Kundenkonto einsehbar, falls ein Konto angeboten wird; darüber hinaus wird der Vertragstext nicht dauerhaft öffentlich zugänglich gehalten.',
         ],
       },
       {
-        title: '4. Preise, Versandkosten und Zahlung',
+        title: '4. Preise und Zahlung',
         items: [
-          'Alle Preise verstehen sich in Euro und inklusive gesetzlicher Umsatzsteuer, sofern nicht ein Kleinunternehmerhinweis gilt.',
-          'Zusätzliche Versandkosten werden vor Abgabe der Bestellung angezeigt.',
-          'Akzeptierte Zahlungsarten: {{ZAHLUNGSARTEN}}.',
-          'Die Belastung erfolgt nach den Bedingungen des jeweiligen Zahlungsanbieters.',
+          'Alle Preise sind Gesamtpreise in Euro einschließlich gesetzlich anfallender Umsatzsteuer; zusätzliche Versandkosten werden vor Bestellung angezeigt.',
+          'Im Checkout stehen nur tatsächlich aktivierte Zahlungsarten zur Verfügung. Es gelten ergänzend die Bedingungen des gewählten Zahlungsdienstes.',
+          'Bei angekündigten Preisermäßigungen wird der niedrigste Gesamtpreis der letzten 30 Tage angegeben.',
         ],
       },
       {
         title: '5. Lieferung',
         items: [
-          'Liefergebiet: {{DEUTSCHLAND / EU / INTERNATIONAL}}.',
-          'Lieferzeiten werden am Produkt und im Checkout angezeigt.',
-          'Bei Teillieferungen entstehen zusätzliche Versandkosten nur, wenn dies vorher vereinbart wurde.',
+          'Geliefert wird nach Deutschland und in die im Checkout auswählbaren EU-Länder.',
+          'Die konkrete Lieferzeit steht am Produkt und im Checkout. Regelmäßig: Deutschland 4–7 Werktage, EU 5–10 Werktage.',
+          'Zusätzliche Kosten für Teillieferungen entstehen nur nach vorheriger Vereinbarung.',
         ],
       },
       {
-        title: '6. Eigentumsvorbehalt und Gewährleistung',
+        title: '6. Eigentum und Mängelrechte',
         items: [
-          'Die Ware bleibt bis zur vollständigen Zahlung unser Eigentum.',
-          'Es gelten die gesetzlichen Mängelhaftungsrechte.',
-          'Farb- und Positionsabweichungen beim Druck können produktionsbedingt in angemessenem Umfang auftreten.',
+          'Die Ware bleibt bis zur vollständigen Zahlung unser Eigentum. Es gelten die gesetzlichen Mängelhaftungsrechte.',
+          'Displaybedingte Farbdifferenzen sind möglich. Produktionsabweichungen sind nur hinzunehmen, soweit die vereinbarte Beschaffenheit und gesetzliche Anforderungen gewahrt bleiben.',
         ],
       },
       {
-        title: '7. Gutscheine, Rabattcodes und Drops',
+        title: '7. Print-on-Demand, Individualisierung und Drops',
         items: [
-          'Rabattcodes gelten nur im angegebenen Zeitraum und solange Vorrat oder Kontingent reicht.',
-          'Limited Editions können mengenmäßig begrenzt sein.',
-          'Eine Barauszahlung von Rabattcodes ist ausgeschlossen.',
+          'Print-on-Demand allein schließt das gesetzliche Widerrufsrecht nicht aus.',
+          'Ein Ausschluss greift nur bei tatsächlich nach Kundenspezifikation angefertigten oder eindeutig personalisierten Waren.',
+          'Limited Drops und Rabattcodes können nach den ausgewiesenen Bedingungen begrenzt sein; eine Barauszahlung ist ausgeschlossen.',
+        ],
+      },
+      {
+        title: '8. Haftung, Recht und Streitbeilegung',
+        items: [
+          'Wir haften unbeschränkt bei Vorsatz, grober Fahrlässigkeit, Verletzung von Leben, Körper oder Gesundheit, nach Produkthaftungsrecht und im Umfang einer Garantie.',
+          'Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten ist die Haftung auf den typischen vorhersehbaren Schaden begrenzt; im Übrigen ist leichte Fahrlässigkeit soweit gesetzlich zulässig ausgeschlossen.',
+          'Es gilt zyprisches Recht unter Ausschluss des UN-Kaufrechts; zwingender Verbraucherschutz am gewöhnlichen Aufenthaltsort bleibt unberührt. Gesetzliche Gerichtsstände bleiben bestehen.',
+          'Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
         ],
       },
     ],
@@ -297,51 +307,48 @@ const legalPages = [
   {
     slug: 'widerruf',
     label: 'Widerruf',
-    kicker: 'Widerrufsbelehrung',
-    title: 'Widerruf und Muster-Widerrufsformular',
-    intro:
-      'Diese Seite bündelt Widerrufsbelehrung, Rücksendekontakt und Musterformular. Ausnahmen für personalisierte Produkte müssen vor Launch geprüft werden.',
+    kicker: 'Widerrufsbelehrung + Online-Funktion',
+    title: 'Widerruf und Musterformular',
+    intro: 'Widerrufsbelehrung für Warenkäufe. Stand: 29. August 2026.',
     blocks: [
       {
         title: 'Widerrufsrecht',
         items: [
-          'Verbraucher haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.',
-          'Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem du oder ein von dir benannter Dritter die Ware erhalten hast.',
+          'Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.',
+          'Die Frist beginnt mit Erhalt der Ware durch Sie oder einen benannten Dritten, der nicht Beförderer ist; bei getrennter Lieferung mehrerer Waren mit Erhalt der letzten Ware.',
         ],
       },
       {
         title: 'Widerruf ausüben',
         items: [
-          'Um den Widerruf auszuüben, informiere uns eindeutig per E-Mail oder Brief.',
-          'Empfänger: {{FIRMENNAME}}',
-          'Adresse: {{WIDERRUFSADRESSE}}',
-          'E-Mail: {{WIDERRUFS-E-MAIL}}',
+          'Richten Sie eine eindeutige Erklärung an Kirlana Consulting Ltd., 26 Anthipolochagou Georgiou M. Savva, Shop 1–2, 8201 Paphos, Cyprus, +49 1520 6677415, info@be-different.shop.',
+          'Das Musterformular ist optional. Zur Fristwahrung genügt die rechtzeitige Absendung.',
+          'Online geschlossene Verträge können zusätzlich über „Vertrag widerrufen“ auf dieser Seite widerrufen werden. Nach Übermittlung wird unverzüglich eine Eingangsbestätigung mit Inhalt, Datum und Uhrzeit per E-Mail versendet.',
         ],
       },
       {
         title: 'Folgen des Widerrufs',
         items: [
-          'Wir erstatten alle erhaltenen Zahlungen einschließlich Standardlieferkosten unverzüglich und spätestens binnen vierzehn Tagen ab Eingang des Widerrufs.',
-          'Für die Rückzahlung verwenden wir dasselbe Zahlungsmittel wie bei der ursprünglichen Transaktion, sofern nichts anderes vereinbart wurde.',
-          'Wir können die Rückzahlung verweigern, bis wir die Ware zurückerhalten haben oder der Nachweis der Rücksendung erbracht wurde.',
-          'Rücksendekosten: {{KUNDE TRÄGT / SHOP TRÄGT RÜCKSENDEKOSTEN}}.',
+          'Wir erstatten alle Zahlungen einschließlich der günstigsten angebotenen Standardlieferung unverzüglich und spätestens binnen vierzehn Tagen ab Eingang des Widerrufs.',
+          'Die Rückzahlung erfolgt mit demselben Zahlungsmittel, sofern nichts anderes vereinbart wurde, und ohne Entgelt.',
+          'Wir dürfen die Rückzahlung bis zum Erhalt der Ware oder Nachweis der Rücksendung verweigern, je nachdem, welches früher eintritt.',
+          'Sie tragen die unmittelbaren Rücksendekosten und senden die Ware spätestens binnen vierzehn Tagen an die auf dem Rücksendeetikett genannte Retourenadresse.',
+          'Wertersatz ist nur für einen Umgang geschuldet, der zur Prüfung von Beschaffenheit, Eigenschaften und Funktionsweise nicht notwendig war.',
         ],
       },
       {
-        title: 'Ausnahmen',
+        title: 'Ausnahme für Individualanfertigungen',
         items: [
-          'Das Widerrufsrecht kann bei Waren ausgeschlossen sein, die nach Kundenspezifikation angefertigt oder eindeutig personalisiert wurden.',
-          'Für Standardshirts ohne Personalisierung gilt grundsätzlich das Verbraucher-Widerrufsrecht.',
+          'Kein Widerrufsrecht besteht bei nicht vorgefertigten Waren, für deren Herstellung eine individuelle Auswahl maßgeblich ist, oder eindeutig personalisierten Waren.',
+          'Für Standardshirts, die lediglich erst nach Bestellung gedruckt werden, besteht das Widerrufsrecht grundsätzlich fort.',
         ],
       },
       {
         title: 'Muster-Widerrufsformular',
         items: [
-          'An {{FIRMENNAME}}, {{ANSCHRIFT}}, {{E-MAIL}}',
-          'Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über den Kauf der folgenden Waren: {{WAREN}}.',
-          'Bestellt am: {{DATUM}} / erhalten am: {{DATUM}}.',
-          'Name und Anschrift des Verbrauchers: {{NAME, ANSCHRIFT}}.',
-          'Datum und Unterschrift: {{NUR BEI MITTEILUNG AUF PAPIER}}.',
+          'An Kirlana Consulting Ltd., Anschrift und E-Mail wie oben.',
+          'Hiermit widerrufe(n) ich/wir (*) den abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*).',
+          'Bestellt am (*)/erhalten am (*); Name und Anschrift; Datum; Unterschrift nur bei Papier. (*) Unzutreffendes streichen.',
         ],
       },
     ],
@@ -351,57 +358,68 @@ const legalPages = [
     label: 'Versand & Rückgabe',
     kicker: 'Lieferung, Zahlung und Retouren',
     title: 'Versand, Zahlung und Rückgabe',
-    intro:
-      'Diese Seite fasst alle kaufrelevanten Informationen zusammen, die im deutschen Online-Shop vor Bestellung klar sichtbar sein müssen.',
+    intro: 'Die im Checkout angezeigten konkreten Angaben sind maßgeblich.',
     blocks: [
       {
-        title: 'Versandgebiete',
+        title: 'Versandgebiete und Kosten',
         items: [
-          'Deutschland: {{JA / NEIN}}',
-          'EU: {{LÄNDER / PAUSCHALEN}}',
-          'International: {{LÄNDER / PAUSCHALEN}}',
-        ],
-      },
-      {
-        title: 'Versandkosten',
-        items: [
-          'Deutschland: {{VERSANDKOSTEN DE}}',
-          'Kostenloser Versand ab: {{WARENWERT}}',
-          'EU / International: {{VERSANDKOSTEN}}',
-          'Alle Versandkosten werden im Checkout vor Bestellung angezeigt.',
+          'Deutschland: bis zu 5,25 €; EU: bis zu 8,50 €, soweit das Land im Checkout auswählbar ist; außerhalb der EU derzeit kein Versand.',
+          'Die konkreten Versandkosten und eine etwaige Freigrenze werden vor Abgabe der Bestellung angezeigt.',
         ],
       },
       {
         title: 'Lieferzeiten',
-        items: [
-          'Standardprodukte: {{LIEFERZEIT}}',
-          'Print-on-Demand Produkte: {{PRODUKTIONSZEIT + LIEFERZEIT}}',
-          'Limited Runs / Drops: {{SPEZIELLE LIEFERZEIT}}',
-        ],
+        items: ['Deutschland: regelmäßig 4–7 Werktage', 'EU: regelmäßig 5–10 Werktage', 'Abweichungen werden direkt am Produkt ausgewiesen.'],
       },
       {
         title: 'Zahlungsarten',
-        items: [
-          'Kreditkarte über Stripe: {{AKTIV / GEPLANT}}',
-          'PayPal: {{AKTIV / GEPLANT}}',
-          'Apple Pay / Google Pay: {{AKTIV / GEPLANT}}',
-          'Klarna oder Rechnungskauf: {{AKTIV / GEPLANT}}',
-        ],
+        items: ['Kreditkarte über Stripe: aktiv', 'Apple Pay / Google Pay: aktiv, soweit verfügbar', 'Klarna: aktiv', 'PayPal und Rechnungskauf: erst nach Aktivierung im Checkout'],
       },
       {
         title: 'Rückgabeablauf',
         items: [
-          '1. Widerruf oder Retourenwunsch an {{SUPPORT-E-MAIL}} senden.',
+          '1. Widerruf über „Vertrag widerrufen“, per E-Mail an info@be-different.shop oder per Brief erklären.',
           '2. Bestellnummer und betroffene Produkte angeben.',
-          '3. Ware sicher verpackt an {{RÜCKSENDEADRESSE}} zurücksenden.',
-          '4. Erstattung nach Prüfung der Rücksendung.',
+          '3. Ware sicher verpackt an die auf dem Rücksendeetikett genannte Shirtigo-Retourenadresse senden.',
+          '4. Erstattung nach Eingang der Ware oder Nachweis der Rücksendung; gesetzliche Rechte bleiben unberührt.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'barrierefreiheit',
+    label: 'Barrierefreiheit',
+    kicker: 'BFSG / barrierefreier E-Commerce',
+    title: 'Informationen zur Barrierefreiheit',
+    intro: 'Beschreibung der elektronischen Shop-Dienstleistung und ihrer Barrierefreiheitsmerkmale. Stand: 29. August 2026.',
+    blocks: [
+      {
+        title: 'Dienstleistung',
+        items: [
+          'be-different.shop dient dem Suchen, Auswählen und Bestellen von Bekleidung.',
+          'Die Schritte sind Produkt- und Variantenwahl, Warenkorb, Kontakt- und Lieferdaten, Zahlungsart, Prüfung und zahlungspflichtige Bestellung.',
         ],
       },
       {
-        title: 'Zustand der Ware',
+        title: 'Barrierefreie Nutzung',
         items: [
-          'Bitte sende Ware ungetragen, sauber und möglichst in Originalverpackung zurück.',
-          'Gesetzliche Rechte werden durch diese Bitte nicht eingeschränkt.',
+          'Navigation, Formulare, Produktwahl und Rechtstexte sind per Tastatur nutzbar und semantisch beschriftet.',
+          'Vorgesehen sind ausreichende Kontraste, sichtbare Fokuszustände, skalierbare Darstellung, verständliche Fehlermeldungen und Textalternativen.',
+          'Identifizierungs-, Sicherheits- und Zahlungsfunktionen müssen über barrierefrei konfigurierte WooCommerce- und Zahlungsanbieter-Komponenten bereitgestellt werden.',
+        ],
+      },
+      {
+        title: 'Konformitätsstand',
+        items: [
+          'Diese React-Anwendung ist eine Vorschau. Die abschließende BFSG-Prüfung muss am produktiven WooCommerce-Shop einschließlich Checkout, Plugins und Zahlungsdialogen erfolgen.',
+          'Vor Veröffentlichung sind Tastatur-, Screenreader-, Zoom-, Kontrast- und Formularprüfungen für alle Kaufwege zu dokumentieren.',
+        ],
+      },
+      {
+        title: 'Feedback und Marktüberwachung',
+        items: [
+          'Hinweise zu Barrieren oder Wünsche nach einem anderen Format bitte an info@be-different.shop oder +49 1520 6677415.',
+          'Für Angebote in Deutschland ist die Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF) vorgesehen. Zuständigkeit und aktuelle Kontaktdaten sind zum Livegang final zu verifizieren.',
         ],
       },
     ],
@@ -457,6 +475,11 @@ type ShopCategory = (typeof shopCategories)[number];
 type ShopColor = (typeof shopColors)[number];
 type ShopSize = (typeof shopSizes)[number];
 type ShopSort = (typeof shopSortOptions)[number]['value'];
+type ConsentPreferences = {
+  analytics: boolean;
+  marketing: boolean;
+  savedAt: string;
+};
 
 function formatPrice(value: number) {
   return new Intl.NumberFormat('de-DE', {
@@ -500,7 +523,11 @@ function ProductCard({
         <p>{product.shortClaim}</p>
         <div className="price-row">
           <strong>{formatPrice(product.price)}</strong>
-          {product.compareAtPrice && <span>{formatPrice(product.compareAtPrice)}</span>}
+          {product.lowestPrice30Days && (
+            <span title="Niedrigster Gesamtpreis der letzten 30 Tage">
+              30-Tage-Preis: {formatPrice(product.lowestPrice30Days)}
+            </span>
+          )}
         </div>
         <div className="product-actions">
           <button className="icon-text-button" onClick={() => onSelect(product)}>
@@ -541,6 +568,19 @@ function App() {
   const [earlyAccessSubmitted, setEarlyAccessSubmitted] = useState(false);
   const [collaborationRole, setCollaborationRole] = useState(collaborationRoles[0].title);
   const [collaborationSubmitted, setCollaborationSubmitted] = useState(false);
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState<ConsentPreferences | null>(() => {
+    try {
+      const saved = window.localStorage.getItem('different-mind-consent-v1');
+      return saved ? (JSON.parse(saved) as ConsentPreferences) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [cookieSettingsOpen, setCookieSettingsOpen] = useState(false);
+  const [analyticsConsent, setAnalyticsConsent] = useState(cookieConsent?.analytics ?? false);
+  const [marketingConsent, setMarketingConsent] = useState(cookieConsent?.marketing ?? false);
+  const [withdrawalStatus, setWithdrawalStatus] = useState<'idle' | 'sending' | 'sent' | 'email'>('idle');
 
   const visibleProducts = useMemo(() => {
     if (activeCategory === 'Alle') return products;
@@ -573,7 +613,7 @@ function App() {
       if (shopSort === 'price-high') return b.price - a.price;
       if (shopSort === 'rating') return b.rating - a.rating;
       if (shopSort === 'newest') return b.reviews - a.reviews;
-      return Number(Boolean(b.compareAtPrice)) - Number(Boolean(a.compareAtPrice));
+      return Number(Boolean(b.lowestPrice30Days)) - Number(Boolean(a.lowestPrice30Days));
     });
   }, [shopCategory, shopColor, shopQuery, shopSize, shopSort]);
 
@@ -600,13 +640,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (route !== 'home' || window.sessionStorage.getItem('bd-early-access-closed') === 'true') {
+    if (
+      route !== 'home' ||
+      !cookieConsent ||
+      window.sessionStorage.getItem('bd-early-access-closed') === 'true'
+    ) {
       return undefined;
     }
 
     const timer = window.setTimeout(() => setEarlyAccessOpen(true), 800);
     return () => window.clearTimeout(timer);
-  }, [route]);
+  }, [cookieConsent, route]);
 
   useEffect(() => {
     if (!earlyAccessOpen) return undefined;
@@ -683,6 +727,15 @@ function App() {
     window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
   }
 
+  function navigateWithdrawal() {
+    window.location.hash = '/widerruf';
+    setRoute('widerruf');
+    setMenuOpen(false);
+    window.setTimeout(() => {
+      document.getElementById('vertrag-widerrufen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
   function handleSelectProduct(product: Product) {
     setSelectedProduct(product);
     setSelectedSize(product.sizes[1] ?? product.sizes[0]);
@@ -748,6 +801,69 @@ function App() {
   function handleCollaborationSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setCollaborationSubmitted(true);
+  }
+
+  function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setNewsletterSubmitted(true);
+  }
+
+  function saveCookieConsent(analytics: boolean, marketing: boolean) {
+    const preferences: ConsentPreferences = {
+      analytics,
+      marketing,
+      savedAt: new Date().toISOString(),
+    };
+
+    window.localStorage.setItem('different-mind-consent-v1', JSON.stringify(preferences));
+    setCookieConsent(preferences);
+    setAnalyticsConsent(analytics);
+    setMarketingConsent(marketing);
+    setCookieSettingsOpen(false);
+  }
+
+  function openCookieSettings() {
+    setAnalyticsConsent(cookieConsent?.analytics ?? false);
+    setMarketingConsent(cookieConsent?.marketing ?? false);
+    setCookieSettingsOpen(true);
+  }
+
+  async function handleWithdrawalSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      name: String(data.get('name') ?? ''),
+      order: String(data.get('order') ?? ''),
+      email: String(data.get('email') ?? ''),
+      goods: String(data.get('goods') ?? ''),
+      submittedAt: new Date().toISOString(),
+    };
+    const endpoint = import.meta.env.VITE_WITHDRAWAL_ENDPOINT as string | undefined;
+
+    if (!endpoint) {
+      const subject = encodeURIComponent(`Widerruf Bestellung ${payload.order}`);
+      const body = encodeURIComponent(
+        `Hiermit widerrufe ich meinen Vertrag.\n\nName: ${payload.name}\nBestellung: ${payload.order}\nE-Mail: ${payload.email}\nWaren: ${payload.goods}\nDatum/Uhrzeit: ${payload.submittedAt}`,
+      );
+      window.location.href = `mailto:info@be-different.shop?subject=${subject}&body=${body}`;
+      setWithdrawalStatus('email');
+      return;
+    }
+
+    setWithdrawalStatus('sending');
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error('Widerruf konnte nicht übermittelt werden.');
+      setWithdrawalStatus('sent');
+      form.reset();
+    } catch {
+      setWithdrawalStatus('email');
+    }
   }
 
   return (
@@ -832,7 +948,7 @@ function App() {
                       <span>
                         Ich willige ein, dass be-different meine E-Mail Adresse für Drop-Alerts,
                         Early-Access-Angebote und Limited-Edition-News verarbeitet. Abmeldung ist
-                        jederzeit möglich.
+                        jederzeit möglich. Einzelheiten stehen in der Datenschutzerklärung.
                       </span>
                     </label>
 
@@ -843,8 +959,9 @@ function App() {
                   </form>
 
                   <small>
-                    Double-Opt-in, Anbieter, Datenschutzhinweise und Abmeldelink werden im Live-Shop
-                    mit dem finalen Newsletter-Tool ergänzt.
+                    Die Anmeldung wird im Live-Shop erst nach Bestätigung der Double-Opt-in-E-Mail
+                    wirksam. Der Newsletter-Anbieter muss vor Aktivierung in der Datenschutzerklärung
+                    benannt werden.
                   </small>
                 </>
               )}
@@ -871,8 +988,9 @@ function App() {
             navigateHome();
           }}
         >
-          <span>be</span>
-          <strong>different</strong>
+          <span className="brand-logo-crop">
+            <img src={differentMindLogo} alt="Different Mind" />
+          </span>
         </a>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Hauptnavigation">
           <a
@@ -1106,6 +1224,11 @@ function App() {
               <h1 id="legal-page-title">{currentLegalPage.title}</h1>
               <p>{currentLegalPage.intro}</p>
               <div className="legal-page-actions">
+                {currentLegalPage.slug === 'widerruf' && (
+                  <button className="primary-button" onClick={navigateWithdrawal}>
+                    Vertrag widerrufen
+                  </button>
+                )}
                 <button className="primary-button" onClick={() => navigateHome()}>
                   Zur Startseite
                 </button>
@@ -1140,13 +1263,59 @@ function App() {
               ))}
             </div>
 
+            {currentLegalPage.slug === 'widerruf' && (
+              <section className="withdrawal-function" id="vertrag-widerrufen" aria-labelledby="withdrawal-title">
+                <div>
+                  <span className="eyebrow">Elektronische Widerrufsfunktion</span>
+                  <h2 id="withdrawal-title">Vertrag widerrufen</h2>
+                  <p>
+                    Füllen Sie die Pflichtfelder aus. Im produktiven Shop muss die Übermittlung
+                    serverseitig gespeichert und unverzüglich per E-Mail bestätigt werden.
+                  </p>
+                </div>
+                <form onSubmit={handleWithdrawalSubmit}>
+                  <label>
+                    Name
+                    <input name="name" autoComplete="name" required />
+                  </label>
+                  <label>
+                    Bestellnummer
+                    <input name="order" autoComplete="off" required />
+                  </label>
+                  <label>
+                    E-Mail für die Eingangsbestätigung
+                    <input name="email" type="email" autoComplete="email" required />
+                  </label>
+                  <label>
+                    Betroffene Waren oder Teil der Bestellung
+                    <textarea name="goods" rows={3} required />
+                  </label>
+                  <button className="primary-button" type="submit" disabled={withdrawalStatus === 'sending'}>
+                    {withdrawalStatus === 'sending' ? 'Wird übermittelt …' : 'Widerruf bestätigen'}
+                  </button>
+                  {withdrawalStatus === 'sent' && (
+                    <p className="form-success" role="status">
+                      Der Widerruf wurde übermittelt. Die Eingangsbestätigung wurde an Ihre E-Mail-Adresse versendet.
+                    </p>
+                  )}
+                  {withdrawalStatus === 'email' && (
+                    <p className="form-warning" role="status">
+                      Die Server-Schnittstelle ist in dieser Vorschau noch nicht verbunden. Ihr E-Mail-Programm wurde geöffnet;
+                      der Widerruf ist erst nach dem tatsächlichen Versand der E-Mail übermittelt.
+                    </p>
+                  )}
+                </form>
+              </section>
+            )}
+
             <aside className="legal-page-note">
               <ShieldCheck size={22} />
               <div>
-                <strong>Launch-Hinweis</strong>
+                <strong>Rechtsstand und Live-Prüfung</strong>
                 <p>
-                  Diese Seiten sind vollständige Arbeitsvorlagen für den Shop-Launch. Vor Livegang
-                  müssen alle Platzhalter mit echten Daten ersetzt und rechtlich geprüft werden.
+                  Diese Fassung berücksichtigt die bekannten Shop-Angaben und den Rechtsstand vom
+                  29. August 2026. Anbieter, Plugins, Checkout, Steuer- und Versandkonfiguration
+                  müssen vor Livegang mit der tatsächlichen Verarbeitung abgeglichen werden.
                 </p>
               </div>
             </aside>
@@ -1443,7 +1612,9 @@ function App() {
             <p>{selectedProduct.description}</p>
             <div className="detail-price-row">
               <strong className="detail-price">{formatPrice(selectedProduct.price)}</strong>
-              {selectedProduct.compareAtPrice && <span>{formatPrice(selectedProduct.compareAtPrice)}</span>}
+              {selectedProduct.lowestPrice30Days && (
+                <span>30-Tage-Preis: {formatPrice(selectedProduct.lowestPrice30Days)}</span>
+              )}
             </div>
             <div className="micro-proof">
               <span>
@@ -1509,6 +1680,27 @@ function App() {
                 <dd>{selectedProduct.shippingNote}</dd>
               </div>
             </dl>
+            <details className="product-safety" open>
+              <summary>Hersteller- und Produktsicherheitsangaben</summary>
+              <dl>
+                <div>
+                  <dt>Hersteller / verantwortlicher Wirtschaftsakteur</dt>
+                  <dd>Kirlana Consulting Ltd., 26 Anthipolochagou Georgiou M. Savva, Shop 1–2, 8201 Paphos, Cyprus</dd>
+                </div>
+                <div>
+                  <dt>Elektronischer Kontakt</dt>
+                  <dd>info@be-different.shop</dd>
+                </div>
+                <div>
+                  <dt>Produktkennung</dt>
+                  <dd>{selectedProduct.id}</dd>
+                </div>
+                <div>
+                  <dt>Material und Pflege</dt>
+                  <dd>{selectedProduct.material}; Pflegeetikett am Produkt beachten. Von offenem Feuer fernhalten.</dd>
+                </div>
+              </dl>
+            </details>
             <div className="detail-assurance">
               <div className="assurance-grid" aria-label="Kaufargumente">
                 <span>
@@ -1640,7 +1832,8 @@ function App() {
               <input type="checkbox" required />
               <span>
                 Ich stimme zu, dass meine Angaben zur Prüfung einer Kooperation verarbeitet werden.
-                Details werden in der finalen Datenschutzerklärung ergänzt.
+                Einzelheiten stehen in der Datenschutzerklärung; die Einwilligung kann jederzeit
+                mit Wirkung für die Zukunft widerrufen werden.
               </span>
             </label>
             <button className="primary-button" type="submit">
@@ -1818,22 +2011,93 @@ function App() {
               Neue Motive, Community-Votes und Limited Runs. Nur nach Einwilligung, jederzeit
               abmeldbar, keine versteckte Datenakrobatik.
             </p>
-            <form className="newsletter-form">
-              <input type="email" placeholder="statement@beispiel.de" aria-label="E-Mail Adresse" />
+            <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+              <input type="email" placeholder="statement@beispiel.de" aria-label="E-Mail Adresse" required />
+              <label className="consent-line newsletter-consent">
+                <input type="checkbox" required />
+                <span>
+                  Ich willige in Drop- und Angebots-E-Mails ein. Die Abmeldung ist jederzeit möglich;
+                  Einzelheiten stehen in der Datenschutzerklärung.
+                </span>
+              </label>
               <button className="primary-button" type="submit">
                 <Sparkles size={18} />
                 Aktivieren
               </button>
             </form>
+            {newsletterSubmitted && (
+              <p className="form-success">
+                In der Vorschau gespeichert. Im Live-Shop wird die Anmeldung erst nach Double-Opt-in wirksam.
+              </p>
+            )}
           </div>
         </section>
           </>
         )}
       </main>
 
+      {(!cookieConsent || cookieSettingsOpen) && (
+        <section className="consent-panel" role="dialog" aria-labelledby="consent-title">
+          <div className="consent-copy">
+            <span className="eyebrow">Privatsphäre-Einstellungen</span>
+            <h2 id="consent-title">Sie entscheiden, was geladen wird.</h2>
+            <p>
+              Notwendige Speicherungen halten Warenkorb, Sicherheit und Ihre Auswahl funktionsfähig.
+              Analyse und Marketing bleiben bis zu Ihrer freiwilligen Einwilligung aus. Diese Vorschau
+              lädt derzeit keine optionalen Tracking-Skripte.
+            </p>
+            <button
+              className="inline-link-button"
+              type="button"
+              onClick={() => {
+                saveCookieConsent(false, false);
+                navigateLegal('datenschutz');
+              }}
+            >
+              Datenschutzerklärung öffnen
+            </button>
+          </div>
+          <div className="consent-options">
+            <label>
+              <input type="checkbox" checked disabled />
+              <span><strong>Notwendig</strong> Immer aktiv</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={analyticsConsent}
+                onChange={(event) => setAnalyticsConsent(event.target.checked)}
+              />
+              <span><strong>Analyse</strong> Reichweite und Nutzung verstehen</span>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={marketingConsent}
+                onChange={(event) => setMarketingConsent(event.target.checked)}
+              />
+              <span><strong>Marketing</strong> Kampagnen und personalisierte Werbung</span>
+            </label>
+          </div>
+          <div className="consent-actions">
+            <button className="secondary-button" type="button" onClick={() => saveCookieConsent(false, false)}>
+              Nur notwendige
+            </button>
+            <button className="secondary-button" type="button" onClick={() => saveCookieConsent(analyticsConsent, marketingConsent)}>
+              Auswahl speichern
+            </button>
+            <button className="primary-button" type="button" onClick={() => saveCookieConsent(true, true)}>
+              Alles akzeptieren
+            </button>
+          </div>
+        </section>
+      )}
+
       <footer className="site-footer">
         <div className="footer-brand-block">
-          <strong>be-different</strong>
+          <span className="footer-logo-crop">
+            <img src={differentMindLogo} alt="Different Mind" />
+          </span>
           <div className="social-links" aria-label="Social Media">
             {socialLinks.map(({ label, href, Icon }) => (
               <a
@@ -1868,6 +2132,16 @@ function App() {
           <a href="#produkt" onClick={(event) => { event.preventDefault(); navigateHome('produkt'); }}>
             Größentabelle
           </a>
+          <a
+            className="withdrawal-link"
+            href="#/widerruf"
+            onClick={(event) => {
+              event.preventDefault();
+              navigateWithdrawal();
+            }}
+          >
+            Vertrag widerrufen
+          </a>
           {legalPages.map((page) => (
             <a
               href={`#/${page.slug}`}
@@ -1880,6 +2154,9 @@ function App() {
               {page.label}
             </a>
           ))}
+          <button className="footer-text-button" type="button" onClick={openCookieSettings}>
+            Cookie-Einstellungen
+          </button>
         </nav>
         <button
           className="back-to-top"
