@@ -632,6 +632,9 @@ function App() {
   );
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) return undefined;
+
     const timer = window.setInterval(() => {
       setActiveHeroSlide((slide) => (slide + 1) % heroSlides.length);
     }, 5200);
@@ -653,11 +656,21 @@ function App() {
   }, [cookieConsent, route]);
 
   useEffect(() => {
-    if (!earlyAccessOpen) return undefined;
+    const consentOpen = !cookieConsent || cookieSettingsOpen;
+    const overlayOpen = earlyAccessOpen || cartOpen || filterOpen || consentOpen;
+    if (!overlayOpen) return undefined;
 
     const handleKeydown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key !== 'Escape') return;
+
+      if (earlyAccessOpen) {
         closeEarlyAccessPopup();
+      } else if (cartOpen) {
+        setCartOpen(false);
+      } else if (filterOpen) {
+        setFilterOpen(false);
+      } else if (cookieSettingsOpen && cookieConsent) {
+        setCookieSettingsOpen(false);
       }
     };
 
@@ -668,7 +681,7 @@ function App() {
       document.body.classList.remove('modal-open');
       window.removeEventListener('keydown', handleKeydown);
     };
-  }, [earlyAccessOpen]);
+  }, [cartOpen, cookieConsent, cookieSettingsOpen, earlyAccessOpen, filterOpen]);
 
   useEffect(() => {
     const syncRoute = () => {
@@ -886,6 +899,7 @@ function App() {
                 className="early-access-close"
                 aria-label="Early Access Popup schließen"
                 onClick={closeEarlyAccessPopup}
+                autoFocus
               >
                 <X size={28} />
               </button>
@@ -970,13 +984,15 @@ function App() {
         </div>
       )}
 
-      <div className="announcement">
-        <div className="ticker-track" aria-label="Shop Nachrichten">
+      <aside className="announcement" aria-label="Shop Nachrichten">
+        <div className="ticker-track">
           {[...tickerItems, ...tickerItems].map((item, index) => (
-            <span key={`${item}-${index}`}>{item}</span>
+            <span aria-hidden={index >= tickerItems.length} key={`${item}-${index}`}>
+              {item}
+            </span>
           ))}
         </div>
-      </div>
+      </aside>
 
       <header className="site-header">
         <a
@@ -1347,7 +1363,7 @@ function App() {
                 {currentHeroSlide.product.name} sichern
               </button>
             </div>
-            <div className="trust-strip" aria-label="Shop Vorteile">
+            <div className="trust-strip" role="group" aria-label="Shop Vorteile">
               <span>
                 <ShieldCheck size={17} /> Sichere Zahlung
               </span>
@@ -1358,7 +1374,7 @@ function App() {
                 <RotateCcw size={17} /> Rückgabe klar erklärt
               </span>
             </div>
-            <div className="hero-slider-controls" aria-label="Hero Slider">
+            <div className="hero-slider-controls" role="group" aria-label="Hero Slider">
               {heroSlides.map((slide, index) => (
                 <button
                   key={slide.kicker}
@@ -1399,7 +1415,7 @@ function App() {
               Die schwarzen Ink-Designs laufen als eigene Capsule: roh, kontrastreich und
               schwer zu ignorieren. Jedes Motiv ist ein kleiner Bruch mit dem Erwartbaren.
             </p>
-            <div className="shadow-highlights" aria-label="Collection Highlights">
+            <div className="shadow-highlights" role="group" aria-label="Collection Highlights">
               <span>8 Motive</span>
               <span>Animal Art</span>
               <span>Street Contrast</span>
@@ -1586,7 +1602,7 @@ function App() {
               </a>
             </div>
           </div>
-          <div className="campaign-posters" aria-label="Campaign Claims">
+          <div className="campaign-posters" role="group" aria-label="Campaign Claims">
             {campaignPosters.map((poster) => (
               <article key={poster.title}>
                 <img src={poster.image} alt="" loading="lazy" />
@@ -1702,7 +1718,7 @@ function App() {
               </dl>
             </details>
             <div className="detail-assurance">
-              <div className="assurance-grid" aria-label="Kaufargumente">
+              <div className="assurance-grid" role="group" aria-label="Kaufargumente">
                 <span>
                   <ShieldCheck size={16} />
                   Sichere Zahlung
@@ -1734,7 +1750,7 @@ function App() {
                 </div>
               </details>
 
-              <div className="review-snippets" aria-label="Kundenstimmen">
+              <div className="review-snippets" role="group" aria-label="Kundenstimmen">
                 {reviewSnippets.map((review) => (
                   <article key={review.name}>
                     <span>
@@ -1750,7 +1766,7 @@ function App() {
                 ))}
               </div>
 
-              <div className="related-products" aria-label="Dazu passende Produkte">
+              <div className="related-products" role="group" aria-label="Dazu passende Produkte">
                 <strong>Dazu passt</strong>
                 {relatedProducts.map((product) => (
                   <button key={product.id} onClick={() => handleSelectProduct(product)}>
@@ -1782,7 +1798,11 @@ function App() {
             </div>
           </div>
 
-          <div className="collaboration-grid" aria-label="Gesuchte Kooperationsprofile">
+          <div
+            className="collaboration-grid"
+            role="group"
+            aria-label="Gesuchte Kooperationsprofile"
+          >
             {collaborationRoles.map((role, index) => (
               <article key={role.title}>
                 {index === 0 && <Sparkles size={22} />}
@@ -1863,7 +1883,7 @@ function App() {
               ))}
             </div>
           </div>
-          <div className="drop-marquee" aria-label="Design Vorschau">
+          <div className="drop-marquee" role="group" aria-label="Design Vorschau">
             {dropDesigns.map((design) => (
               <div className="drop-tile" key={design}>
                 <img src={design} alt="" loading="lazy" />
@@ -2037,7 +2057,12 @@ function App() {
       </main>
 
       {(!cookieConsent || cookieSettingsOpen) && (
-        <section className="consent-panel" role="dialog" aria-labelledby="consent-title">
+        <section
+          className="consent-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="consent-title"
+        >
           <div className="consent-copy">
             <span className="eyebrow">Privatsphäre-Einstellungen</span>
             <h2 id="consent-title">Sie entscheiden, was geladen wird.</h2>
@@ -2098,7 +2123,7 @@ function App() {
           <span className="footer-logo-crop">
             <img src={differentMindLogo} alt="Different Mind" />
           </span>
-          <div className="social-links" aria-label="Social Media">
+          <div className="social-links" role="group" aria-label="Social Media">
             {socialLinks.map(({ label, href, Icon }) => (
               <a
                 className="social-link"
@@ -2168,24 +2193,34 @@ function App() {
       </footer>
 
       {route === 'home' && (
-        <div className="mobile-buy-bar">
+        <aside className="mobile-buy-bar" aria-label="Schnellkauf">
           <span>{selectedProduct.name}</span>
           <button onClick={() => addProduct(selectedProduct, selectedSize, selectedColor)}>
             <ShoppingBag size={18} />
             {formatPrice(selectedProduct.price)}
           </button>
-        </div>
+        </aside>
       )}
 
       {cartOpen && (
         <div className="drawer-backdrop" onClick={() => setCartOpen(false)}>
-          <aside className="cart-drawer" onClick={(event) => event.stopPropagation()}>
+          <aside
+            className={cartItems.length === 0 ? 'cart-drawer cart-drawer-empty' : 'cart-drawer'}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cart-drawer-title"
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="drawer-heading">
               <div>
                 <span className="eyebrow">Warenkorb</span>
-                <strong>{cartCount} Artikel</strong>
+                <strong id="cart-drawer-title">{cartCount} Artikel</strong>
               </div>
-              <button aria-label="Warenkorb schließen" onClick={() => setCartOpen(false)}>
+              <button
+                aria-label="Warenkorb schließen"
+                onClick={() => setCartOpen(false)}
+                autoFocus
+              >
                 <X size={20} />
               </button>
             </div>
@@ -2272,10 +2307,16 @@ function App() {
 
       {filterOpen && (
         <div className="sheet-backdrop" onClick={() => setFilterOpen(false)}>
-          <aside className="filter-sheet" onClick={(event) => event.stopPropagation()}>
+          <aside
+            className="filter-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="filter-sheet-title"
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="sheet-heading">
-              <strong>Filter</strong>
-              <button aria-label="Filter schließen" onClick={() => setFilterOpen(false)}>
+              <strong id="filter-sheet-title">Filter</strong>
+              <button aria-label="Filter schließen" onClick={() => setFilterOpen(false)} autoFocus>
                 <X size={20} />
               </button>
             </div>
