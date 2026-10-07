@@ -540,7 +540,16 @@ h2 {
   font-weight: 950;
   line-height: 0.86;
   letter-spacing: 0;
+  text-wrap: balance;
   text-transform: uppercase;
+}
+
+.headline-lines > span {
+  display: block;
+}
+
+.keep-together {
+  white-space: nowrap;
 }
 
 h3 {
@@ -2148,6 +2157,15 @@ h3 {
   align-items: start;
 }
 
+.flow-headline {
+  max-width: 640px;
+  font-size: clamp(3rem, 5.6vw, 5rem);
+}
+
+.flow-headline span {
+  white-space: nowrap;
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2186,8 +2204,16 @@ h3 {
 .stack-heading {
   display: grid;
   gap: 14px;
-  max-width: 780px;
+  max-width: 980px;
   margin-bottom: 28px;
+}
+
+.brand-business-headline {
+  font-size: clamp(3rem, 6vw, 5.2rem);
+}
+
+.brand-business-headline span {
+  white-space: nowrap;
 }
 
 .stack-heading p {
@@ -2201,7 +2227,7 @@ h3 {
   gap: 12px;
 }
 
-.stack-grid article {
+.stack-grid > section {
   display: grid;
   gap: 12px;
   min-height: 230px;
@@ -2211,21 +2237,45 @@ h3 {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.stack-grid article span {
+.stack-grid > section span {
   color: var(--green);
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
 }
 
-.stack-grid article strong {
+.stack-grid > section h3 {
+  margin: 0;
   font-size: 1.18rem;
 }
 
-.stack-grid article p {
+.stack-grid > section p {
   margin-bottom: 0;
   color: #d6d6d6;
   line-height: 1.5;
+}
+
+.seo-article-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 24px;
+}
+
+.seo-article-footer p {
+  max-width: 760px;
+  margin: 0;
+  color: #d8d8d8;
+  line-height: 1.6;
+}
+
+.seo-article-link {
+  flex: 0 0 auto;
+  border-color: rgba(255, 255, 255, 0.42);
+  color: #ffffff;
 }
 
 .checkout-section {
@@ -2517,10 +2567,30 @@ h3 {
   color: #ffffff;
 }
 
-.newsletter img {
+.newsletter-brand-card {
+  display: grid;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.newsletter-brand-card img {
   width: 100%;
   max-height: 480px;
   object-fit: contain;
+}
+
+.newsletter-brand-card figcaption {
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--black);
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .newsletter p {
@@ -3220,6 +3290,15 @@ h3 {
     padding-bottom: 96px;
   }
 
+  .seo-article-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .seo-article-link {
+    width: 100%;
+  }
+
   .checkout-section {
     padding: 56px 14px;
   }
@@ -3429,6 +3508,19 @@ h3 {
 
   h2 {
     font-size: clamp(2.5rem, 15vw, 4rem);
+  }
+
+  .flow-headline {
+    font-size: clamp(2rem, 10.7vw, 3.2rem);
+  }
+
+  .brand-business-headline {
+    font-size: clamp(2.2rem, 11.4vw, 3.2rem);
+  }
+
+  .flow-headline > span,
+  .brand-business-headline > span {
+    white-space: normal;
   }
 
   .product-grid,

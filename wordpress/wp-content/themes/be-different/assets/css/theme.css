@@ -589,6 +589,15 @@ img {
   margin: 0;
   font-size: clamp(2.6rem, 7vw, 6rem);
   line-height: 0.86;
+  text-wrap: balance;
+}
+
+.bd-headline-lines > span {
+  display: block;
+}
+
+.bd-keep-together {
+  white-space: nowrap;
 }
 
 .bd-product-grid,
@@ -620,7 +629,7 @@ img {
 }
 
 .bd-pillars article,
-.bd-stack-grid article {
+.bd-stack-grid > section {
   min-height: 220px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
@@ -906,11 +915,58 @@ img {
   color: var(--bd-white);
 }
 
-.bd-stack-grid article span {
+.bd-stack .bd-section-heading {
+  max-width: 980px;
+}
+
+.bd-stack .bd-headline-lines {
+  font-size: clamp(3rem, 6vw, 5.2rem);
+}
+
+.bd-stack .bd-headline-lines span {
+  white-space: nowrap;
+}
+
+.bd-stack-intro {
+  max-width: 840px;
+  margin: 18px 0 0;
+}
+
+.bd-stack-grid > section {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.bd-stack-grid > section span {
   color: var(--bd-yellow);
   font-size: 0.78rem;
   font-weight: 950;
   text-transform: uppercase;
+}
+
+.bd-stack-grid > section h3 {
+  margin: 0;
+  font-size: 1.18rem;
+}
+
+.bd-stack-grid > section p {
+  margin: 0;
+}
+
+.bd-seo-article-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 24px;
+}
+
+.bd-seo-article-footer p {
+  max-width: 760px;
+  margin: 0;
 }
 
 .bd-newsletter {
@@ -923,10 +979,30 @@ img {
   color: var(--bd-white);
 }
 
-.bd-newsletter img {
+.bd-newsletter-brand-card {
+  display: grid;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: var(--bd-white);
+}
+
+.bd-newsletter-brand-card img {
   width: 100%;
   max-height: 480px;
   object-fit: contain;
+}
+
+.bd-newsletter-brand-card figcaption {
+  border-top: 1px solid var(--bd-line);
+  background: #f7f7f3;
+  color: var(--bd-black);
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .bd-footer {
@@ -1455,6 +1531,15 @@ img {
     padding: 56px 0;
   }
 
+  .bd-seo-article-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .bd-seo-article-footer .bd-button {
+    width: 100%;
+  }
+
   .bd-shadow-collection {
     padding: 64px 16px;
   }
@@ -1561,6 +1646,14 @@ img {
 }
 
 @media (max-width: 620px) {
+  .bd-stack .bd-headline-lines {
+    font-size: clamp(2.2rem, 11.4vw, 3.2rem);
+  }
+
+  .bd-stack .bd-headline-lines > span {
+    white-space: normal;
+  }
+
   .bd-brand,
   .bd-brand-logo-crop {
     flex-basis: 158px;

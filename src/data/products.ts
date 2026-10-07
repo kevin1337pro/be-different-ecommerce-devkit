@@ -42,7 +42,6 @@ export const heroImage = asset(
 );
 export const heroEyecatcherImage = asset('assets/hero/eyecatcher.jpeg');
 
-export const brandDropImage = asset('assets/brand/new-be-different-sammlung.png');
 export const campaignHeroImage = asset('assets/campaign/mona-lisa-vermummt.jpeg');
 
 export const products: Product[] = [
@@ -190,26 +189,26 @@ export const campaignPosters: CampaignPoster[] = [
   },
 ];
 
-export const shopStack = [
+export const brandBusinessTopics = [
   {
-    label: 'CMS + Storefront',
-    value: 'WordPress Block Theme',
-    text: 'Flexible Content-Pflege, starke Landingpages und ein eigenes be-different Theme.',
+    label: 'T-Shirt Brand aufbauen',
+    value: 'Marke mit klarer Haltung',
+    text: 'Eine starke T-Shirt Marke beginnt mit Positionierung, Zielgruppe und einer Bildsprache, die auch ohne Logo wiedererkannt wird.',
   },
   {
-    label: 'Commerce Core',
-    value: 'WooCommerce + HPOS',
-    text: 'Produkte, Varianten, Cart, Checkout, Zahlungen, Steuern und Fulfillment direkt in WordPress.',
+    label: 'Statement T-Shirts',
+    value: 'Designs mit Wiedererkennung',
+    text: 'Street-Art, Typografie und ungewöhnliche Motive machen aus einem einfachen Shirt ein Statement mit eigener Geschichte.',
   },
   {
-    label: 'Conversion',
-    value: 'Cart & Checkout Blocks',
-    text: 'Moderner Block-Checkout, schneller Cart-Flow und WooCommerce-kompatible Erweiterungen.',
+    label: 'Print-on-Demand Business',
+    value: 'Drops flexibel testen',
+    text: 'Kleine Kollektionen und limitierte Runs helfen, neue Designs nah an der Community zu testen und Überproduktion zu vermeiden.',
   },
   {
-    label: 'Marketing',
-    value: 'Woo + GA4 + Meta + TikTok',
-    text: 'Events, Remarketing, Newsletter, Abbruchstrecken und Drop-Alerts über WordPress integrieren.',
+    label: 'Streetwear Marketing',
+    value: 'Community wird zur Marke',
+    text: 'Content, Social Media, Community-Votes und Drop-Alerts verbinden Menschen mit der Idee hinter der T-Shirt Brand.',
   },
 ];
 

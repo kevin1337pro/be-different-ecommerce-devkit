@@ -8,7 +8,7 @@ get_header();
 $featured_products = bd_featured_products(4);
 $hero_image = bd_asset('images/hero/website-background-2-background-for-an-t-shirt-shop-c8302e20-e774-4efd-b4bf-c61028bdaebe.jpg');
 $hero_eyecatcher = bd_asset('images/hero/eyecatcher.jpeg');
-$drop_image = bd_asset('images/brand/new-be-different-sammlung.png');
+$brand_logo = bd_asset('images/brand/different-mind-logo.png');
 $campaign_hero = bd_asset('images/campaign/mona-lisa-vermummt.jpeg');
 $campaign_posters = [
     [
@@ -87,7 +87,7 @@ $shadow_collection = [
 <main id="main">
     <section class="bd-hero" style="background-image: url('<?php echo esc_url($hero_image); ?>')" data-bd-hero-root>
         <div class="bd-hero-copy">
-            <span class="bd-eyebrow"><?php esc_html_e('Street-Art Fashion / WooCommerce Drop 01', 'be-different'); ?></span>
+            <span class="bd-eyebrow"><?php esc_html_e('Statement T-Shirts / Limited Drop 01', 'be-different'); ?></span>
             <div class="bd-hero-slider" data-bd-hero-slider>
                 <article class="bd-hero-slide is-active" data-bd-bg="<?php echo esc_url($hero_image); ?>">
                     <h1><?php esc_html_e('Be different.', 'be-different'); ?><span><?php esc_html_e('Be better.', 'be-different'); ?></span><em><?php esc_html_e('Be you.', 'be-different'); ?></em></h1>
@@ -255,21 +255,32 @@ $shadow_collection = [
         </div>
     </section>
 
-    <section class="bd-section bd-stack">
-        <div class="bd-section-heading">
-            <span class="bd-eyebrow"><?php esc_html_e('WooCommerce Stack', 'be-different'); ?></span>
-            <h2><?php esc_html_e('WordPress pflegt. WooCommerce verkauft.', 'be-different'); ?></h2>
-        </div>
+    <article class="bd-section bd-stack" id="t-shirt-brand">
+        <header class="bd-section-heading">
+            <span class="bd-eyebrow"><?php esc_html_e('T-Shirt Brand Business', 'be-different'); ?></span>
+            <h2 class="bd-headline-lines">
+                <span><span class="bd-keep-together"><?php esc_html_e('T-Shirt Brand', 'be-different'); ?></span> <?php esc_html_e('gründen.', 'be-different'); ?></span>
+                <span><span class="bd-keep-together"><?php esc_html_e('Haltung tragbar', 'be-different'); ?></span> <?php esc_html_e('machen.', 'be-different'); ?></span>
+            </h2>
+            <p class="bd-stack-intro"><?php esc_html_e('Eine erfolgreiche T-Shirt Brand braucht mehr als austauschbare Prints. Different Mind verbindet Statement T-Shirts, Streetwear Designs und limitierte Drops zu einer Marke für Menschen, die Individualität und Haltung sichtbar tragen wollen.', 'be-different'); ?></p>
+        </header>
         <div class="bd-stack-grid">
-            <article><span>CMS</span><strong>WordPress</strong><p><?php esc_html_e('Landingpages, Kampagnen, SEO und redaktionelle Kontrolle.', 'be-different'); ?></p></article>
-            <article><span>Commerce</span><strong>WooCommerce + HPOS</strong><p><?php esc_html_e('Produkte, Varianten, Bestellungen und Order-Performance.', 'be-different'); ?></p></article>
-            <article><span>Checkout</span><strong>Cart & Checkout Blocks</strong><p><?php esc_html_e('Moderner Cart-Flow für Mobile-first Conversion.', 'be-different'); ?></p></article>
-            <article><span>Growth</span><strong>GA4 / Meta / TikTok</strong><p><?php esc_html_e('Tracking, Remarketing und Drop-Alert-Strecken.', 'be-different'); ?></p></article>
+            <section><span><?php esc_html_e('T-Shirt Brand aufbauen', 'be-different'); ?></span><h3><?php esc_html_e('Marke mit klarer Haltung', 'be-different'); ?></h3><p><?php esc_html_e('Eine starke T-Shirt Marke beginnt mit Positionierung, Zielgruppe und einer Bildsprache, die auch ohne Logo wiedererkannt wird.', 'be-different'); ?></p></section>
+            <section><span><?php esc_html_e('Statement T-Shirts', 'be-different'); ?></span><h3><?php esc_html_e('Designs mit Wiedererkennung', 'be-different'); ?></h3><p><?php esc_html_e('Street-Art, Typografie und ungewöhnliche Motive machen aus einem einfachen Shirt ein Statement mit eigener Geschichte.', 'be-different'); ?></p></section>
+            <section><span><?php esc_html_e('Print-on-Demand Business', 'be-different'); ?></span><h3><?php esc_html_e('Drops flexibel testen', 'be-different'); ?></h3><p><?php esc_html_e('Kleine Kollektionen und limitierte Runs helfen, neue Designs nah an der Community zu testen und Überproduktion zu vermeiden.', 'be-different'); ?></p></section>
+            <section><span><?php esc_html_e('Streetwear Marketing', 'be-different'); ?></span><h3><?php esc_html_e('Community wird zur Marke', 'be-different'); ?></h3><p><?php esc_html_e('Content, Social Media, Community-Votes und Drop-Alerts verbinden Menschen mit der Idee hinter der T-Shirt Brand.', 'be-different'); ?></p></section>
         </div>
-    </section>
+        <footer class="bd-seo-article-footer">
+            <p><?php esc_html_e('Von der ersten Markenidee bis zum verkaufsbereiten Drop entsteht so ein T-Shirt Business mit Wiedererkennung – kreativ, testbar und nah an der Community.', 'be-different'); ?></p>
+            <a class="bd-button bd-button-secondary" href="<?php echo esc_url(class_exists('WooCommerce') ? wc_get_page_permalink('shop') : '#shop'); ?>"><?php esc_html_e('Statement T-Shirts entdecken', 'be-different'); ?></a>
+        </footer>
+    </article>
 
     <section class="bd-newsletter" id="drop-alert">
-        <img src="<?php echo esc_url($drop_image); ?>" alt="<?php esc_attr_e('be-different Sammlung', 'be-different'); ?>" loading="lazy">
+        <figure class="bd-newsletter-brand-card">
+            <img src="<?php echo esc_url($brand_logo); ?>" alt="<?php esc_attr_e('Different Mind Logo', 'be-different'); ?>" loading="lazy">
+            <figcaption><?php esc_html_e('Be different · Be better · Be you', 'be-different'); ?></figcaption>
+        </figure>
         <div>
             <span class="bd-eyebrow"><?php esc_html_e('Drop Alert', 'be-different'); ?></span>
             <h2><?php esc_html_e('Verpass keinen Drop.', 'be-different'); ?></h2>

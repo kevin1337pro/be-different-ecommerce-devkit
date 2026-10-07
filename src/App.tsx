@@ -31,7 +31,7 @@ import {
   Users,
 } from 'lucide-react';
 import {
-  brandDropImage,
+  brandBusinessTopics,
   brandPillars,
   campaignHeroImage,
   campaignIdeas,
@@ -44,7 +44,6 @@ import {
   products,
   proofPoints,
   shadowCollection,
-  shopStack,
 } from './data/products';
 import earlyAccessImage from '../assets/image_pop_up_1.png';
 import differentMindLogo from './assets/different-mind-logo.png';
@@ -65,13 +64,13 @@ const tickerItems = [
   'Drop 01 ist offen',
   'Be different - be better - be you',
   `Free shipping ab ${formatPrice(freeShippingThreshold)}`,
-  'WooCommerce-Fokus',
+  'Statement Shirts mit Haltung',
   'Print-on-Demand + Limited Runs',
   'Neue Motive per Community Vote',
 ];
 const heroSlides = [
   {
-    kicker: 'Street-Art Fashion / WooCommerce Drop 01',
+    kicker: 'Statement T-Shirts / Limited Drop 01',
     top: 'Be different.',
     highlight: 'Be better.',
     signature: 'Be you.',
@@ -1038,7 +1037,7 @@ function App() {
             Mitmachen
           </a>
           <a href="#system" onClick={(event) => { event.preventDefault(); navigateHome('system'); }}>
-            Stack
+            T-Shirt Brand
           </a>
           <a href="#faq" onClick={(event) => { event.preventDefault(); navigateHome('faq'); }}>
             FAQ
@@ -1160,7 +1159,7 @@ function App() {
 
                 <div className="shop-filter-note">
                   <ShieldCheck size={18} />
-                  <span>WooCommerce-Filter später über Attribute: Größe, Farbe, Drop, Preis.</span>
+                  <span>Finde dein Shirt nach Größe, Farbe, Kollektion und Preis.</span>
                 </div>
               </aside>
 
@@ -1895,7 +1894,10 @@ function App() {
         <section className="section split-section">
           <div>
             <span className="eyebrow">3-Step Kauf-Flow</span>
-            <h2>Social-Traffic rein. Kauf raus.</h2>
+            <h2 className="headline-lines flow-headline">
+              <span>Social-Traffic rein.</span>
+              <span>Kauf raus.</span>
+            </h2>
           </div>
           <ol className="steps">
             <li>
@@ -1913,33 +1915,51 @@ function App() {
           </ol>
         </section>
 
-        <section className="stack-section" id="system">
-          <div className="stack-heading">
-            <span className="eyebrow neon">Smart Shop System</span>
-            <h2>WordPress-Look. WooCommerce-Power.</h2>
+        <article className="stack-section seo-brand-article" id="system">
+          <header className="stack-heading">
+            <span className="eyebrow neon">T-Shirt Brand Business</span>
+            <h2 className="headline-lines brand-business-headline" id="t-shirt-brand-title">
+              <span>
+                <span className="keep-together">T-Shirt Brand</span> gründen.
+              </span>
+              <span>
+                <span className="keep-together">Haltung tragbar</span> machen.
+              </span>
+            </h2>
             <p>
-              Für Umsatz zählt ein System, das du pflegen kannst: WordPress für Content,
-              WooCommerce für Produkte und Checkout, HPOS für saubere Order-Performance.
+              Eine erfolgreiche T-Shirt Brand braucht mehr als austauschbare Prints. Different
+              Mind verbindet Statement T-Shirts, Streetwear Designs und limitierte Drops zu einer
+              Marke für Menschen, die Individualität und Haltung sichtbar tragen wollen.
             </p>
-          </div>
+          </header>
           <div className="stack-grid">
-            {shopStack.map((item) => (
-              <article key={item.label}>
+            {brandBusinessTopics.map((item) => (
+              <section key={item.label}>
                 <span>{item.label}</span>
-                <strong>{item.value}</strong>
+                <h3>{item.value}</h3>
                 <p>{item.text}</p>
-              </article>
+              </section>
             ))}
           </div>
-        </section>
+          <footer className="seo-article-footer">
+            <p>
+              Von der ersten Markenidee bis zum verkaufsbereiten Drop entsteht so ein T-Shirt
+              Business mit Wiedererkennung – kreativ, testbar und nah an der Community.
+            </p>
+            <a className="secondary-button seo-article-link" href="#/shop">
+              Statement T-Shirts entdecken
+              <ChevronRight size={18} />
+            </a>
+          </footer>
+        </article>
 
         <section className="checkout-section" id="checkout">
           <div className="checkout-intro">
             <span className="eyebrow">Checkout</span>
             <h2>Alles führt zum Abschluss.</h2>
             <p>
-              Der finale Shop läuft über WooCommerce: Produkt wählen, Variante prüfen,
-              Zahlungsart auswählen und ohne Reibung abschließen.
+              Produkt wählen, passende Variante prüfen, Zahlungsart auswählen und ohne unnötige
+              Umwege sicher abschließen.
             </p>
           </div>
           <div className="checkout-grid">
@@ -2023,7 +2043,10 @@ function App() {
         </section>
 
         <section className="newsletter">
-          <img src={brandDropImage} alt="be-different Sammlung" loading="lazy" />
+          <figure className="newsletter-brand-card">
+            <img src={differentMindLogo} alt="Different Mind Logo" loading="lazy" />
+            <figcaption>Be different · Be better · Be you</figcaption>
+          </figure>
           <div>
             <span className="eyebrow neon">Drop Alert</span>
             <h2>Verpass keinen Drop.</h2>
