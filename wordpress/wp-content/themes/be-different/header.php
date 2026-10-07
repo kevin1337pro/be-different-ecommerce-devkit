@@ -32,8 +32,8 @@
 </div>
 <header class="bd-header">
     <a class="bd-brand" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php bloginfo('name'); ?>">
-        <span class="bd-brand-logo-crop">
-            <img src="<?php echo bd_asset('images/brand/different-mind-logo.png'); ?>" alt="Different Mind">
+        <span class="bd-brand-mark">
+            <img src="<?php echo bd_asset('images/brand/different-mind-mark.svg'); ?>" alt="">
         </span>
     </a>
 

@@ -110,16 +110,13 @@ img {
 
 .bd-brand {
   position: relative;
-  display: block;
-  flex: 0 0 205px;
-  width: 205px;
+  display: grid;
+  flex: 0 0 54px;
+  width: 54px;
   height: 54px;
-  overflow: hidden;
-  border-radius: 5px;
-  background: var(--bd-white);
+  place-items: center;
 }
 
-.bd-brand-logo-crop,
 .bd-footer-logo-crop {
   position: relative;
   display: block;
@@ -127,17 +124,18 @@ img {
   background: var(--bd-white);
 }
 
-.bd-brand-logo-crop {
-  width: 205px;
-  height: 54px;
+.bd-brand-mark {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
 }
 
-.bd-brand-logo-crop img {
-  position: absolute;
-  top: -47px;
-  left: -10px;
-  width: 220px;
-  max-width: none;
+.bd-brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.4);
 }
 
 .bd-nav ul,
@@ -1090,6 +1088,10 @@ img {
   display: none;
 }
 
+.bd-consent .bd-eyebrow {
+  color: #5a96ff;
+}
+
 .bd-consent p {
   margin: 6px 0;
   color: #d5d5d5;
@@ -1654,17 +1656,15 @@ img {
     white-space: normal;
   }
 
-  .bd-brand,
-  .bd-brand-logo-crop {
-    flex-basis: 158px;
-    width: 158px;
+  .bd-brand {
+    flex-basis: 48px;
+    width: 48px;
     height: 48px;
   }
 
-  .bd-brand-logo-crop img {
-    top: -38px;
-    left: -7px;
-    width: 174px;
+  .bd-brand-mark {
+    width: 44px;
+    height: 44px;
   }
 
   .bd-consent {

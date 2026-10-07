@@ -48,6 +48,7 @@ import {
 import earlyAccessImage from '../assets/image_pop_up_1.png';
 import differentMindLogo from './assets/different-mind-logo.png';
 
+const differentMindMark = `${import.meta.env.BASE_URL}assets/brand/different-mind-mark.svg`;
 const categories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops'] as const;
 const shopCategories = ['Alle', 'Statement Shirts', 'Animal Art', 'Custom Drops', 'Shadow Drop'] as const;
 const shopColors = ['Alle', 'White', 'Black'] as const;
@@ -1003,8 +1004,8 @@ function App() {
             navigateHome();
           }}
         >
-          <span className="brand-logo-crop">
-            <img src={differentMindLogo} alt="Different Mind" />
+          <span className="brand-mark">
+            <img src={differentMindMark} alt="" />
           </span>
         </a>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Hauptnavigation">
