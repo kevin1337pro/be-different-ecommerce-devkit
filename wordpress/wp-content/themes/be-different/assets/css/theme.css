@@ -1463,6 +1463,10 @@ img {
   transform: translateY(-3px);
 }
 
+.bd-social-link:hover img {
+  filter: invert(1);
+}
+
 .bd-social-link span {
   font-size: 0.74rem;
   font-weight: 950;

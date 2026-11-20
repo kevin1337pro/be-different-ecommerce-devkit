@@ -911,10 +911,33 @@ h3 {
 
 .shop-page-trust article {
   display: grid;
+  align-content: start;
+  justify-items: start;
   gap: 12px;
   min-height: 190px;
   border-right: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 24px max(18px, calc((100vw - 1180px) / 2));
+  padding: 24px clamp(18px, 3vw, 48px);
+}
+
+.line-icon {
+  display: block;
+  object-fit: contain;
+  flex: none;
+}
+
+.shop-page-trust .line-icon,
+.social-link:hover .line-icon {
+  filter: invert(1);
+}
+
+.shop-page-trust a,
+.shipping-card a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+#groessentabelle {
+  scroll-margin-top: 96px;
 }
 
 .shop-page-trust article:last-child {
@@ -2406,26 +2429,17 @@ h3 {
   top: 96px;
 }
 
-.shipping-card p {
-  margin-bottom: 0;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-.shipping-card ul {
-  display: grid;
-  gap: 9px;
+.shipping-card h3 {
   margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
-.shipping-card li {
+.shipping-card a {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 0.92rem;
+  gap: 14px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-weight: 650;
 }
 
 .legal-page {

@@ -2,21 +2,15 @@ import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   ArrowUp,
   BadgePercent,
-  Camera,
-  Check,
   ChevronRight,
-  CreditCard,
   Eye,
   Flame,
   Heart,
   LockKeyhole,
   Menu,
-  MessageCircle,
   Minus,
-  Music2,
   PackageCheck,
   Plus,
-  Play,
   Radio,
   RotateCcw,
   ShieldCheck,
@@ -28,7 +22,6 @@ import {
   Truck,
   X,
   Zap,
-  Users,
 } from 'lucide-react';
 import {
   brandBusinessTopics,
@@ -102,12 +95,16 @@ const heroSlides = [
   },
 ];
 const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/', Icon: Camera },
-  { label: 'TikTok', href: 'https://www.tiktok.com/', Icon: Music2 },
-  { label: 'YouTube', href: 'https://www.youtube.com/', Icon: Play },
-  { label: 'Facebook', href: 'https://www.facebook.com/', Icon: Users },
-  { label: 'X', href: 'https://x.com/', Icon: MessageCircle },
+  { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
+  { label: 'TikTok', href: 'https://www.tiktok.com/', icon: 'tiktok' },
+  { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'youtube' },
+  { label: 'Facebook', href: 'https://www.facebook.com/', icon: 'facebook' },
+  { label: 'X', href: 'https://x.com/' },
 ];
+
+function LineIcon({ name, size = 44 }: { name: string; size?: number }) {
+  return <img className="line-icon" src={`${import.meta.env.BASE_URL}assets/icons/${name}.webp`} width={size} height={size} alt="" loading="lazy" />;
+}
 const legalPages = [
   {
     slug: 'impressum',
@@ -544,6 +541,12 @@ function ProductCard({
   );
 }
 
+function revealSection(id: string) {
+  const target = document.getElementById(id);
+  if (target instanceof HTMLDetailsElement) target.open = true;
+  target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function App() {
   const [route, setRoute] = useState<AppRoute>(() => getRouteFromHash());
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('Alle');
@@ -698,7 +701,7 @@ function App() {
     if (route !== 'home' || !pendingScrollId) return undefined;
 
     const timer = window.setTimeout(() => {
-      document.getElementById(pendingScrollId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      revealSection(pendingScrollId);
       setPendingScrollId(null);
     }, 50);
 
@@ -707,7 +710,7 @@ function App() {
 
   function scrollToSection(sectionId: string) {
     window.setTimeout(() => {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      revealSection(sectionId);
     }, 0);
   }
 
@@ -1008,7 +1011,7 @@ function App() {
             <img src={differentMindMark} alt="" />
           </span>
         </a>
-        <nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Hauptnavigation">
+        <nav id="hauptnavigation" className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Hauptnavigation">
           <a
             href="#/shop"
             className={route === 'shop' ? 'active' : ''}
@@ -1059,6 +1062,8 @@ function App() {
           </button>
           <button
             className="menu-button"
+            aria-expanded={menuOpen}
+            aria-controls="hauptnavigation"
             aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
             onClick={() => setMenuOpen((open) => !open)}
           >
@@ -1217,19 +1222,19 @@ function App() {
 
             <section className="shop-page-trust">
               <article>
-                <PackageCheck size={22} />
-                <strong>Drop-Produktion</strong>
-                <p>Start ohne Lagerdruck, später Limited Runs und Stock-Produkte.</p>
+                <LineIcon name="parcel" />
+                <strong>Druck auf Bestellung</strong>
+                <p>Unsere Print-on-Demand-Shirts gehen nach deiner Bestellung in den Druck.</p>
               </article>
               <article>
-                <CreditCard size={22} />
-                <strong>Schnelle Zahlung</strong>
-                <p>Checkout mit Stripe, PayPal und Wallets, sobald der Live-Shop angebunden ist.</p>
+                <LineIcon name="size" />
+                <strong>Welche Größe passt?</strong>
+                <a href="#groessentabelle" onClick={(event) => { event.preventDefault(); navigateHome('groessentabelle'); }}>Shirt-Maße vergleichen</a>
               </article>
               <article>
-                <Truck size={22} />
-                <strong>Mobile zuerst</strong>
-                <p>Filter, Cart und Checkout sind auf schnelle Social-Traffic-Käufe ausgelegt.</p>
+                <LineIcon name="delivery" />
+                <strong>Lieferung und Rückgabe</strong>
+                <a href="#/versand-rueckgabe" onClick={(event) => { event.preventDefault(); navigateLegal('versand-rueckgabe'); }}>Versandkosten und Lieferzeiten ansehen</a>
               </article>
             </section>
           </>
@@ -1737,7 +1742,7 @@ function App() {
                 </span>
               </div>
 
-              <details className="size-guide" open>
+              <details className="size-guide" id="groessentabelle" open>
                 <summary>Größencheck</summary>
                 <div className="size-table" role="table" aria-label="Größentabelle">
                   {sizeGuide.map((row) => (
@@ -1957,33 +1962,32 @@ function App() {
         <section className="checkout-section" id="checkout">
           <div className="checkout-intro">
             <span className="eyebrow">Checkout</span>
-            <h2>Alles führt zum Abschluss.</h2>
+            <h2>Deine Bestellung im Überblick.</h2>
             <p>
-              Produkt wählen, passende Variante prüfen, Zahlungsart auswählen und ohne unnötige
-              Umwege sicher abschließen.
+              Hier siehst du deine Auswahl und die Versandkosten. In dieser Shop-Vorschau kannst du deinen Warenkorb zusammenstellen.
             </p>
           </div>
           <div className="checkout-grid">
             <div className="checkout-panel">
               <div className="checkout-step active">
-                <PackageCheck size={22} />
+                <LineIcon name="bag" />
                 <div>
                   <strong>1. Warenkorb</strong>
                   <span>{cartCount > 0 ? `${cartCount} Artikel gewählt` : 'Noch leer'}</span>
                 </div>
               </div>
               <div className="checkout-step">
-                <Truck size={22} />
+                <LineIcon name="delivery" />
                 <div>
                   <strong>2. Versand</strong>
-                  <span>POD, Stock oder Limited Runs</span>
+                  <span>Die Versandkosten findest du in der Übersicht.</span>
                 </div>
               </div>
               <div className="checkout-step">
-                <CreditCard size={22} />
+                <LineIcon name="payment" />
                 <div>
                   <strong>3. Zahlung</strong>
-                  <span>PayPal, Stripe, Apple Pay, Google Pay, Klarna</span>
+                  <span>Der Verkauf startet mit der Eröffnung des Shops.</span>
                 </div>
               </div>
             </div>
@@ -2001,9 +2005,9 @@ function App() {
                 <span>Gesamt</span>
                 <span>{formatPrice(total)}</span>
               </div>
-              <button className="primary-button" disabled={cartCount === 0}>
-                <LockKeyhole size={18} />
-                Zur Kasse
+              <button className="primary-button" disabled={cartCount === 0} onClick={() => setCartOpen(true)}>
+                <ShoppingBag size={18} />
+                Warenkorb bearbeiten
               </button>
             </div>
           </div>
@@ -2012,7 +2016,7 @@ function App() {
         <section className="section info-section" id="faq">
           <div className="faq-block">
             <span className="eyebrow">FAQ</span>
-            <h2>Einwände vor dem Kauf killen.</h2>
+            <h2>Fragen zu deinem Shirt.</h2>
             <div className="faq-list">
               {faqItems.map((item) => (
                 <details key={item.question}>
@@ -2023,23 +2027,14 @@ function App() {
             </div>
           </div>
           <aside className="shipping-card">
-            <Truck size={24} />
-            <strong>Recht & Vertrauen</strong>
-            <p>
-              Pflichttexte müssen vor dem Kauf erreichbar sein: Impressum, Datenschutz, AGB,
-              Widerruf, Versandkosten, Zahlungsarten und Cookie Consent.
-            </p>
-            <ul>
-              <li>
-                <Check size={15} /> Keine Tracking-Cookies ohne Consent
-              </li>
-              <li>
-                <Check size={15} /> Preisangaben inkl. Steuerhinweis
-              </li>
-              <li>
-                <Check size={15} /> Widerruf und Rückgabe klar erreichbar
-              </li>
-            </ul>
+            <h3>Hilfe beim Einkauf</h3>
+            <a href="#groessentabelle" onClick={(event) => { event.preventDefault(); navigateHome('groessentabelle'); }}>
+              <LineIcon name="size" /> Größentabelle
+            </a>
+            <a href="#/versand-rueckgabe" onClick={(event) => { event.preventDefault(); navigateLegal('versand-rueckgabe'); }}>
+              <LineIcon name="delivery" /> Versand &amp; Rückgabe
+            </a>
+            <a href="mailto:info@be-different.shop"><LineIcon name="mail" /> Schreib uns eine E-Mail</a>
           </aside>
         </section>
 
@@ -2148,7 +2143,7 @@ function App() {
             <img src={differentMindLogo} alt="Different Mind" />
           </span>
           <div className="social-links" role="group" aria-label="Social Media">
-            {socialLinks.map(({ label, href, Icon }) => (
+            {socialLinks.map(({ label, href, icon }) => (
               <a
                 className="social-link"
                 href={href}
@@ -2157,7 +2152,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Icon size={18} strokeWidth={2.2} />
+                {icon ? <LineIcon name={icon} size={32} /> : <span aria-hidden="true">X</span>}
               </a>
             ))}
           </div>
@@ -2178,7 +2173,7 @@ function App() {
           <a href="#collab" onClick={(event) => { event.preventDefault(); navigateHome('collab'); }}>
             Mitmachen
           </a>
-          <a href="#produkt" onClick={(event) => { event.preventDefault(); navigateHome('produkt'); }}>
+          <a href="#groessentabelle" onClick={(event) => { event.preventDefault(); navigateHome('groessentabelle'); }}>
             Größentabelle
           </a>
           <a
@@ -2320,7 +2315,7 @@ function App() {
                   </div>
                   <button className="primary-button" onClick={jumpToCheckout}>
                     <LockKeyhole size={18} />
-                    Checkout starten
+                    Bestellübersicht ansehen
                   </button>
                 </div>
               </>
