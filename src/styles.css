@@ -925,6 +925,8 @@ h3 {
   flex: none;
 }
 
+.site-header .line-icon,
+.trust-strip .line-icon,
 .shop-page-trust .line-icon,
 .social-link:hover .line-icon {
   filter: invert(1);
@@ -2922,18 +2924,18 @@ h3 {
 }
 
 .social-links {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
   gap: 8px;
 }
 
 .social-link {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
   background: #ffffff;
   color: var(--black);
   transition:

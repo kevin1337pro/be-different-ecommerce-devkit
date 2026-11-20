@@ -1,7 +1,6 @@
 import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   ArrowUp,
-  BadgePercent,
   ChevronRight,
   Eye,
   Flame,
@@ -9,17 +8,13 @@ import {
   LockKeyhole,
   Menu,
   Minus,
-  PackageCheck,
   Plus,
   Radio,
-  RotateCcw,
   ShieldCheck,
   ShoppingBag,
-  SlidersHorizontal,
   Sparkles,
   Star,
   Trash2,
-  Truck,
   X,
   Zap,
 } from 'lucide-react';
@@ -99,11 +94,11 @@ const socialLinks = [
   { label: 'TikTok', href: 'https://www.tiktok.com/', icon: 'tiktok' },
   { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'youtube' },
   { label: 'Facebook', href: 'https://www.facebook.com/', icon: 'facebook' },
-  { label: 'X', href: 'https://x.com/' },
+  { label: 'X', href: 'https://x.com/', icon: 'x' },
 ];
 
 function LineIcon({ name, size = 44 }: { name: string; size?: number }) {
-  return <img className="line-icon" src={`${import.meta.env.BASE_URL}assets/icons/${name}.webp`} width={size} height={size} alt="" loading="lazy" />;
+  return <img className="line-icon" src={`${import.meta.env.BASE_URL}assets/icons/hex/${name}.webp`} width={size} height={size} alt="" loading="lazy" />;
 }
 const legalPages = [
   {
@@ -1049,7 +1044,7 @@ function App() {
         </nav>
         <div className="header-actions">
           <button className="header-deal" onClick={() => addProduct(topProduct)}>
-            <BadgePercent size={18} />
+            <LineIcon name="offer" size={28} />
             Bundle
           </button>
           <button
@@ -1057,7 +1052,7 @@ function App() {
             aria-label={`${cartCount} Artikel im Warenkorb`}
             onClick={() => setCartOpen(true)}
           >
-            <ShoppingBag size={20} />
+            <LineIcon name="bag" size={28} />
             <span>{cartCount}</span>
           </button>
           <button
@@ -1370,13 +1365,13 @@ function App() {
             </div>
             <div className="trust-strip" role="group" aria-label="Shop Vorteile">
               <span>
-                <ShieldCheck size={17} /> Sichere Zahlung
+                <LineIcon name="lock" size={26} /> Sichere Zahlung
               </span>
               <span>
-                <Truck size={17} /> POD ohne Lagerdruck
+                <LineIcon name="parcel" size={26} /> Druck auf Bestellung
               </span>
               <span>
-                <RotateCcw size={17} /> Rückgabe klar erklärt
+                <LineIcon name="returns" size={26} /> Rückgabe klar erklärt
               </span>
             </div>
             <div className="hero-slider-controls" role="group" aria-label="Hero Slider">
@@ -1468,7 +1463,7 @@ function App() {
               <h2 id="bestseller">Nicht basic. Nicht leise.</h2>
             </div>
             <button className="filter-trigger" onClick={() => setFilterOpen(true)}>
-              <SlidersHorizontal size={18} />
+              <LineIcon name="filter" size={28} />
               Filter
             </button>
           </div>
@@ -1725,19 +1720,19 @@ function App() {
             <div className="detail-assurance">
               <div className="assurance-grid" role="group" aria-label="Kaufargumente">
                 <span>
-                  <ShieldCheck size={16} />
+                  <LineIcon name="lock" size={26} />
                   Sichere Zahlung
                 </span>
                 <span>
-                  <PackageCheck size={16} />
+                  <LineIcon name="parcel" size={26} />
                   Produktion auf Bestellung
                 </span>
                 <span>
-                  <Truck size={16} />
+                  <LineIcon name="delivery" size={26} />
                   Versand transparent
                 </span>
                 <span>
-                  <RotateCcw size={16} />
+                  <LineIcon name="returns" size={26} />
                   Rückgabe-Flow
                 </span>
               </div>
@@ -2152,7 +2147,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                {icon ? <LineIcon name={icon} size={32} /> : <span aria-hidden="true">X</span>}
+                <LineIcon name={icon} size={38} />
               </a>
             ))}
           </div>

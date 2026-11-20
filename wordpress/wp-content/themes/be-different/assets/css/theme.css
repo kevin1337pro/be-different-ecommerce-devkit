@@ -1435,18 +1435,18 @@ img {
 }
 
 .bd-social-links {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
   gap: 8px;
 }
 
 .bd-social-link {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--bd-line);
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
   background: var(--bd-white);
   color: var(--bd-black);
   transition:
